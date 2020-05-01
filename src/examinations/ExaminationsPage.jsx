@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Books = () => {
+export const ExaminationsPage = () => {
   return <div>Examinations</div>;
 };
