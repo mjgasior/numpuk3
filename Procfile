@@ -1,2 +1,2 @@
 react: yarn start 
-electron: yarn electron-start
+electron: node electron-wait-react

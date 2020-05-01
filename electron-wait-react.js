@@ -11,9 +11,11 @@ const tryConnection = () =>
     client.end();
     if (!startedElectron) {
       console.log("starting electron");
+
       startedElectron = true;
+
       const exec = require("child_process").exec;
-      const electron = exec("npm run electron");
+      const electron = exec("yarn electron-start");
       electron.stdout.on("data", function (data) {
         console.log("stdout: " + data.toString());
       });
