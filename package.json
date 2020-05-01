@@ -1,7 +1,7 @@
 {
   "name": "numpuk3",
   "version": "1.0.0",
-  "main": "Main.js",
+  "main": "main.js",
   "repository": "https://github.com/mjgasior/numpuk3.git",
   "author": "Michal J. Gasior <michaljgasior@gmail.com>",
   "license": "MIT",
