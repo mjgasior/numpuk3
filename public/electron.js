@@ -11,6 +11,7 @@ function createWindow() {
     minHeight: 600,
     frame: false,
     fullscreen: true,
+    icon: `${path.join(__dirname, "./favicon.ico")}`,
     webPreferences: {
       nodeIntegration: true,
     },
