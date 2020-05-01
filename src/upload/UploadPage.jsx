@@ -1,4 +1,5 @@
 import React from "react";
+import { showFileDialog } from "./showFileDialog";
 
 export function UploadPage() {
   return (
@@ -7,6 +8,7 @@ export function UploadPage() {
       <p>
         This is the environment build: <i>{process.env.NODE_ENV}</i>
       </p>
+      <button onClick={showFileDialog}>Show dialog</button>
     </div>
   );
 }

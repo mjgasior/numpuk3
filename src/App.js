@@ -5,6 +5,7 @@ import { Header } from "./header/Header";
 import { theme } from "./+utils/theme";
 import { UploadPage } from "./upload/UploadPage";
 import { ExaminationsPage } from "./examinations/ExaminationsPage";
+import { dialog } from "./+utils/electron";
 
 const Container = styled.div`
   display: flex;
@@ -13,6 +14,9 @@ const Container = styled.div`
 `;
 
 export const App = () => {
+  console.log("dialog");
+  console.log(dialog);
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
