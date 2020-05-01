@@ -9,7 +9,7 @@ export const Menu = () => {
       <ButtonLink to="/">
         <ListIcon />
       </ButtonLink>
-      <ButtonLink to="/books">
+      <ButtonLink to="/upload">
         <CloudUploadIcon />
       </ButtonLink>
     </>
