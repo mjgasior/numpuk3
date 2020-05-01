@@ -5,7 +5,7 @@ This app is based on `electron` and `create-react-app`.
 ## Startup:
 
 1. Run `yarn`
-2. Run `yarn dev`
+2. Run `yarn dev` (`Ctrl + Shift + I` shows the DevTools)
 
 Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an executable version or run `yarn dist` to create an installer.
 

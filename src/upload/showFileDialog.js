@@ -1,4 +1,5 @@
 import { showDirectoryDialog } from "../+utils/dialog";
+import { getFilesInDirectory } from "../+utils/files";
 
 export const showFileDialog = async () => {
   let options = {
@@ -8,5 +9,8 @@ export const showFileDialog = async () => {
   };
 
   const directory = await showDirectoryDialog(options);
-  console.log(directory);
+
+  if (directory) {
+    getFilesInDirectory(directory, ".xlsx");
+  }
 };
