@@ -17,7 +17,8 @@ const Container = styled.div`
   display: flex;
   margin: 10px;
   padding: 10px;
-  border-bottom: solid #6e1c79 1px;
+  border-bottom: solid 1px;
+  border-bottom-color: ${({ theme }) => theme.customPurple};
 `;
 
 export const Header = () => {

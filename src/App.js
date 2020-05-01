@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { Header } from "./+components/Header";
+import { theme } from "./+utils/theme";
 
 const Container = styled.div`
   display: flex;
@@ -9,8 +10,10 @@ const Container = styled.div`
 
 export const App = () => {
   return (
-    <Container>
-      <Header />
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Header />
+      </Container>
+    </ThemeProvider>
   );
 };
