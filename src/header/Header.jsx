@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "./+resources/logo192.png";
+import { Menu } from "./Menu";
 
 const Image = styled.img`
   width: 48px;
@@ -13,19 +14,29 @@ const StyledText = styled.div`
   font-family: "Segoe UI Light";
 `;
 
-const Container = styled.div`
+const RowContainer = styled.div`
   display: flex;
   padding: 0px 10px 10px;
   border-bottom: solid 1px;
   border-bottom-color: ${({ theme }) => theme.customPurple};
   user-select: none;
+  justify-content: space-between;
+`;
+
+const ColumnContainer = styled.div`
+  display: flex;
 `;
 
 export const Header = () => {
   return (
-    <Container>
-      <Image src={logo} alt="Logo" />
-      <StyledText>numpuk3</StyledText>
-    </Container>
+    <RowContainer>
+      <ColumnContainer>
+        <Image src={logo} alt="Logo" />
+        <StyledText>numpuk3</StyledText>
+      </ColumnContainer>
+      <ColumnContainer>
+        <Menu />
+      </ColumnContainer>
+    </RowContainer>
   );
 };
