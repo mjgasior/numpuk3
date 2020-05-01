@@ -1,23 +1,22 @@
 require("dotenv").config();
 const { app, BrowserWindow } = require("electron");
 
+const path = require("path");
+const isDev = require("electron-is-dev");
+
 let mainWindow;
 function createWindow() {
-  // create the browser window.
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
-  const startUrl =
-    process.env.ELECTRON_START_URL ||
-    url.format({
-      pathname: path.join(__dirname, "/../build/index.html"),
-      protocol: "file:",
-      slashes: true,
-    });
+  mainWindow.loadURL(
+    isDev
+      ? process.env.ELECTRON_START_URL
+      : `file://${path.join(__dirname, "../build/index.html")}`
+  );
 
-  mainWindow.loadURL(startUrl);
-
-  // open the DevTools
-  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
 
   mainWindow.on("closed", function () {
     // Dereference the window object, usually you would store windows
