@@ -26,7 +26,15 @@ export function FilesList({ files, directory }) {
     <Container>
       <Grid item xs={12} md={6}>
         <Row>
-          <Badge badgeContent={files.length} color="primary">
+          <Badge
+            badgeContent={files.length}
+            max={9999}
+            color="primary"
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+          >
             <FolderIcon />
           </Badge>
           <Label>{directory}</Label>

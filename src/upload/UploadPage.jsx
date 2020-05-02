@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { showFileDialog } from "./showFileDialog";
 import Button from "@material-ui/core/Button";
-import { FilesList } from "./+components/FilesList";
+import { ProcessFilesPage } from "./process/ProcessFilesPage";
 
-export function UploadPage() {
+export const UploadPage = () => {
   const [files, setFiles] = useState([]);
   const [directory, setDirectory] = useState([]);
 
@@ -20,8 +20,8 @@ export function UploadPage() {
           Wybierz lokalizację
         </Button>
       ) : (
-        <FilesList files={files} directory={directory} />
+        <ProcessFilesPage directory={directory} files={files} />
       )}
     </div>
   );
-}
+};
