@@ -1,7 +1,14 @@
 import { exceljs } from "../+utils/apis/dependenciesApi";
 import { getMetadata } from "./readers/metadata";
-import { getExaminationType } from "./readers/examinationType";
+import {
+  getExaminationType,
+  getIsCandidiasis,
+  getIsUnknown,
+  getIsExtended,
+} from "./readers/examinationType";
 import { getPh, getConsistency } from "./readers/generalResults";
+import { getCandidiasisResults } from "./readers/candidiasisResults";
+import { getExaminationResults } from "./readers/examinationResults";
 
 export const EXAMINATION_FILE_EXTENSION = "xlsx";
 export const EXAMINATION_FILE_EXTENSION_DOT = ".xlsx";
@@ -24,10 +31,24 @@ export const getExamination = async (filename) => {
   const ph = getPh(worksheet);
   const consistency = getConsistency(worksheet);
 
+  let results = {};
+  if (getIsUnknown(examinationType)) {
+    throw "Unknown examination type!";
+  } else if (getIsCandidiasis(examinationType)) {
+    results = getCandidiasisResults(worksheet);
+  } else {
+    results = getExaminationResults(worksheet);
+  }
+
+  if (getIsExtended(examinationType)) {
+    results.toDo = "todo";
+  }
+
   return {
     metadata,
     examinationType,
     ph,
     consistency,
+    results,
   };
 };

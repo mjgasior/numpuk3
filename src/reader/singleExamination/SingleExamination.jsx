@@ -16,7 +16,7 @@ export const SingleExamination = ({ examination }) => {
             <ObjectTable data={{ examinationType, ph, consistency }} />
           </Grid>
           <Grid item xs={12}>
-            <ObjectTable data={metadata} />
+            <ObjectTable data={results} />
           </Grid>
         </Grid>
       </Grid>

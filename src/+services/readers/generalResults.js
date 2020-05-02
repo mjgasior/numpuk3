@@ -1,5 +1,5 @@
 import { exceljs } from "../../+utils/apis/dependenciesApi";
-import { setConsistency } from "./normalizer";
+import { setConsistency } from "./+utils/normalizer";
 
 const GENERAL_DATA_SECTION = {
   ph: "H3",

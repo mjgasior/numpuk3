@@ -5,6 +5,15 @@ const EXAMINATION_TYPE = {
   EXTENDED: "EXTENDED",
 };
 
+export const getIsCandidiasis = (examinationType) =>
+  examinationType === EXAMINATION_TYPE.CANDIDIASIS;
+
+export const getIsExtended = (examinationType) =>
+  examinationType === EXAMINATION_TYPE.EXTENDED;
+
+export const getIsUnknown = (examinationType) =>
+  examinationType === EXAMINATION_TYPE.UNKNOWN;
+
 export const getExaminationType = (worksheet) => {
   if (isExtended(worksheet)) {
     return EXAMINATION_TYPE.EXTENDED;
