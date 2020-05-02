@@ -1,5 +1,6 @@
 import React from "react";
 
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,7 +10,17 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useTranslation } from "react-i18next";
 
-export const MetadataTable = ({ metadata, examinationType }) => {
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.success.dark,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+export const ObjectTable = ({ data }) => {
   const { t } = useTranslation("n3_metadata");
 
   return (
@@ -18,23 +29,17 @@ export const MetadataTable = ({ metadata, examinationType }) => {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>{t("n3_metadata_header")}</TableCell>
-              <TableCell align="right">{t("n3_value")}</TableCell>
+              <StyledTableCell>{t("n3_table_header")}</StyledTableCell>
+              <StyledTableCell align="right">{t("n3_value")}</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell component="th" scope="row">
-                {t("n3_examination_type")}
-              </TableCell>
-              <TableCell align="right">{t(examinationType)}</TableCell>
-            </TableRow>
-            {Object.keys(metadata).map((key) => (
+            {Object.keys(data).map((key) => (
               <TableRow key={key}>
                 <TableCell component="th" scope="row">
                   {t(key)}
                 </TableCell>
-                <TableCell align="right">{metadata[key]}</TableCell>
+                <TableCell align="right">{t(data[key])}</TableCell>
               </TableRow>
             ))}
           </TableBody>

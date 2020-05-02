@@ -16,8 +16,7 @@ export const english = {
       n3_select_directory: "Select directory",
     },
     n3_metadata: {
-      n3_examination_type: "Examination type",
-      n3_metadata_header: "Metadane",
+      n3_table_header: "Key",
       n3_value: "Value",
       examinationId: "Examination ID",
       patientName: "First and last name",
@@ -29,6 +28,14 @@ export const english = {
       dateOfSampling: "Date of sampling",
       dateOfSampleRegistration: "Date of sample registration",
       dateOfTestEnd: "Date of test end",
+
+      examinationType: "Examination type",
+      ph: "PH",
+      consistency: "Consistency",
+
+      LIQUID: "Liquid",
+      HALF_LIQUID: "Half liquid",
+      RIGID: "Rigid",
 
       UNKNOWN: "Unknown",
       CANDIDIASIS: "Candidiasis",

@@ -17,8 +17,7 @@ export const polish = {
       n3_select_file: "Wybierz plik",
     },
     n3_metadata: {
-      n3_examination_type: "Typ badania",
-      n3_metadata_header: "Metadane",
+      n3_table_header: "Nazwa",
       n3_value: "Wartość",
       examinationId: "Nr sprawozdania",
       patientName: "Imię i nazwisko",
@@ -30,6 +29,14 @@ export const polish = {
       dateOfSampling: "Data pobrania materiału",
       dateOfSampleRegistration: "Data rejestracji materiału",
       dateOfTestEnd: "Data zakończenia testu",
+
+      examinationType: "Typ badania",
+      ph: "PH",
+      consistency: "Konsystencja",
+
+      LIQUID: "Płynna",
+      HALF_LIQUID: "Półpłynna",
+      RIGID: "Stała",
 
       UNKNOWN: "Nieznany",
       CANDIDIASIS: "Kandydoza",

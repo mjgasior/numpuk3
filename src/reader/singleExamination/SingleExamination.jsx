@@ -1,18 +1,24 @@
 import React from "react";
-import { MetadataTable } from "./+components/MetadataTable";
-import { MetadataTable2 } from "./+components/MetadataTable2";
+import { ObjectTable } from "./+components/ObjectTable";
 import Grid from "@material-ui/core/Grid";
 
 export const SingleExamination = ({ examination }) => {
-  const { metadata, examinationType, ph, consistency } = examination;
+  const { metadata, examinationType, ph, consistency, results } = examination;
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={6}>
-        <MetadataTable metadata={metadata} examinationType={examinationType} />
+        <ObjectTable data={metadata} />
       </Grid>
       <Grid item xs={6}>
-        <MetadataTable2 />
+        <Grid container spacing={3} direction="column">
+          <Grid item xs={12}>
+            <ObjectTable data={{ examinationType, ph, consistency }} />
+          </Grid>
+          <Grid item xs={12}>
+            <ObjectTable data={metadata} />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );
