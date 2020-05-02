@@ -24,7 +24,7 @@ const Label = styled.div`
 export function FilesList({ files, directory }) {
   return (
     <Container>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={12}>
         <Row>
           <Badge
             badgeContent={files.length}

@@ -27,6 +27,23 @@ const getWorksheet = async (filename) => {
   return worksheet;
 };
 
+export const getExaminations = async (files, directory) => {
+  let errorCount = 0;
+  const errorFiles = [];
+  for (let index = 0; index < files.length; index++) {
+    try {
+      const exam = await getExamination(`${directory}/${files[index]}`);
+      console.log(exam);
+    } catch (error) {
+      errorCount++;
+      errorFiles.push(`${directory}/${files[index]}`);
+      console.log(error);
+    }
+  }
+  console.log(errorCount);
+  console.log(errorFiles);
+};
+
 export const getExamination = async (filename) => {
   console.log(`Reading file: ${filename}`);
   const worksheet = await getWorksheet(filename);
