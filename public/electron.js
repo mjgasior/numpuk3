@@ -6,7 +6,16 @@ const isDev = require("electron-is-dev");
 
 let mainWindow;
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({
+    minWidth: 800,
+    minHeight: 600,
+    frame: false,
+    fullscreen: true,
+    icon: `${path.join(__dirname, "./favicon.ico")}`,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
 
   mainWindow.loadURL(
     isDev
