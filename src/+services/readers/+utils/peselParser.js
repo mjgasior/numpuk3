@@ -1,4 +1,4 @@
-export function IsValid(pesel) {
+export function isPeselValid(pesel) {
   if (pesel == null) {
     return false;
   }
@@ -8,11 +8,11 @@ export function IsValid(pesel) {
     if (pesel.length !== 11) {
       return false;
     }
-    const peselNumbers = GetPeselNumbers(pesel);
-    toReturn = CountCheckSum(peselNumbers) === peselNumbers[10];
+    const peselNumbers = getPeselNumbers(pesel);
+    toReturn = countCheckSum(peselNumbers) === peselNumbers[10];
 
     if (toReturn) {
-      GetBirthday(pesel);
+      getBirthdate(pesel);
     }
   } catch (Exception) {
     toReturn = false;
@@ -20,30 +20,30 @@ export function IsValid(pesel) {
   return toReturn;
 }
 
-export function GetBirthday(pesel) {
-  const peselNumbers = GetPeselNumbers(pesel);
+export function getBirthdate(pesel) {
+  const peselNumbers = getPeselNumbers(pesel);
   return new Date(
-    GetBirthYear(peselNumbers),
-    GetBirthMonth(peselNumbers),
-    GetBirthDay(peselNumbers)
+    getBirthYear(peselNumbers),
+    getBirthMonth(peselNumbers),
+    getBirthDay(peselNumbers)
   );
 }
 
 const MULTIPLIERS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
 
-function IsEven(value) {
+function isEven(value) {
   return value % 2 == 0;
 }
 
-function GetBirthDay(peselNumbers) {
+function getBirthDay(peselNumbers) {
   return peselNumbers[4] * 10 + peselNumbers[5];
 }
 
-function GetBirthMonth(peselNumbers) {
-  return IsEven(peselNumbers[2]) ? peselNumbers[3] : peselNumbers[3] + 10;
+function getBirthMonth(peselNumbers) {
+  return isEven(peselNumbers[2]) ? peselNumbers[3] : peselNumbers[3] + 10;
 }
 
-function GetBirthYear(peselNumbers) {
+function getBirthYear(peselNumbers) {
   let birthYear = 1900 + peselNumbers[0] * 10 + peselNumbers[1];
   if (peselNumbers[2] >= 2 && peselNumbers[2] < 8) {
     birthYear += (peselNumbers[2] / 2) * 100;
@@ -55,7 +55,7 @@ function GetBirthYear(peselNumbers) {
   return birthYear;
 }
 
-function CountCheckSum(peselNumbers) {
+function countCheckSum(peselNumbers) {
   let sum = 0;
   for (let i = 0; i < MULTIPLIERS.length; i++) {
     sum += MULTIPLIERS[i] * peselNumbers[i];
@@ -65,7 +65,7 @@ function CountCheckSum(peselNumbers) {
   return moduloResult == 0 ? moduloResult : 10 - moduloResult;
 }
 
-function GetPeselNumbers(peselString) {
+function getPeselNumbers(peselString) {
   const peselLength = 11;
   const characters = peselString.split("");
   const digits = [];

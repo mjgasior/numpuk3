@@ -21,7 +21,7 @@ export const polish = {
       n3_value: "Wartość",
       examinationId: "Nr sprawozdania",
       patientName: "Imię i nazwisko",
-      birthday: "Data urodzenia",
+      birthdate: "Data urodzenia",
       gender: "Płeć",
       personalId: "PESEL",
       address: "Adres",

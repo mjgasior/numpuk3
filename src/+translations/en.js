@@ -20,7 +20,7 @@ export const english = {
       n3_value: "Value",
       examinationId: "Examination ID",
       patientName: "First and last name",
-      birthday: "Birthdate",
+      birthdate: "Birthdate",
       gender: "Gender",
       personalId: "Personal ID",
       address: "Address",
