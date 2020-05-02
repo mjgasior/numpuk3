@@ -1,20 +1,11 @@
 import { showDirectoryDialog } from "../+utils/dialog";
 import { getFilesInDirectory } from "../+utils/files";
-import {
-  EXAMINATION_FILE_EXTENSION,
-  EXAMINATION_FILE_EXTENSION_DOT,
-} from "../+utils/examinations";
+import { EXAMINATION_FILE_EXTENSION_DOT } from "../+utils/examinations";
 
-export const showFileDialog = async () => {
-  let options = {
-    title: "Wczytaj badania z lokalizacji",
-    buttonLabel: "Wczytaj",
-    filters: [
-      {
-        name: "Badania w formacie Excel",
-        extensions: [EXAMINATION_FILE_EXTENSION],
-      },
-    ],
+export const showFileDialog = async (t) => {
+  const options = {
+    title: t("n3_load_directory"),
+    buttonLabel: t("n3_load"),
   };
 
   let selectedFiles = [];

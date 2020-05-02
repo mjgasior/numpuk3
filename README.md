@@ -17,8 +17,10 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 
 ## Packages - React:
 
+- `i18next` - an internationalization framework written in and for JavaScript
 - `@material-ui/core` - an open-source project that features React components that implement Google's Material Design
 - `@material-ui/icons` - provides the Google Material icons packaged as a set of React components
+- `react-i18next` - an internationalization framework for React and React Native which is based on `i18next` and adds React specific features (e.g. hooks integration)
 - `react-router-dom` - the standard routing library for React, keeps your UI in sync with the URL - it has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in (these are Document Object Model bindings for React Router)
 - `styled-components` - allows to write plain CSS in components without worrying about class name collisions, it helps to write CSS that's scoped to a single component and does not leak to any other element in the page
 
@@ -26,6 +28,7 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 
 - [Building an Electron application with create-react-app](https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/)
 - [Converting callbacks to promises](https://zellwk.com/blog/converting-callbacks-to-promises/)
+- [Electron with i18next serving translations from backend](https://github.com/reZach/i18next-electron-fs-backend)
 - [How To Read An Excel File In Node.js](https://medium.com/javascript-in-plain-english/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1)
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js)
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
