@@ -21,6 +21,7 @@ export const setGender = (gender) => {
     case "M":
       return GENDER.MALE;
     default:
+      console.warn("Unknown gender");
       return GENDER.UNKNOWN;
   }
 };
@@ -41,6 +42,7 @@ export const setConsistency = (stoolConsistency) => {
     case "półpłynna":
       return CONSISTENCY.HALF_LIQUID;
     default:
+      console.warn("Unknown type of consistency");
       return CONSISTENCY.UNKNOWN;
   }
 };

@@ -33,6 +33,13 @@ export const english = {
       ph: "PH",
       consistency: "Consistency",
 
+      hasAkkermansiaMuciniphila: "Badanie w kierunku Akkermansia muciniphila",
+      hasFaecalibactriumPrausnitzii:
+        "Badanie w kierunku Faecalibactrium prausnitzii",
+
+      n3_positive: "Dodatni",
+      n3_negative: "Ujemny",
+
       LIQUID: "Liquid",
       HALF_LIQUID: "Half liquid",
       RIGID: "Rigid",

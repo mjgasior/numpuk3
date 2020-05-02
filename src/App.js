@@ -10,7 +10,8 @@ import { ReaderPage } from "./reader/ReaderPage";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  width: 65%;
+  margin: 10px auto;
 `;
 
 const Content = styled.div`

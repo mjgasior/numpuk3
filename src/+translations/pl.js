@@ -34,6 +34,10 @@ export const polish = {
       ph: "PH",
       consistency: "Konsystencja",
 
+      hasAkkermansiaMuciniphila: "Badanie w kierunku Akkermansia muciniphila",
+      hasFaecalibactriumPrausnitzii:
+        "Badanie w kierunku Faecalibactrium prausnitzii",
+
       LIQUID: "Płynna",
       HALF_LIQUID: "Półpłynna",
       RIGID: "Stała",

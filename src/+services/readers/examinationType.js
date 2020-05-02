@@ -27,6 +27,7 @@ export const getExaminationType = (worksheet) => {
     return EXAMINATION_TYPE.CANDIDIASIS;
   }
 
+  console.warn("Unknown examination type!");
   return EXAMINATION_TYPE.UNKNOWN;
 };
 

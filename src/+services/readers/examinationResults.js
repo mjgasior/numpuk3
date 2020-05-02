@@ -1,4 +1,4 @@
-import { exceljs } from "../../+utils/apis/dependenciesApi";
+import { isZeroValue, isExponential, readExponent } from "./+utils/dataReader";
 
 export const getExaminationResults = (worksheet) => {
   let dictionary = {};
@@ -35,23 +35,4 @@ export const getExaminationResults = (worksheet) => {
   console.log(`${i - o} is max`);
 
   return dictionary;
-};
-
-const isZeroValue = (cell) => {
-  return cell.type === exceljs.ValueType.Number && cell.value === 0;
-};
-
-const isExponential = (valueCell, exponentCell) => {
-  const isExponentValid =
-    exponentCell.type === exceljs.ValueType.Number && exponentCell.value > 0;
-
-  const isValueValid = valueCell.type === exceljs.ValueType.String;
-
-  return isExponentValid && isValueValid;
-};
-
-const readExponent = (valueCell, exponentCell) => {
-  const noWhitespaceString = valueCell.value.replace(/ /g, "");
-  const baseOfExponent = noWhitespaceString.split("x")[0].replace(/,/g, ".");
-  return parseFloat(`${baseOfExponent}e${exponentCell.value}`);
 };

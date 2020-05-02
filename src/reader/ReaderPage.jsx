@@ -3,7 +3,12 @@ import { useTranslation } from "react-i18next";
 import { showSelectFileDialog } from "./selectFileDialog";
 import Button from "@material-ui/core/Button";
 import { SingleExamination } from "./singleExamination/SingleExamination";
-import { getWorksheet, getExamination } from "../+services/examinationReader";
+import { getExamination } from "../+services/examinationReader";
+import styled from "styled-components";
+
+const Header = styled.div`
+  margin-bottom: 10px;
+`;
 
 export const ReaderPage = () => {
   const { t } = useTranslation();
@@ -18,13 +23,12 @@ export const ReaderPage = () => {
 
   return (
     <div>
-      {examination ? (
-        <SingleExamination examination={examination} />
-      ) : (
+      <Header>
         <Button variant="contained" color="primary" onClick={handlePickFiles}>
           {t("n3_select_file")}
         </Button>
-      )}
+      </Header>
+      {examination && <SingleExamination examination={examination} />}
     </div>
   );
 };

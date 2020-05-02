@@ -9,6 +9,10 @@ import {
 import { getPh, getConsistency } from "./readers/generalResults";
 import { getCandidiasisResults } from "./readers/candidiasisResults";
 import { getExaminationResults } from "./readers/examinationResults";
+import {
+  setHasAkkermansiaMuciniphila,
+  setHasFaecalibactriumPrausnitzii,
+} from "./readers/extendedResults";
 
 export const EXAMINATION_FILE_EXTENSION = "xlsx";
 export const EXAMINATION_FILE_EXTENSION_DOT = ".xlsx";
@@ -24,6 +28,7 @@ const getWorksheet = async (filename) => {
 };
 
 export const getExamination = async (filename) => {
+  console.log(`Reading file: ${filename}`);
   const worksheet = await getWorksheet(filename);
 
   const metadata = getMetadata(worksheet);
@@ -41,7 +46,21 @@ export const getExamination = async (filename) => {
   }
 
   if (getIsExtended(examinationType)) {
-    results.toDo = "todo";
+    const extendedResults = {
+      hasAkkermansiaMuciniphila: setHasAkkermansiaMuciniphila(worksheet),
+      hasFaecalibactriumPrausnitzii: setHasFaecalibactriumPrausnitzii(
+        worksheet
+      ),
+    };
+
+    return {
+      metadata,
+      examinationType,
+      ph,
+      consistency,
+      results,
+      extendedResults,
+    };
   }
 
   return {
