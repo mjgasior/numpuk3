@@ -17,8 +17,13 @@ export const showFileDialog = async () => {
     ],
   };
 
-  const directory = await showDirectoryDialog(options);
-  if (directory) {
-    return await getFilesInDirectory(directory, EXAMINATION_FILE_EXTENSION_DOT);
+  let selectedFiles = [];
+  const selectedDirectory = await showDirectoryDialog(options);
+  if (selectedDirectory) {
+    selectedFiles = await getFilesInDirectory(
+      selectedDirectory,
+      EXAMINATION_FILE_EXTENSION_DOT
+    );
   }
+  return { selectedFiles, selectedDirectory };
 };
