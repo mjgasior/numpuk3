@@ -28,7 +28,7 @@ export const getExaminationResults = (worksheet) => {
       console.log(`EXPONENT: ${exponentCell.value} TYPE: ${exponentCell.type}`);
     } catch (err) {
       console.log(err);
-      throw `There was an error in section ${i}!`;
+      throw new Error(`There was an error in section ${i}!`);
     }
   }
 

@@ -38,28 +38,20 @@ export const getExamination = async (filename) => {
 
   let results = {};
   if (getIsUnknown(examinationType)) {
-    throw "Unknown examination type!";
+    throw new Error("Unknown examination type!");
   } else if (getIsCandidiasis(examinationType)) {
     results = getCandidiasisResults(worksheet);
   } else {
     results = getExaminationResults(worksheet);
   }
 
+  let extendedResults;
   if (getIsExtended(examinationType)) {
-    const extendedResults = {
+    extendedResults = {
       hasAkkermansiaMuciniphila: setHasAkkermansiaMuciniphila(worksheet),
       hasFaecalibactriumPrausnitzii: setHasFaecalibactriumPrausnitzii(
         worksheet
       ),
-    };
-
-    return {
-      metadata,
-      examinationType,
-      ph,
-      consistency,
-      results,
-      extendedResults,
     };
   }
 
@@ -69,5 +61,6 @@ export const getExamination = async (filename) => {
     ph,
     consistency,
     results,
+    extendedResults,
   };
 };

@@ -9,7 +9,7 @@ const GENERAL_DATA_SECTION = {
 export const getPh = (worksheet) => {
   const cell = worksheet.getCell(GENERAL_DATA_SECTION.ph);
   if (cell.type !== exceljs.ValueType.Number) {
-    throw "Loaded file has a non number cell!";
+    throw new Error("Loaded file has a non number cell!");
   }
   return cell.value;
 };
@@ -17,7 +17,7 @@ export const getPh = (worksheet) => {
 export const getConsistency = (worksheet) => {
   const cell = worksheet.getCell(GENERAL_DATA_SECTION.consistency);
   if (cell.type !== exceljs.ValueType.String) {
-    throw "Loaded file has a non number cell!";
+    throw new Error("Loaded file has a non number cell!");
   }
   return setConsistency(cell.value);
 };

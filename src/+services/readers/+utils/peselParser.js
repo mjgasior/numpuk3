@@ -32,7 +32,7 @@ export function getBirthdate(pesel) {
 const MULTIPLIERS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
 
 function isEven(value) {
-  return value % 2 == 0;
+  return value % 2 === 0;
 }
 
 function getBirthDay(peselNumbers) {
@@ -62,7 +62,7 @@ function countCheckSum(peselNumbers) {
   }
 
   const moduloResult = sum % 10;
-  return moduloResult == 0 ? moduloResult : 10 - moduloResult;
+  return moduloResult === 0 ? moduloResult : 10 - moduloResult;
 }
 
 function getPeselNumbers(peselString) {

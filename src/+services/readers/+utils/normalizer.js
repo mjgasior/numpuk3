@@ -1,11 +1,31 @@
+import { moment } from "./../../../+utils/apis/dependenciesApi";
+
+export const setAge = (birthDate, currentDate) => {
+  const date1 = moment(birthDate, "DD.MM.YYYY");
+  const date2 = moment(currentDate, "DD.MM.YYYY");
+
+  const diff = moment.duration(date2.diff(date1));
+  return diff.asYears().toFixed(3);
+};
+
+export const setDate = (stringDate) => {
+  const date = moment(stringDate, "DD.MM.YYYY");
+  if (date.isValid()) {
+    return date.format("DD.MM.YYYY");
+  }
+  console.warn(`${stringDate} is invalid date format`);
+  return undefined;
+};
+
 export const setHasMarkers = (marker) => {
   switch (marker) {
     case "DODATNI":
       return true;
     case "UJEMNY":
       return false;
+    default:
+      throw new Error("Unknown marker - neither true nor false");
   }
-  throw "Unknown marker - neither true nor false";
 };
 
 const GENDER = {
