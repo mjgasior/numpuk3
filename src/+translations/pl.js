@@ -16,5 +16,18 @@ export const polish = {
       n3_select_directory: "Wybierz lokalizację",
       n3_select_file: "Wybierz plik",
     },
+    n3_metadata: {
+      n3_metadata_header: "Metadane",
+      examinationId: "Nr sprawozdania",
+      patientName: "Imię i nazwisko",
+      birthday: "Data urodzenia",
+      gender: "Płeć",
+      personalId: "PESEL",
+      address: "Adres",
+      sampleId: "Numer próbki",
+      dateOfSampling: "Data pobrania materiału",
+      dateOfSampleRegistration: "Data rejestracji materiału",
+      dateOfTestEnd: "Data zakończenia testu",
+    },
   },
 };

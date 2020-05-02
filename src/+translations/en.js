@@ -15,5 +15,18 @@ export const english = {
       n3_process_files: "Process files",
       n3_select_directory: "Select directory",
     },
+    n3_metadata: {
+      n3_metadata_header: "Metadane",
+      examinationId: "Examination ID",
+      patientName: "First and last name",
+      birthday: "Birthdate",
+      gender: "Gender",
+      personalId: "Personal ID",
+      address: "Address",
+      sampleId: "Sample ID",
+      dateOfSampling: "Date of sampling",
+      dateOfSampleRegistration: "Date of sample registration",
+      dateOfTestEnd: "Date of test end",
+    },
   },
 };
