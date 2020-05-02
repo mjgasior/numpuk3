@@ -1,4 +1,4 @@
-import { dialog } from "./electron";
+import { dialog } from "./apis/electronApi";
 
 export const showDirectoryDialog = async ({ title, buttonLabel, filters }) => {
   const options = {

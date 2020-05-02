@@ -1,3 +1,3 @@
-import { browserWindow } from "./electron";
+import { browserWindow } from "./apis/electronApi";
 
 export const closeApp = () => browserWindow.close();

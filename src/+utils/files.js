@@ -1,23 +1,25 @@
-import { fs, path } from "./electron";
+import { fs, path } from "./apis/nodeApi";
 
-export const getFilesInDirectory = (directoryPath, extension) => {
-  fs.readdir(directoryPath, function (err, files) {
-    if (err) {
-      return console.log("Unable to scan directory: " + err);
-    }
-
-    if (extension) {
-      const filesList = files.filter(function (e) {
-        return path.extname(e).toLowerCase() === extension;
-      });
-      console.log(filesList);
-      if (filesList.length < files.length) {
-        console.log("filesList < files");
+const readDirectoryAsync = (directoryPath, extension) => {
+  return new Promise((resolve, reject) => {
+    fs.readdir(directoryPath, function (err, files) {
+      if (err) {
+        console.log("Unable to scan directory: " + err);
+        reject(err);
       }
-    } else {
-      files.forEach(function (file) {
-        console.log(file);
-      });
-    }
+
+      if (extension) {
+        const filteredFiles = files.filter((file) => {
+          return path.extname(file).toLowerCase() === extension;
+        });
+        resolve(filteredFiles);
+      }
+      resolve(files);
+    });
   });
+};
+
+export const getFilesInDirectory = async (directoryPath, extension) => {
+  const fileList = await readDirectoryAsync(directoryPath, extension);
+  return fileList;
 };
