@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./+translations/i18n";
 import { App } from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 
