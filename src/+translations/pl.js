@@ -29,6 +29,7 @@ export const polish = {
       dateOfSampling: "Data pobrania materiału",
       dateOfSampleRegistration: "Data rejestracji materiału",
       dateOfTestEnd: "Data zakończenia testu",
+      ageAtTest: "Wiek w momencie badania",
 
       examinationType: "Typ badania",
       ph: "PH",
@@ -37,6 +38,12 @@ export const polish = {
       hasAkkermansiaMuciniphila: "Badanie w kierunku Akkermansia muciniphila",
       hasFaecalibactriumPrausnitzii:
         "Badanie w kierunku Faecalibactrium prausnitzii",
+
+      n3_positive: "Dodatni",
+      n3_negative: "Ujemny",
+
+      FEMALE: "Kobieta",
+      MALE: "Mężczyzna",
 
       LIQUID: "Płynna",
       HALF_LIQUID: "Półpłynna",

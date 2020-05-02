@@ -28,17 +28,20 @@ export const english = {
       dateOfSampling: "Date of sampling",
       dateOfSampleRegistration: "Date of sample registration",
       dateOfTestEnd: "Date of test end",
+      ageAtTest: "Age at time of test",
 
       examinationType: "Examination type",
       ph: "PH",
       consistency: "Consistency",
 
-      hasAkkermansiaMuciniphila: "Badanie w kierunku Akkermansia muciniphila",
-      hasFaecalibactriumPrausnitzii:
-        "Badanie w kierunku Faecalibactrium prausnitzii",
+      hasAkkermansiaMuciniphila: "Akkermansia muciniphila test",
+      hasFaecalibactriumPrausnitzii: "Faecalibactrium prausnitzii test",
 
-      n3_positive: "Dodatni",
-      n3_negative: "Ujemny",
+      n3_positive: "Positive",
+      n3_negative: "Negative",
+
+      FEMALE: "Kobieta",
+      MALE: "Mężczyzna",
 
       LIQUID: "Liquid",
       HALF_LIQUID: "Half liquid",

@@ -20,7 +20,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-export const SpecificDataTable = ({ data }) => {
+export const SpecificDataTable = ({ data, extendedResults }) => {
   const { t } = useTranslation("n3_metadata");
 
   return (
@@ -42,6 +42,34 @@ export const SpecificDataTable = ({ data }) => {
                 <TableCell align="right">{t(data[key])}</TableCell>
               </TableRow>
             ))}
+            {extendedResults && (
+              <>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    {t("hasAkkermansiaMuciniphila")}
+                  </TableCell>
+                  <TableCell align="right">
+                    {t(
+                      extendedResults.hasAkkermansiaMuciniphila
+                        ? "n3_positive"
+                        : "n3_negative"
+                    )}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    {t("hasFaecalibactriumPrausnitzii")}
+                  </TableCell>
+                  <TableCell align="right">
+                    {t(
+                      extendedResults.hasFaecalibactriumPrausnitzii
+                        ? "n3_positive"
+                        : "n3_negative"
+                    )}
+                  </TableCell>
+                </TableRow>
+              </>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

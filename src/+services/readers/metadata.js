@@ -1,3 +1,6 @@
+import { IsValid, GetBirthday } from "./+utils/peselParser";
+import { setGender } from "./+utils/normalizer";
+
 const META_DATA_SECTION = {
   examinationId: "D2",
   patientName: "D4",
@@ -17,5 +20,23 @@ export const getMetadata = (worksheet) => {
     metadata[key] = worksheet.getCell(META_DATA_SECTION[key]).value;
   });
 
+  metadata.gender = setGender(metadata.gender);
+
+  metadata.ageAtTest = getAgeAtMomentOfTest(
+    metadata.personalId,
+    metadata.dateOfSampleRegistration
+  );
+
   return metadata;
+};
+
+const getAgeAtMomentOfTest = (pesel, dateOfSampleRegistration) => {
+  if (IsValid(pesel)) {
+    const difference = new Date(dateOfSampleRegistration) - GetBirthday(pesel);
+    const age = new Date(difference);
+
+    return Math.abs(age.getUTCFullYear() - 1970);
+  }
+  console.warn("Invalid PESEL");
+  return -1;
 };
