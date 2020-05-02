@@ -9,6 +9,20 @@ This app is based on `electron` and `create-react-app`.
 
 Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an executable version or run `yarn dist` to create an installer.
 
+## Exceljs cell types:
+
+    Null: 0
+    Merge: 1
+    Number: 2
+    String: 3
+    Date: 4
+    Hyperlink: 5
+    Formula: 6
+    SharedString: 7
+    RichText: 8
+    Boolean: 9
+    Error: 10
+
 ## Packages - Electron:
 
 - `electron` - as many devs were [mistaking](https://www.electronjs.org/blog/npm-install-electron "Electron blog") `electron` for `electron-prebuilt`, the Electron team has joined them together (Electron is a JavaScript runtime that bundles Node.js and Chromium and this module helps you easily install the `electron` command for use on the command line without having to compile anything)

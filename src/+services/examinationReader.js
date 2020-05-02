@@ -1,11 +1,12 @@
 import { exceljs } from "../+utils/apis/dependenciesApi";
 import { getMetadata } from "./readers/metadata";
 import { getExaminationType } from "./readers/examinationType";
+import { getPh, getConsistency } from "./readers/generalResults";
 
 export const EXAMINATION_FILE_EXTENSION = "xlsx";
 export const EXAMINATION_FILE_EXTENSION_DOT = ".xlsx";
 
-export const getWorksheet = async (filename) => {
+const getWorksheet = async (filename) => {
   const workbook = new exceljs.Workbook();
   const spreadsheet = await workbook.xlsx.readFile(filename);
 
@@ -15,4 +16,18 @@ export const getWorksheet = async (filename) => {
   return worksheet;
 };
 
-export { getMetadata, getExaminationType };
+export const getExamination = async (filename) => {
+  const worksheet = await getWorksheet(filename);
+
+  const metadata = getMetadata(worksheet);
+  const examinationType = getExaminationType(worksheet);
+  const ph = getPh(worksheet);
+  const consistency = getConsistency(worksheet);
+
+  return {
+    metadata,
+    examinationType,
+    ph,
+    consistency,
+  };
+};

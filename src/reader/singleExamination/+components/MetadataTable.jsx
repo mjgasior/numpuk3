@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useTranslation } from "react-i18next";
 
-export const MetadataTable = ({ metadata }) => {
+export const MetadataTable = ({ metadata, examinationType }) => {
   const { t } = useTranslation("n3_metadata");
 
   return (
@@ -23,6 +23,12 @@ export const MetadataTable = ({ metadata }) => {
             </TableRow>
           </TableHead>
           <TableBody>
+            <TableRow>
+              <TableCell component="th" scope="row">
+                {t("n3_examination_type")}
+              </TableCell>
+              <TableCell align="right">{t(examinationType)}</TableCell>
+            </TableRow>
             {Object.keys(metadata).map((key) => (
               <TableRow key={key}>
                 <TableCell component="th" scope="row">

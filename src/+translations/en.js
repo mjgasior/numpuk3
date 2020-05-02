@@ -16,6 +16,7 @@ export const english = {
       n3_select_directory: "Select directory",
     },
     n3_metadata: {
+      n3_examination_type: "Examination type",
       n3_metadata_header: "Metadane",
       n3_value: "Value",
       examinationId: "Examination ID",
@@ -28,6 +29,11 @@ export const english = {
       dateOfSampling: "Date of sampling",
       dateOfSampleRegistration: "Date of sample registration",
       dateOfTestEnd: "Date of test end",
+
+      UNKNOWN: "Unknown",
+      CANDIDIASIS: "Candidiasis",
+      REGULAR: "Regular",
+      EXTENDED: "Extended",
     },
   },
 };
