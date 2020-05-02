@@ -17,6 +17,7 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 
 ## Packages - React:
 
+- `exceljs` - library that allows to read, manipulate and write spreadsheet data and styles to XLSX and JSON which was reverse engineered from Excel spreadsheet files
 - `i18next` - an internationalization framework written in and for JavaScript
 - `@material-ui/core` - an open-source project that features React components that implement Google's Material Design
 - `@material-ui/icons` - provides the Google Material icons packaged as a set of React components
@@ -30,6 +31,6 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 - [Converting callbacks to promises](https://zellwk.com/blog/converting-callbacks-to-promises/)
 - [Electron with i18next serving translations from backend](https://github.com/reZach/i18next-electron-fs-backend)
 - [How To Read An Excel File In Node.js](https://medium.com/javascript-in-plain-english/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1)
-- [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js)
+- [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js "Stack Overflow answer")
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 - [Using Electron with React: The Basics](https://medium.com/@brockhoff/using-electron-with-react-the-basics-e93f9761f86f)
