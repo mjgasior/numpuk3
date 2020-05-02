@@ -17,6 +17,7 @@ export const english = {
     },
     n3_metadata: {
       n3_metadata_header: "Metadane",
+      n3_value: "Value",
       examinationId: "Examination ID",
       patientName: "First and last name",
       birthday: "Birthdate",

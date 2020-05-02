@@ -18,6 +18,7 @@ export const polish = {
     },
     n3_metadata: {
       n3_metadata_header: "Metadane",
+      n3_value: "Wartość",
       examinationId: "Nr sprawozdania",
       patientName: "Imię i nazwisko",
       birthday: "Data urodzenia",

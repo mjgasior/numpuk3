@@ -19,7 +19,7 @@ export const MetadataTable = ({ metadata }) => {
           <TableHead>
             <TableRow>
               <TableCell>{t("n3_metadata_header")}</TableCell>
-              <TableCell align="right">Value</TableCell>
+              <TableCell align="right">{t("n3_value")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

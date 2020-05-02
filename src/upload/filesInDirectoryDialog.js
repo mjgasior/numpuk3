@@ -1,6 +1,6 @@
 import { showDirectoryDialog } from "../+utils/dialog";
 import { getFilesInDirectory } from "../+utils/files";
-import { EXAMINATION_FILE_EXTENSION_DOT } from "../+utils/examinations";
+import { EXAMINATION_FILE_EXTENSION_DOT } from "../+services/examinationReader";
 
 export const showFilesInDirectoryDialog = async (t) => {
   const options = {

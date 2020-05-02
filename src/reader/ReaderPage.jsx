@@ -3,22 +3,22 @@ import { useTranslation } from "react-i18next";
 import { showSelectFileDialog } from "./selectFileDialog";
 import Button from "@material-ui/core/Button";
 import { SingleExamination } from "./singleExamination/SingleExamination";
-import { readFile } from "../+utils/examinations";
+import { getWorksheet } from "../+services/examinationReader";
 
 export const ReaderPage = () => {
   const { t } = useTranslation();
-  const [spreadsheet, setSpreadsheet] = useState();
+  const [worksheet, setWorksheet] = useState();
 
   const handlePickFiles = async () => {
     const selectedFile = await showSelectFileDialog(t);
-    const spreadsheet = await readFile(selectedFile);
-    setSpreadsheet(spreadsheet);
+    const spreadsheet = await getWorksheet(selectedFile);
+    setWorksheet(spreadsheet);
   };
 
   return (
     <div>
-      {spreadsheet ? (
-        <SingleExamination spreadsheet={spreadsheet} />
+      {worksheet ? (
+        <SingleExamination spreadsheet={worksheet} />
       ) : (
         <Button variant="contained" color="primary" onClick={handlePickFiles}>
           {t("n3_select_file")}
