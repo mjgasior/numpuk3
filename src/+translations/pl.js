@@ -6,6 +6,7 @@ export const polish = {
       n3_examinations: "Badania",
       n3_load: "Wybierz lokalizację",
       n3_load_directory: "Wczytaj badania z wybranej lokalizacji",
+      n3_process_files: "Przetwarzaj pliki",
       n3_select_directory: "Wybierz lokalizację",
     },
   },

@@ -6,6 +6,7 @@ export const english = {
       n3_examinations: "Examinations",
       n3_load: "Select directory",
       n3_load_directory: "Load examinations from selected directory",
+      n3_process_files: "Process files",
       n3_select_directory: "Select directory",
     },
   },
