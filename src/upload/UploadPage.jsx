@@ -10,7 +10,7 @@ export const UploadPage = () => {
   const [directory, setDirectory] = useState([]);
 
   const handlePickFiles = async () => {
-    const { selectedFiles, selectedDirectory } = await showFileDialog();
+    const { selectedFiles, selectedDirectory } = await showFileDialog(t);
     setFiles(selectedFiles);
     setDirectory(selectedDirectory);
   };
@@ -19,7 +19,7 @@ export const UploadPage = () => {
     <div>
       {files.length === 0 ? (
         <Button variant="contained" color="primary" onClick={handlePickFiles}>
-          {t("Welcome to React")}
+          {t("n3_select_directory")}
         </Button>
       ) : (
         <ProcessFilesPage directory={directory} files={files} />

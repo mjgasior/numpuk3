@@ -1,27 +1,22 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { english } from "./en";
+import { polish } from "./pl";
 
-// the translations
-// (tip move them in a JSON file and import them)
 const resources = {
-  en: {
-    translation: {
-      "Welcome to React": "Welcome to React and react-i18next",
-    },
-  },
+  ...english,
+  ...polish,
 };
 
-i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
-  .init({
-    resources,
-    lng: "en",
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "pl",
 
-    keySeparator: false, // we do not use keys in form messages.welcome
+  keySeparator: false,
 
-    interpolation: {
-      escapeValue: false, // react already safes from xss
-    },
-  });
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

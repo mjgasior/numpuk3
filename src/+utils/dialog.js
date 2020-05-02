@@ -1,11 +1,10 @@
 import { dialog } from "./apis/electronApi";
 
-export const showDirectoryDialog = async ({ title, buttonLabel, filters }) => {
+export const showDirectoryDialog = async ({ title, buttonLabel }) => {
   const options = {
     title,
     defaultPath: __dirname,
     buttonLabel,
-    filters,
     properties: ["openDirectory"],
   };
 

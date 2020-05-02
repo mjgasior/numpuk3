@@ -28,6 +28,7 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 
 - [Building an Electron application with create-react-app](https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/)
 - [Converting callbacks to promises](https://zellwk.com/blog/converting-callbacks-to-promises/)
+- [Electron with i18next serving translations from backend](https://github.com/reZach/i18next-electron-fs-backend)
 - [How To Read An Excel File In Node.js](https://medium.com/javascript-in-plain-english/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1)
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js)
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
