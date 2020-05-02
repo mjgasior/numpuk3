@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { showFileDialog } from "./showFileDialog";
+import { showFilesInDirectoryDialog } from "./filesInDirectoryDialog";
 import Button from "@material-ui/core/Button";
 import { ProcessFilesPage } from "./process/ProcessFilesPage";
 
@@ -10,7 +10,11 @@ export const UploadPage = () => {
   const [directory, setDirectory] = useState([]);
 
   const handlePickFiles = async () => {
-    const { selectedFiles, selectedDirectory } = await showFileDialog(t);
+    const {
+      selectedFiles,
+      selectedDirectory,
+    } = await showFilesInDirectoryDialog(t);
+
     setFiles(selectedFiles);
     setDirectory(selectedDirectory);
   };

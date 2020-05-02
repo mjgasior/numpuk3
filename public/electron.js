@@ -14,6 +14,7 @@ function createWindow() {
     icon: `${path.join(__dirname, "./favicon.ico")}`,
     webPreferences: {
       nodeIntegration: true,
+      webSecurity: false,
     },
   });
 

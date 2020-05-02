@@ -7,7 +7,11 @@ export const ProcessFilesPage = ({ files, directory }) => {
   const { t } = useTranslation();
   return (
     <>
-      <Button variant="contained" color="primary" onClick={() => null}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => console.log(`${directory}/${files[0]}`)}
+      >
         {t("n3_process_files")}
       </Button>
       <FilesList files={files} directory={directory} />
