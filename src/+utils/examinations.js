@@ -8,3 +8,14 @@ export const readFile = async (filename) => {
   const spreadsheet = await workbook.xlsx.readFile(filename);
   return spreadsheet;
 };
+
+export const getPersonalData = (workbook) => {
+  const MAIN_WORKSHEET_ID = 3;
+  const worksheet = workbook.getWorksheet(MAIN_WORKSHEET_ID);
+
+  const personalData = {
+    name: worksheet.getCell("D2").value,
+  };
+
+  return personalData;
+};
