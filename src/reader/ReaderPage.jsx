@@ -16,9 +16,10 @@ export const ReaderPage = () => {
 
   const handlePickFiles = async () => {
     const selectedFile = await showSelectFileDialog(t);
-    const resultExamination = await getExamination(selectedFile);
-
-    setExamination(resultExamination);
+    if (selectedFile) {
+      const resultExamination = await getExamination(selectedFile);
+      setExamination(resultExamination);
+    }
   };
 
   return (

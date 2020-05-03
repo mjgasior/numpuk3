@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { showFilesInDirectoryDialog } from "./filesInDirectoryDialog";
 import Button from "@material-ui/core/Button";
 import { ProcessFilesPage } from "./process/ProcessFilesPage";
+import { ExaminationsContext } from "../+context/ExaminationsContext";
 
 export const UploadPage = () => {
+  const {
+    filesList,
+    setFilesList,
+    selectedDirectory,
+    setSelectedDirectory,
+  } = useContext(ExaminationsContext);
   const { t } = useTranslation();
-  const [files, setFiles] = useState([]);
-  const [directory, setDirectory] = useState([]);
 
   const handlePickFiles = async () => {
     const {
@@ -15,18 +20,19 @@ export const UploadPage = () => {
       selectedDirectory,
     } = await showFilesInDirectoryDialog(t);
 
-    setFiles(selectedFiles);
-    setDirectory(selectedDirectory);
+    if (selectedDirectory) {
+      setFilesList(selectedFiles);
+      setSelectedDirectory(selectedDirectory);
+    }
   };
 
   return (
     <div>
-      {files.length === 0 ? (
-        <Button variant="contained" color="primary" onClick={handlePickFiles}>
-          {t("n3_select_directory")}
-        </Button>
-      ) : (
-        <ProcessFilesPage directory={directory} files={files} />
+      <Button variant="contained" color="primary" onClick={handlePickFiles}>
+        {t("n3_select_directory")}
+      </Button>
+      {filesList.length !== 0 && (
+        <ProcessFilesPage directory={selectedDirectory} files={filesList} />
       )}
     </div>
   );
