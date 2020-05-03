@@ -1,4 +1,4 @@
-import { exceljs } from "../+utils/apis/dependenciesApi";
+import { exceljs, log } from "../+apis/dependenciesApi";
 import { getMetadata } from "./readers/metadata";
 import {
   getExaminationType,
@@ -27,8 +27,25 @@ const getWorksheet = async (filename) => {
   return worksheet;
 };
 
+export const getExaminations = async (files, directory, setProcessedFiles) => {
+  let errorCount = 0;
+  const errorFiles = [];
+  for (let index = 0; index < files.length; index++) {
+    try {
+      const exam = await getExamination(`${directory}/${files[index]}`);
+    } catch (error) {
+      errorCount++;
+      errorFiles.push(`${directory}/${files[index]}`);
+      log.error(error);
+    }
+    setProcessedFiles(index + 1);
+  }
+  log.info(`${errorCount} files with errors`);
+  log.info(errorFiles);
+};
+
 export const getExamination = async (filename) => {
-  console.log(`Reading file: ${filename}`);
+  log.info(`Reading file: ${filename}`);
   const worksheet = await getWorksheet(filename);
 
   const metadata = getMetadata(worksheet);
@@ -38,28 +55,20 @@ export const getExamination = async (filename) => {
 
   let results = {};
   if (getIsUnknown(examinationType)) {
-    throw "Unknown examination type!";
+    throw new Error("Unknown examination type!");
   } else if (getIsCandidiasis(examinationType)) {
     results = getCandidiasisResults(worksheet);
   } else {
     results = getExaminationResults(worksheet);
   }
 
+  let extendedResults;
   if (getIsExtended(examinationType)) {
-    const extendedResults = {
+    extendedResults = {
       hasAkkermansiaMuciniphila: setHasAkkermansiaMuciniphila(worksheet),
       hasFaecalibactriumPrausnitzii: setHasFaecalibactriumPrausnitzii(
         worksheet
       ),
-    };
-
-    return {
-      metadata,
-      examinationType,
-      ph,
-      consistency,
-      results,
-      extendedResults,
     };
   }
 
@@ -69,5 +78,6 @@ export const getExamination = async (filename) => {
     ph,
     consistency,
     results,
+    extendedResults,
   };
 };

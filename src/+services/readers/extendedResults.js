@@ -1,4 +1,4 @@
-import { exceljs } from "../../+utils/apis/dependenciesApi";
+import { exceljs } from "../../+apis/dependenciesApi";
 import { setHasMarkers } from "./+utils/normalizer";
 
 const EXTENDED_RESULTS_DATA = {
@@ -11,7 +11,9 @@ export const setHasAkkermansiaMuciniphila = (worksheet) => {
     EXTENDED_RESULTS_DATA.akkermansiaMuciniphilaResult
   );
   if (cell.type !== exceljs.ValueType.String) {
-    throw "Akkermansia Muciniphila result is not a string!";
+    throw new Error(
+      `${cell.value} is not a valid Akkermansia Muciniphila result!`
+    );
   }
   return setHasMarkers(cell.value);
 };
@@ -21,7 +23,9 @@ export const setHasFaecalibactriumPrausnitzii = (worksheet) => {
     EXTENDED_RESULTS_DATA.faecalibactriumPrausnitziiResult
   );
   if (cell.type !== exceljs.ValueType.String) {
-    throw "Faecalibactrium Prausnitzii result is not a string!";
+    throw new Error(
+      `${cell.value} is not a valid Faecalibactrium Prausnitzii result!`
+    );
   }
   return setHasMarkers(cell.value);
 };

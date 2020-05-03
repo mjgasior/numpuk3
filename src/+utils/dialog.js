@@ -1,4 +1,4 @@
-import { dialog } from "./apis/electronApi";
+import { dialog } from "./../+apis/electronApi";
 
 export const showDirectoryDialog = async ({ title, buttonLabel }) => {
   return await showDialog(title, buttonLabel, ["openDirectory"]);

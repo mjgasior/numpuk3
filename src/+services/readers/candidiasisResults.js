@@ -1,4 +1,5 @@
 import { isZeroValue, isExponential, readExponent } from "./+utils/dataReader";
+import { log } from "../../+utils/log";
 
 export const getCandidiasisResults = (worksheet) => {
   let dictionary = {};
@@ -20,13 +21,9 @@ export const getCandidiasisResults = (worksheet) => {
         dictionary[nameCell.value] = result;
         continue;
       }
-
-      console.log(`NAME: ${nameCell.value} TYPE: ${nameCell.type}`);
-      console.log(`VALUE: ${valueCell.value} TYPE: ${valueCell.type}`);
-      console.log(`EXPONENT: ${exponentCell.value} TYPE: ${exponentCell.type}`);
     } catch (err) {
-      console.log(err);
-      throw `There was an error in section ${i}!`;
+      log.error(err);
+      throw new Error(`There was an error in section ${i}!`);
     }
   }
   return dictionary;

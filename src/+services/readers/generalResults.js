@@ -1,4 +1,4 @@
-import { exceljs } from "../../+utils/apis/dependenciesApi";
+import { exceljs, log } from "../../+apis/dependenciesApi";
 import { setConsistency } from "./+utils/normalizer";
 
 const GENERAL_DATA_SECTION = {
@@ -8,8 +8,29 @@ const GENERAL_DATA_SECTION = {
 
 export const getPh = (worksheet) => {
   const cell = worksheet.getCell(GENERAL_DATA_SECTION.ph);
+
+  if (cell.type === exceljs.ValueType.Null) {
+    return undefined;
+  }
+
+  if (cell.type === exceljs.ValueType.String) {
+    const cellValue = cell.value.toLowerCase().trim();
+    if (cellValue === "zbyt mała ilość materiału") {
+      log.warn("Too little sample to rate PH value!");
+      return undefined;
+    } else if (cellValue !== "" && !isNaN(cellValue)) {
+      const parsedValue = parseFloat(cellValue);
+      log.warn(
+        `Value of ${cellValue} was parsed into ${parsedValue} because of wrong format.`
+      );
+      return parsedValue;
+    }
+    log.warn(`Value of "${cellValue}" was set to be undefined.`);
+    return undefined;
+  }
+
   if (cell.type !== exceljs.ValueType.Number) {
-    throw "Loaded file has a non number cell!";
+    throw new Error(`${cell.value} is not valid PH value`);
   }
   return cell.value;
 };
@@ -17,7 +38,7 @@ export const getPh = (worksheet) => {
 export const getConsistency = (worksheet) => {
   const cell = worksheet.getCell(GENERAL_DATA_SECTION.consistency);
   if (cell.type !== exceljs.ValueType.String) {
-    throw "Loaded file has a non number cell!";
+    throw new Error(`${cell.value} is not valid consistency value`);
   }
-  return setConsistency(cell.value);
+  return setConsistency(cell.value.trim());
 };
