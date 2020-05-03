@@ -9,9 +9,10 @@ This app is based on `electron` and `create-react-app`.
 
 Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an executable version or run `yarn dist` to create an installer.
 
-## Logs:
+## Logs and database:
 
-Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\{process type}.log`.
+Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\main.log`.
+Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.db`.
 
 ## Exceljs cell types:
 

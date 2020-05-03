@@ -38,6 +38,7 @@ export const english = {
       examinationType: "Examination type",
       ph: "PH",
       consistency: "Consistency",
+      bacteriaCount: "Amount of bacteria",
 
       hasAkkermansiaMuciniphila: "Akkermansia muciniphila test",
       hasFaecalibactriumPrausnitzii: "Faecalibactrium prausnitzii test",

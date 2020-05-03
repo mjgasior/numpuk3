@@ -1,4 +1,4 @@
-import { isZeroValue, isExponential, readExponent } from "./+utils/dataReader";
+import { setValue } from "./+utils/dataReader";
 import { log } from "../../+apis/dependenciesApi";
 import { hasTest, tryFixTestName } from "./testTypes/testTypeService";
 
@@ -26,15 +26,17 @@ export const getExaminationResults = (worksheet) => {
       }
 
       testName = testName.replace("spp.", "spp");
-
-      if (isZeroValue(valueCell)) {
-        dictionary[testName] = 0;
-        continue;
-      } else if (isExponential(valueCell, exponentCell)) {
-        const result = readExponent(valueCell, exponentCell);
+      const result = setValue(valueCell, exponentCell);
+      if (result) {
         dictionary[testName] = result;
         continue;
       }
+
+      log.error(
+        `Could not read results from cells ${valueCell.text} and ${
+          exponentCell.text
+        } for row ${i + 23}`
+      );
     } catch (err) {
       log.error(err);
       throw new Error(`There was an error in section ${i}!`);

@@ -39,6 +39,7 @@ export const polish = {
       examinationType: "Typ badania",
       ph: "PH",
       consistency: "Konsystencja",
+      bacteriaCount: "Ogólna liczba bakterii",
 
       hasAkkermansiaMuciniphila: "Badanie w kierunku Akkermansia muciniphila",
       hasFaecalibactriumPrausnitzii:

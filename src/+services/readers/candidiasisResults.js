@@ -1,4 +1,4 @@
-import { isZeroValue, isExponential, readExponent } from "./+utils/dataReader";
+import { setValue } from "./+utils/dataReader";
 import { log } from "../../+apis/dependenciesApi";
 
 export const getCandidiasisResults = (worksheet) => {
@@ -13,14 +13,16 @@ export const getCandidiasisResults = (worksheet) => {
         continue;
       }
 
-      if (isZeroValue(valueCell)) {
-        dictionary[nameCell.value] = 0;
-        continue;
-      } else if (isExponential(valueCell, exponentCell)) {
-        const result = readExponent(valueCell, exponentCell);
+      const result = setValue(valueCell, exponentCell);
+      if (result) {
         dictionary[nameCell.value] = result;
         continue;
       }
+
+      log.error(
+        `Could not read bacteria count from cells ${valueCell.text} and ${exponentCell.text}`
+      );
+      return undefined;
     } catch (err) {
       log.error(err);
       throw new Error(`There was an error in section ${i}!`);

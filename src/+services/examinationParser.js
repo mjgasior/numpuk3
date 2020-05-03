@@ -1,4 +1,4 @@
-import { exceljs, log } from "../+apis/dependenciesApi";
+import { exceljs } from "../+apis/dependenciesApi";
 import { getMetadata } from "./readers/metadata";
 import {
   getExaminationType,
@@ -6,7 +6,11 @@ import {
   getIsUnknown,
   getIsExtended,
 } from "./readers/examinationType";
-import { getPh, getConsistency } from "./readers/generalResults";
+import {
+  getPh,
+  getConsistency,
+  getBacteriaCount,
+} from "./readers/generalResults";
 import { getCandidiasisResults } from "./readers/candidiasisResults";
 import { getExaminationResults } from "./readers/examinationResults";
 import {
@@ -36,12 +40,14 @@ export const parseExamination = async (filename) => {
   const consistency = getConsistency(worksheet);
 
   let results = {};
+  let bacteriaCount;
   if (getIsUnknown(examinationType)) {
     throw new Error("Unknown examination type!");
   } else if (getIsCandidiasis(examinationType)) {
     results = getCandidiasisResults(worksheet);
   } else {
     results = getExaminationResults(worksheet);
+    bacteriaCount = getBacteriaCount(worksheet);
   }
 
   let extendedResults;
@@ -58,6 +64,7 @@ export const parseExamination = async (filename) => {
     metadata,
     examinationType,
     ph,
+    bacteriaCount,
     consistency,
     results,
     extendedResults,

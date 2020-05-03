@@ -6,9 +6,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { useTranslation } from "react-i18next";
-import { DoubleScrollbar } from "./DoubleScrollbar";
-import { ExtendedResultsCells } from "./ExtendedResultsCells";
-import { TooltipCell } from "./TooltipCell";
+import { DoubleScrollbar } from "./+components/DoubleScrollbar";
+import { ExtendedResultsCells } from "./+components/ExtendedResultsCells";
+import { TooltipCell } from "./+components/TooltipCell";
 import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
 
 export const ExaminationTable = ({ examinations }) => {

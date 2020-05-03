@@ -11,6 +11,7 @@ export const SingleExamination = ({ examination }) => {
     consistency,
     results,
     extendedResults,
+    bacteriaCount,
   } = examination;
 
   return (
@@ -22,7 +23,7 @@ export const SingleExamination = ({ examination }) => {
         <Grid container spacing={3} direction="column">
           <Grid item xs={12}>
             <SpecificDataTable
-              data={{ examinationType, ph, consistency }}
+              data={{ examinationType, ph, consistency, bacteriaCount }}
               extendedResults={extendedResults}
             />
           </Grid>
