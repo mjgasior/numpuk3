@@ -24,7 +24,7 @@ export const setHasMarkers = (marker) => {
     case "UJEMNY":
       return false;
     default:
-      throw new Error("Unknown marker - neither true nor false");
+      throw new Error(`${marker} is not a valid marker value`);
   }
 };
 
@@ -41,7 +41,7 @@ export const setGender = (gender) => {
     case "M":
       return GENDER.MALE;
     default:
-      console.warn("Unknown gender");
+      console.warn(`${gender} is not a valid gender value`);
       return GENDER.UNKNOWN;
   }
 };
@@ -62,7 +62,7 @@ export const setConsistency = (stoolConsistency) => {
     case "półpłynna":
       return CONSISTENCY.HALF_LIQUID;
     default:
-      console.warn("Unknown type of consistency");
+      console.warn(`${stoolConsistency} is not a valid consistency value`);
       return CONSISTENCY.UNKNOWN;
   }
 };

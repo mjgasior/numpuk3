@@ -11,7 +11,9 @@ export const setHasAkkermansiaMuciniphila = (worksheet) => {
     EXTENDED_RESULTS_DATA.akkermansiaMuciniphilaResult
   );
   if (cell.type !== exceljs.ValueType.String) {
-    throw new Error("Akkermansia Muciniphila result is not a string!");
+    throw new Error(
+      `${cell.value} is not a valid Akkermansia Muciniphila result!`
+    );
   }
   return setHasMarkers(cell.value);
 };
@@ -21,7 +23,9 @@ export const setHasFaecalibactriumPrausnitzii = (worksheet) => {
     EXTENDED_RESULTS_DATA.faecalibactriumPrausnitziiResult
   );
   if (cell.type !== exceljs.ValueType.String) {
-    throw new Error("Faecalibactrium Prausnitzii result is not a string!");
+    throw new Error(
+      `${cell.value} is not a valid Faecalibactrium Prausnitzii result!`
+    );
   }
   return setHasMarkers(cell.value);
 };
