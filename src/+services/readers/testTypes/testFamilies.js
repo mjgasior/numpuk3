@@ -1,6 +1,0 @@
-export const FAMILIES = {
-  ANAEROBIC: "ANAEROBIC",
-  GRAM_MINUS: "GRAM_MINUS",
-  GRAM_PLUS: "GRAM_PLUS",
-  FUNGI: "FUNGI",
-};
