@@ -28,7 +28,6 @@ const getWorksheet = async (filename) => {
 };
 
 export const parseExamination = async (filename) => {
-  log.info(`Reading file: ${filename}`);
   const worksheet = await getWorksheet(filename);
 
   const metadata = getMetadata(worksheet);

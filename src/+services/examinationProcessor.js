@@ -13,11 +13,10 @@ export const processExaminations = async (
     const filepath = `${directory}/${files[index]}`;
 
     try {
+      log.info(`Reading file: ${filepath}`);
       const exam = await parseExamination(filepath);
-      log.info("READ");
-      const savedExam = await putExamination(exam);
-      log.info("SAVED");
-      console.log(savedExam);
+      await putExamination(exam);
+      log.info(`Saved file: ${filepath}`);
     } catch (error) {
       errorCount++;
       errorFiles.push(filepath);
