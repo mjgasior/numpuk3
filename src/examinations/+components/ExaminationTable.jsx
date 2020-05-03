@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { DoubleScrollbar } from "./DoubleScrollbar";
 import { ExtendedResultsCells } from "./ExtendedResultsCells";
 import { TooltipCell } from "./TooltipCell";
+import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
 
 export const ExaminationTable = ({ examinations }) => {
   const { t } = useTranslation("n3_metadata");
@@ -18,7 +19,7 @@ export const ExaminationTable = ({ examinations }) => {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Płeć</TableCell>
+            <TableCell>{t("gender")}</TableCell>
             <TooltipCell title={t("ageAtTest")}>{t("n3_age")}</TooltipCell>
             <TableCell>{t("ph")}</TableCell>
             <TableCell>{t("consistency")}</TableCell>
@@ -29,11 +30,16 @@ export const ExaminationTable = ({ examinations }) => {
             <TooltipCell title={t("hasFaecalibactriumPrausnitzii")}>
               {t("n3_faecalibactrium")}
             </TooltipCell>
+            {ALL_TEST_TYPES.map((testType) => (
+              <TableCell key={testType} align="right">
+                {testType}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {examinations.map(
-            ({ metadata, ph, consistency, extendedResults }) => (
+            ({ metadata, ph, consistency, extendedResults, results }) => (
               <TableRow key={metadata.examinationId}>
                 <TableCell component="th" scope="row">
                   {t(metadata.gender)}
@@ -49,6 +55,11 @@ export const ExaminationTable = ({ examinations }) => {
                 </TableCell>
                 <TableCell component="th" scope="row"></TableCell>
                 <ExtendedResultsCells data={extendedResults} />
+                {ALL_TEST_TYPES.map((testType, i) => (
+                  <TableCell key={testType + i} align="right">
+                    {getValue(testType, results)}
+                  </TableCell>
+                ))}
               </TableRow>
             )
           )}
@@ -56,4 +67,11 @@ export const ExaminationTable = ({ examinations }) => {
       </Table>
     </DoubleScrollbar>
   );
+};
+
+const getValue = (testType, results) => {
+  if (testType.endsWith("spp.")) {
+    testType = testType.replace("spp.", "spp");
+  }
+  return results[testType];
 };
