@@ -52,9 +52,9 @@ export const getBacteriaCount = (worksheet) => {
     GENERAL_DATA_SECTION.bacteriaCountExponent
   );
 
-  const value = setValue(valueCell, exponentCell);
-  if (value) {
-    return value;
+  const result = setValue(valueCell, exponentCell);
+  if (result !== undefined) {
+    return result;
   }
 
   log.error(

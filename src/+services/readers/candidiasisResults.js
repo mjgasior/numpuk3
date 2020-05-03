@@ -14,7 +14,7 @@ export const getCandidiasisResults = (worksheet) => {
       }
 
       const result = setValue(valueCell, exponentCell);
-      if (result) {
+      if (result !== undefined) {
         dictionary[nameCell.value] = result;
         continue;
       }

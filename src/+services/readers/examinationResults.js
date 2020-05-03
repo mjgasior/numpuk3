@@ -27,7 +27,7 @@ export const getExaminationResults = (worksheet) => {
 
       testName = testName.replace("spp.", "spp");
       const result = setValue(valueCell, exponentCell);
-      if (result) {
+      if (result !== undefined) {
         dictionary[testName] = result;
         continue;
       }
