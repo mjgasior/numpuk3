@@ -1,5 +1,4 @@
-import { moment } from "../../../+apis/dependenciesApi";
-import { log } from "./../../../+utils/log";
+import { moment, log } from "../../../+apis/dependenciesApi";
 
 export const setAge = (birthDate, currentDate) => {
   if (birthDate && currentDate) {

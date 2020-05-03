@@ -1,7 +1,6 @@
 import { isPeselValid, getBirthdateFromPesel } from "./+utils/peselParser";
 import { setGender, setDate, setAge } from "./+utils/normalizer";
-import { log } from "../../+utils/log";
-import { exceljs, moment } from "../../+apis/dependenciesApi";
+import { exceljs, moment, log } from "../../+apis/dependenciesApi";
 
 const META_DATA_SECTION = {
   examinationId: "D2",

@@ -1,5 +1,5 @@
 import { isZeroValue, isExponential, readExponent } from "./+utils/dataReader";
-import { log } from "../../+utils/log";
+import { log } from "../../+apis/dependenciesApi";
 
 export const getCandidiasisResults = (worksheet) => {
   let dictionary = {};
