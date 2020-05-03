@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { showSelectFileDialog } from "./selectFileDialog";
 import Button from "@material-ui/core/Button";
 import { SingleExamination } from "./singleExamination/SingleExamination";
-import { getExamination } from "../+services/examinationReader";
+import { parseExamination } from "../+services/examinationParser";
 import styled from "styled-components";
 import { ExaminationsContext } from "../+context/ExaminationsContext";
 
@@ -19,7 +19,7 @@ export const ReaderPage = () => {
   useEffect(() => {
     const loadExamination = async () => {
       if (openedExamination) {
-        const resultExamination = await getExamination(openedExamination);
+        const resultExamination = await parseExamination(openedExamination);
         setExamination(resultExamination);
       }
     };
@@ -29,7 +29,7 @@ export const ReaderPage = () => {
   const handlePickFiles = async () => {
     const selectedFile = await showSelectFileDialog(t);
     if (selectedFile) {
-      const resultExamination = await getExamination(selectedFile);
+      const resultExamination = await parseExamination(selectedFile);
       setExamination(resultExamination);
     }
   };

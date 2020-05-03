@@ -4,7 +4,7 @@ import { showFilesInDirectoryDialog } from "./filesInDirectoryDialog";
 import Button from "@material-ui/core/Button";
 import { ExaminationsContext } from "../+context/ExaminationsContext";
 import { FilesList } from "./+components/FilesList";
-import { getExaminations } from "../+services/examinationReader";
+import { parseExaminations } from "../+services/examinationParser";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -31,7 +31,7 @@ export const UploadPage = () => {
 
   const handleProcessFiles = async () => {
     setProcessedFiles(0);
-    await getExaminations(filesList, selectedDirectory, setProcessedFiles);
+    await parseExaminations(filesList, selectedDirectory, setProcessedFiles);
   };
 
   const handlePickFiles = async () => {

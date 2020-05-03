@@ -4,6 +4,22 @@ const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 
+const Datastore = require("nedb");
+let userData = app.getAppPath("userData");
+let databaseTest = path.join(userData, "values.db");
+let db = new Datastore({
+  filename: databaseTest,
+  autoload: true,
+  onload: (err) => {
+    if (err) {
+      console.log("Error loading the DB: " + err);
+    }
+  },
+  timestampData: true,
+});
+
+global.database = db;
+
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
