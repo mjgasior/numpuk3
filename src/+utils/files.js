@@ -1,4 +1,4 @@
-import { fs, path } from "./apis/nodeApi";
+import { fs, path } from "./../+apis/nodeApi";
 
 const readDirectoryAsync = (directoryPath, extension) => {
   return new Promise((resolve, reject) => {

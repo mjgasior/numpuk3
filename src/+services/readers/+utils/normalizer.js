@@ -1,4 +1,4 @@
-import { moment } from "./../../../+utils/apis/dependenciesApi";
+import { moment } from "../../../+apis/dependenciesApi";
 
 export const setAge = (birthDate, currentDate) => {
   const date1 = moment(birthDate, "DD.MM.YYYY");

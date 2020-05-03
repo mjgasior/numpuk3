@@ -1,4 +1,4 @@
-import { exceljs } from "../../+utils/apis/dependenciesApi";
+import { exceljs } from "../../+apis/dependenciesApi";
 import { setConsistency } from "./+utils/normalizer";
 
 const GENERAL_DATA_SECTION = {

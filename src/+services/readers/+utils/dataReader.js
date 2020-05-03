@@ -1,4 +1,4 @@
-import { exceljs } from "../../../+utils/apis/dependenciesApi";
+import { exceljs } from "../../../+apis/dependenciesApi";
 
 export const isZeroValue = (cell) => {
   return cell.type === exceljs.ValueType.Number && cell.value === 0;

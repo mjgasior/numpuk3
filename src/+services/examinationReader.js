@@ -1,4 +1,4 @@
-import { exceljs } from "../+utils/apis/dependenciesApi";
+import { exceljs } from "../+apis/dependenciesApi";
 import { getMetadata } from "./readers/metadata";
 import {
   getExaminationType,
