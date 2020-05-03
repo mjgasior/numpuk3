@@ -1,6 +1,6 @@
 import { isPeselValid, getBirthdateFromPesel } from "./+utils/peselParser";
 import { setGender, setDate, setAge } from "./+utils/normalizer";
-import { exceljs, moment, log } from "../../+apis/dependenciesApi";
+import { log, exceljs, moment } from "../../+apis/dependenciesApi";
 
 const META_DATA_SECTION = {
   examinationId: "D2",
@@ -19,32 +19,20 @@ export const getMetadata = (worksheet) => {
   let metadata = {};
   Object.keys(META_DATA_SECTION).forEach((key) => {
     const cell = worksheet.getCell(META_DATA_SECTION[key]);
-    console.log(cell.text);
-    if (cell.type === exceljs.ValueType.Number) {
-      metadata[key] = cell.value;
-    } else if (cell.type === exceljs.ValueType.String) {
-      const trimmed = cell.value.trim();
-      if (trimmed.toLowerCase() === "nie podano") {
-        metadata[key] = undefined;
-      } else {
-        metadata[key] = trimmed;
-      }
-    } else if (cell.type === exceljs.ValueType.Date) {
+
+    if (cell.type === exceljs.ValueType.Date) {
       const date = moment(cell.value).format("DD.MM.YYYY");
       log.debug(
         `Date ${cell.value} parsed into ${date} for ${key} of cell ${META_DATA_SECTION[key]}`
       );
       metadata[key] = date;
-    } else if (cell.type === exceljs.ValueType.RichText) {
-      log.debug(
-        `Rich text cell detected for ${key} of cell ${META_DATA_SECTION[key]}`
-      );
-      metadata[key] = cell.text;
     } else {
-      console.log(cell.value);
-      log.error(
-        `Unhandled type of data: ${cell.type} with value of: ${cell.value} for ${key} of cell ${META_DATA_SECTION[key]}`
-      );
+      const trimmed = cell.text.trim();
+      if (trimmed.toLowerCase() === "nie podano") {
+        metadata[key] = undefined;
+      } else {
+        metadata[key] = trimmed;
+      }
     }
   });
 
@@ -74,7 +62,7 @@ const setBirthdate = (birthdate, personalId) => {
   if (formattedBirthdate === undefined) {
     if (isPeselValid(personalId)) {
       const date = getBirthdateFromPesel(personalId);
-      log.debug(`${date} set from PESEL`);
+      log.warn(`${date} set from PESEL`);
       return date;
     }
 
