@@ -2,11 +2,24 @@ import { moment } from "../../../+apis/dependenciesApi";
 import { log } from "./../../../+utils/log";
 
 export const setAge = (birthDate, currentDate) => {
-  const date1 = moment(birthDate, "DD.MM.YYYY");
-  const date2 = moment(currentDate, "DD.MM.YYYY");
+  if (birthDate && currentDate) {
+    const date1 = moment(birthDate, "DD.MM.YYYY");
+    const date2 = moment(currentDate, "DD.MM.YYYY");
 
-  const diff = moment.duration(date2.diff(date1));
-  return diff.asYears().toFixed(3);
+    const diff = moment.duration(date2.diff(date1));
+    const age = diff.asYears().toFixed(3);
+
+    if (age <= 0) {
+      throw new Error(
+        `Age less than zero for birth date: ${birthDate} or current date: ${currentDate}`
+      );
+    }
+    return age;
+  }
+  log.error(
+    `One of parameters was undefined - birth date: ${birthDate} or current date: ${currentDate}`
+  );
+  return undefined;
 };
 
 export const setDate = (stringDate) => {

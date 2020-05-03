@@ -1,7 +1,7 @@
-import { isPeselValid } from "./+utils/peselParser";
+import { isPeselValid, getBirthdateFromPesel } from "./+utils/peselParser";
 import { setGender, setDate, setAge } from "./+utils/normalizer";
 import { log } from "../../+utils/log";
-import { exceljs } from "../../+apis/dependenciesApi";
+import { exceljs, moment } from "../../+apis/dependenciesApi";
 
 const META_DATA_SECTION = {
   examinationId: "D2",
@@ -22,7 +22,6 @@ export const getMetadata = (worksheet) => {
     const cell = worksheet.getCell(META_DATA_SECTION[key]);
 
     if (cell.type === exceljs.ValueType.Number) {
-      log.debug(`"Number" ${cell.value}`);
       metadata[key] = cell.value;
     } else if (cell.type === exceljs.ValueType.String) {
       const trimmed = cell.value.trim();
@@ -31,14 +30,20 @@ export const getMetadata = (worksheet) => {
       } else {
         metadata[key] = trimmed;
       }
+    } else if (cell.type === exceljs.ValueType.Date) {
+      const date = moment(cell.value).format("DD.MM.YYYY");
+      log.debug(`Date ${cell.value} parsed into ${date}`);
+      metadata[key] = date;
     } else {
-      log.debug(`"Other" ${cell.type}`);
+      log.error(
+        `Unhandled type of data: ${cell.type} with value of: ${cell.value}`
+      );
     }
   });
 
   metadata.gender = setGender(metadata.gender);
 
-  metadata.birthdate = setDate(metadata.birthdate);
+  metadata.birthdate = setBirthdate(metadata.birthdate, metadata.personalId);
   metadata.dateOfSampling = setDate(metadata.dateOfSampling);
   metadata.dateOfSampleRegistration = setDate(
     metadata.dateOfSampleRegistration
@@ -55,4 +60,22 @@ export const getMetadata = (worksheet) => {
   }
 
   return metadata;
+};
+
+const setBirthdate = (birthdate, personalId) => {
+  const formattedBirthdate = setDate(birthdate);
+  if (formattedBirthdate === undefined) {
+    if (isPeselValid(personalId)) {
+      const date = getBirthdateFromPesel(personalId);
+      log.debug(`${date} set from PESEL`);
+      return date;
+    }
+
+    log.error(
+      "Could not set birth date - not valid both birthday field and PESEL."
+    );
+    return undefined;
+  } else {
+    return formattedBirthdate;
+  }
 };

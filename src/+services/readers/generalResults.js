@@ -9,18 +9,24 @@ const GENERAL_DATA_SECTION = {
 export const getPh = (worksheet) => {
   const cell = worksheet.getCell(GENERAL_DATA_SECTION.ph);
 
+  if (cell.type === exceljs.ValueType.Null) {
+    return undefined;
+  }
+
   if (cell.type === exceljs.ValueType.String) {
     const cellValue = cell.value.toLowerCase().trim();
     if (cellValue === "zbyt mała ilość materiału") {
       log.warn("Too little sample to rate PH value!");
       return undefined;
-    } else if (!isNaN(cellValue)) {
+    } else if (cellValue !== "" && !isNaN(cellValue)) {
       const parsedValue = parseFloat(cellValue);
       log.warn(
         `Value of ${cellValue} was parsed into ${parsedValue} because of wrong format.`
       );
       return parsedValue;
     }
+    log.warn(`Value of "${cellValue}" was set to be undefined.`);
+    return undefined;
   }
 
   if (cell.type !== exceljs.ValueType.Number) {

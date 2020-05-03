@@ -1,3 +1,5 @@
+import { moment } from "../../../+apis/dependenciesApi";
+
 export function isPeselValid(pesel) {
   if (pesel == null) {
     return false;
@@ -12,7 +14,7 @@ export function isPeselValid(pesel) {
     toReturn = countCheckSum(peselNumbers) === peselNumbers[10];
 
     if (toReturn) {
-      getBirthdate(pesel);
+      getBirthdateFromPesel(pesel);
     }
   } catch (Exception) {
     toReturn = false;
@@ -20,13 +22,14 @@ export function isPeselValid(pesel) {
   return toReturn;
 }
 
-export function getBirthdate(pesel) {
+export function getBirthdateFromPesel(pesel) {
   const peselNumbers = getPeselNumbers(pesel);
-  return new Date(
+  const date = new Date(
     getBirthYear(peselNumbers),
     getBirthMonth(peselNumbers),
     getBirthDay(peselNumbers)
   );
+  return moment(date).format("DD.MM.YYYY");
 }
 
 const MULTIPLIERS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
@@ -43,15 +46,22 @@ function getBirthMonth(peselNumbers) {
   return isEven(peselNumbers[2]) ? peselNumbers[3] : peselNumbers[3] + 10;
 }
 
-function getBirthYear(peselNumbers) {
-  let birthYear = 1900 + peselNumbers[0] * 10 + peselNumbers[1];
-  if (peselNumbers[2] >= 2 && peselNumbers[2] < 8) {
-    birthYear += (peselNumbers[2] / 2) * 100;
-  }
+const CENTURIES = {
+  0: 1900,
+  1: 1900,
+  2: 2000,
+  3: 2000,
+  4: 2100,
+  5: 2100,
+  6: 2200,
+  7: 2200,
+  8: 1800,
+  9: 1800,
+};
 
-  if (peselNumbers[2] >= 8) {
-    birthYear -= 100;
-  }
+function getBirthYear(peselNumbers) {
+  const century = CENTURIES[peselNumbers[2]];
+  let birthYear = century + peselNumbers[0] * 10 + peselNumbers[1];
   return birthYear;
 }
 

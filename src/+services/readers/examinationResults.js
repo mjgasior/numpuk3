@@ -29,7 +29,10 @@ export const getExaminationResults = (worksheet) => {
     }
   }
 
-  log.info(`${i - o} is max`);
+  const diff = i - o;
+  if (diff > 30) {
+    log.info(`The amount of checks was greater than 30. ${diff} is max`);
+  }
 
   return dictionary;
 };
