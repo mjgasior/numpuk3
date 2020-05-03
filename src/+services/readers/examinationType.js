@@ -1,4 +1,4 @@
-import { log } from "../../+utils/log";
+import { log } from "../../+apis/dependenciesApi";
 
 const EXAMINATION_TYPE = {
   UNKNOWN: "UNKNOWN",

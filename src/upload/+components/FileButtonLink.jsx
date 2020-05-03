@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import IconButton from "@material-ui/core/IconButton";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
-import { ROUTES } from "../../../+utils/routings";
-import { ExaminationsContext } from "../../../+context/ExaminationsContext";
+import { ROUTES } from "../../+utils/routings";
+import { ExaminationsContext } from "../../+context/ExaminationsContext";
 
 export const FileButtonLink = ({ target }) => {
   const { setOpenedExamination } = useContext(ExaminationsContext);
