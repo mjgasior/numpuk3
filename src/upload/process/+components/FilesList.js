@@ -6,8 +6,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
 import FolderIcon from "@material-ui/icons/Folder";
-import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import Badge from "@material-ui/core/Badge";
+import { FileButtonLink } from "./FileButtonLink";
 
 const Container = styled.div`
   margin-top: 7px;
@@ -44,7 +44,7 @@ export function FilesList({ files, directory }) {
             {files.map((file) => (
               <ListItem key={file}>
                 <ListItemIcon>
-                  <InsertDriveFileIcon />
+                  <FileButtonLink target={`${directory}/${file}`} />
                 </ListItemIcon>
                 <ListItemText primary={file} />
               </ListItem>

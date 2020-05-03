@@ -7,6 +7,7 @@ import { UploadPage } from "./upload/UploadPage";
 import { ExaminationsPage } from "./examinations/ExaminationsPage";
 import { ReaderPage } from "./reader/ReaderPage";
 import { ExaminationsContext } from "./+context/ExaminationsContext";
+import { ROUTES } from "./+utils/routings";
 
 const Container = styled.div`
   display: flex;
@@ -42,9 +43,9 @@ export const App = () => {
           <Header />
           <Content>
             <Switch>
-              <Route path="/upload" component={UploadPage} />
-              <Route path="/examinations" component={ExaminationsPage} />
-              <Route path="/" component={ReaderPage} />
+              <Route path={ROUTES.UPLOAD} component={UploadPage} />
+              <Route path={ROUTES.EXAMINATIONS} component={ExaminationsPage} />
+              <Route path={ROUTES.READER} component={ReaderPage} />
             </Switch>
           </Content>
         </Container>
