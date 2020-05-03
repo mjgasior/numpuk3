@@ -20,7 +20,7 @@ export const getMetadata = (worksheet) => {
   let metadata = {};
   Object.keys(META_DATA_SECTION).forEach((key) => {
     const cell = worksheet.getCell(META_DATA_SECTION[key]);
-
+    console.log(cell.text);
     if (cell.type === exceljs.ValueType.Number) {
       metadata[key] = cell.value;
     } else if (cell.type === exceljs.ValueType.String) {
@@ -32,18 +32,26 @@ export const getMetadata = (worksheet) => {
       }
     } else if (cell.type === exceljs.ValueType.Date) {
       const date = moment(cell.value).format("DD.MM.YYYY");
-      log.debug(`Date ${cell.value} parsed into ${date}`);
+      log.debug(
+        `Date ${cell.value} parsed into ${date} for ${key} of cell ${META_DATA_SECTION[key]}`
+      );
       metadata[key] = date;
+    } else if (cell.type === exceljs.ValueType.RichText) {
+      log.debug(
+        `Rich text cell detected for ${key} of cell ${META_DATA_SECTION[key]}`
+      );
+      metadata[key] = cell.text;
     } else {
+      console.log(cell.value);
       log.error(
-        `Unhandled type of data: ${cell.type} with value of: ${cell.value}`
+        `Unhandled type of data: ${cell.type} with value of: ${cell.value} for ${key} of cell ${META_DATA_SECTION[key]}`
       );
     }
   });
 
   metadata.gender = setGender(metadata.gender);
-
   metadata.birthdate = setBirthdate(metadata.birthdate, metadata.personalId);
+
   metadata.dateOfSampling = setDate(metadata.dateOfSampling);
   metadata.dateOfSampleRegistration = setDate(
     metadata.dateOfSampleRegistration
