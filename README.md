@@ -9,6 +9,10 @@ This app is based on `electron` and `create-react-app`.
 
 Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an executable version or run `yarn dist` to create an installer.
 
+## Logs:
+
+Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\{process type}.log`.
+
 ## Exceljs cell types:
 
     Null: 0
@@ -27,6 +31,7 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 
 - `electron` - as many devs were [mistaking](https://www.electronjs.org/blog/npm-install-electron "Electron blog") `electron` for `electron-prebuilt`, the Electron team has joined them together (Electron is a JavaScript runtime that bundles Node.js and Chromium and this module helps you easily install the `electron` command for use on the command line without having to compile anything)
 - `electron-is-dev` - this library helps to select proper address while loading the page to the window and turning on the developer tools while in development mode
+- `electron-log` - a simple logging module for Electron application
 - `exceljs` - library that allows to read, manipulate and write spreadsheet data and styles to XLSX and JSON which was reverse engineered from Excel spreadsheet files (it needs to be used from Electron part because of errors with file access)
 - `foreman` - it is used to run two processes in the same time - the React Webpack server and Electron (defined in Procfile)
 

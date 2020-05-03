@@ -1,4 +1,5 @@
 import { isZeroValue, isExponential, readExponent } from "./+utils/dataReader";
+import { log } from "../../+utils/log";
 
 export const getExaminationResults = (worksheet) => {
   let dictionary = {};
@@ -22,17 +23,13 @@ export const getExaminationResults = (worksheet) => {
         dictionary[nameCell.value] = result;
         continue;
       }
-
-      console.log(`NAME: ${nameCell.value} TYPE: ${nameCell.type}`);
-      console.log(`VALUE: ${valueCell.value} TYPE: ${valueCell.type}`);
-      console.log(`EXPONENT: ${exponentCell.value} TYPE: ${exponentCell.type}`);
     } catch (err) {
-      console.log(err);
+      log.error(err);
       throw new Error(`There was an error in section ${i}!`);
     }
   }
 
-  console.log(`${i - o} is max`);
+  log.info(`${i - o} is max`);
 
   return dictionary;
 };

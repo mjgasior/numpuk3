@@ -1,4 +1,4 @@
-import { exceljs } from "../+apis/dependenciesApi";
+import { exceljs, log } from "../+apis/dependenciesApi";
 import { getMetadata } from "./readers/metadata";
 import {
   getExaminationType,
@@ -37,15 +37,15 @@ export const getExaminations = async (files, directory) => {
     } catch (error) {
       errorCount++;
       errorFiles.push(`${directory}/${files[index]}`);
-      console.log(error);
+      log.error(error);
     }
   }
-  console.log(errorCount);
-  console.log(errorFiles);
+  log.info(`${errorCount} files with errors`);
+  log.info(errorFiles);
 };
 
 export const getExamination = async (filename) => {
-  console.log(`Reading file: ${filename}`);
+  log.info(`Reading file: ${filename}`);
   const worksheet = await getWorksheet(filename);
 
   const metadata = getMetadata(worksheet);

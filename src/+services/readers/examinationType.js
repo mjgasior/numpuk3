@@ -1,3 +1,5 @@
+import { log } from "../../+utils/log";
+
 const EXAMINATION_TYPE = {
   UNKNOWN: "UNKNOWN",
   CANDIDIASIS: "CANDIDIASIS",
@@ -27,7 +29,7 @@ export const getExaminationType = (worksheet) => {
     return EXAMINATION_TYPE.CANDIDIASIS;
   }
 
-  console.warn("Unknown examination type!");
+  log.warn("Unknown examination type!");
   return EXAMINATION_TYPE.UNKNOWN;
 };
 

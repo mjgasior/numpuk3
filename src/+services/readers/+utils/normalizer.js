@@ -1,4 +1,5 @@
 import { moment } from "../../../+apis/dependenciesApi";
+import { log } from "./../../../+utils/log";
 
 export const setAge = (birthDate, currentDate) => {
   const date1 = moment(birthDate, "DD.MM.YYYY");
@@ -9,11 +10,13 @@ export const setAge = (birthDate, currentDate) => {
 };
 
 export const setDate = (stringDate) => {
-  const date = moment(stringDate, "DD.MM.YYYY");
-  if (date.isValid()) {
-    return date.format("DD.MM.YYYY");
+  if (stringDate) {
+    const date = moment(stringDate, "DD.MM.YYYY");
+    if (date.isValid()) {
+      return date.format("DD.MM.YYYY");
+    }
+    log.warn(`${stringDate} is invalid date format`);
   }
-  console.warn(`${stringDate} is invalid date format`);
   return undefined;
 };
 
@@ -41,7 +44,7 @@ export const setGender = (gender) => {
     case "M":
       return GENDER.MALE;
     default:
-      console.warn(`${gender} is not a valid gender value`);
+      log.warn(`${gender} is not a valid gender value`);
       return GENDER.UNKNOWN;
   }
 };
@@ -57,12 +60,15 @@ export const setConsistency = (stoolConsistency) => {
   switch (stoolConsistency) {
     case "stała":
       return CONSISTENCY.RIGID;
+    case "stałe":
+      log.warn(`${stoolConsistency} was corrected`);
+      return CONSISTENCY.RIGID;
     case "płynna":
       return CONSISTENCY.LIQUID;
     case "półpłynna":
       return CONSISTENCY.HALF_LIQUID;
     default:
-      console.warn(`${stoolConsistency} is not a valid consistency value`);
+      log.warn(`${stoolConsistency} is not a valid consistency value`);
       return CONSISTENCY.UNKNOWN;
   }
 };

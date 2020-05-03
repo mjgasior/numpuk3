@@ -1,4 +1,4 @@
-import { exceljs } from "../../+apis/dependenciesApi";
+import { exceljs, log } from "../../+apis/dependenciesApi";
 import { setConsistency } from "./+utils/normalizer";
 
 const GENERAL_DATA_SECTION = {
@@ -10,9 +10,16 @@ export const getPh = (worksheet) => {
   const cell = worksheet.getCell(GENERAL_DATA_SECTION.ph);
 
   if (cell.type === exceljs.ValueType.String) {
-    if (cell.value.toLowerCase() === "zbyt mała ilość materiału") {
-      console.log("Too little sample to rate PH value!");
+    const cellValue = cell.value.toLowerCase().trim();
+    if (cellValue === "zbyt mała ilość materiału") {
+      log.warn("Too little sample to rate PH value!");
       return undefined;
+    } else if (!isNaN(cellValue)) {
+      const parsedValue = parseFloat(cellValue);
+      log.warn(
+        `Value of ${cellValue} was parsed into ${parsedValue} because of wrong format.`
+      );
+      return parsedValue;
     }
   }
 
@@ -27,5 +34,5 @@ export const getConsistency = (worksheet) => {
   if (cell.type !== exceljs.ValueType.String) {
     throw new Error(`${cell.value} is not valid consistency value`);
   }
-  return setConsistency(cell.value);
+  return setConsistency(cell.value.trim());
 };

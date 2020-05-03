@@ -1,10 +1,11 @@
 import { fs, path } from "./../+apis/nodeApi";
+import { log } from "../+apis/dependenciesApi";
 
 const readDirectoryAsync = (directoryPath, extension) => {
   return new Promise((resolve, reject) => {
     fs.readdir(directoryPath, function (err, files) {
       if (err) {
-        console.log("Unable to scan directory: " + err);
+        log.error(err);
         reject(err);
       }
 
