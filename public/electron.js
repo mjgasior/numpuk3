@@ -6,10 +6,13 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 
 const Datastore = require("nedb");
-let userData = app.getAppPath("userData");
-let databaseTest = path.join(userData, "values.db");
+let userData = app.getPath("userData");
+let databaseFilepath = path.join(userData, "values.db");
+
+log.info(databaseFilepath);
+
 let db = new Datastore({
-  filename: databaseTest,
+  filename: databaseFilepath,
   autoload: true,
   onload: (err) => {
     if (err) {
@@ -34,14 +37,13 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     minWidth: 800,
     minHeight: 600,
-    frame: false,
-    fullscreen: true,
     icon: `${path.join(__dirname, "./favicon.ico")}`,
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
     },
   });
+  mainWindow.setMenu(null);
 
   mainWindow.loadURL(
     isDev
