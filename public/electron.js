@@ -1,5 +1,6 @@
 require("dotenv").config();
 const { app, BrowserWindow } = require("electron");
+const log = require("electron-log");
 
 const path = require("path");
 const isDev = require("electron-is-dev");
@@ -12,7 +13,7 @@ let db = new Datastore({
   autoload: true,
   onload: (err) => {
     if (err) {
-      console.log("Error loading the DB: " + err);
+      log.error("Error loading the DB: " + err);
     }
   },
   timestampData: true,

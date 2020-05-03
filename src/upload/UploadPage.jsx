@@ -4,12 +4,12 @@ import { showFilesInDirectoryDialog } from "./filesInDirectoryDialog";
 import Button from "@material-ui/core/Button";
 import { ExaminationsContext } from "../+context/ExaminationsContext";
 import { FilesList } from "./+components/FilesList";
-import { parseExaminations } from "../+services/examinationParser";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
+import { processExaminations } from "../+services/examinationProcessor";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -31,7 +31,7 @@ export const UploadPage = () => {
 
   const handleProcessFiles = async () => {
     setProcessedFiles(0);
-    await parseExaminations(filesList, selectedDirectory, setProcessedFiles);
+    await processExaminations(filesList, selectedDirectory, setProcessedFiles);
   };
 
   const handlePickFiles = async () => {

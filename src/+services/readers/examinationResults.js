@@ -25,6 +25,8 @@ export const getExaminationResults = (worksheet) => {
         testName = tryFixTestName(testName);
       }
 
+      testName = testName.replace("spp.", "spp");
+
       if (isZeroValue(valueCell)) {
         dictionary[testName] = 0;
         continue;
