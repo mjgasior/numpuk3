@@ -1,6 +1,11 @@
 import { fs, path } from "./../+apis/nodeApi";
 import { log } from "../+apis/dependenciesApi";
 
+export const getFilesInDirectory = async (directoryPath, extension) => {
+  const fileList = await readDirectoryAsync(directoryPath, extension);
+  return fileList;
+};
+
 const readDirectoryAsync = (directoryPath, extension) => {
   return new Promise((resolve, reject) => {
     fs.readdir(directoryPath, function (err, files) {
@@ -18,9 +23,4 @@ const readDirectoryAsync = (directoryPath, extension) => {
       resolve(files);
     });
   });
-};
-
-export const getFilesInDirectory = async (directoryPath, extension) => {
-  const fileList = await readDirectoryAsync(directoryPath, extension);
-  return fileList;
 };

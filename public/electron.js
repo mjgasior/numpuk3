@@ -1,22 +1,49 @@
 require("dotenv").config();
 const { app, BrowserWindow } = require("electron");
+const log = require("electron-log");
 
 const path = require("path");
 const isDev = require("electron-is-dev");
+
+const Datastore = require("nedb");
+let userData = app.getPath("userData");
+let databaseFilepath = path.join(userData, "values.db");
+
+log.info(databaseFilepath);
+
+let db = new Datastore({
+  filename: databaseFilepath,
+  autoload: true,
+  onload: (err) => {
+    if (err) {
+      log.error("Error loading the DB: " + err);
+    }
+  },
+  timestampData: true,
+});
+
+db.ensureIndex({ fieldName: "metadata.examinationId", unique: true }, function (
+  err
+) {
+  if (err) {
+    log.error("Error loading the DB: " + err);
+  }
+});
+
+global.database = db;
 
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     minWidth: 800,
     minHeight: 600,
-    frame: false,
-    fullscreen: true,
     icon: `${path.join(__dirname, "./favicon.ico")}`,
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
     },
   });
+  mainWindow.setMenu(null);
 
   mainWindow.loadURL(
     isDev

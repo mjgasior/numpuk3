@@ -17,6 +17,11 @@ export const polish = {
       n3_select_file: "Wybierz plik",
     },
     n3_metadata: {
+      n3_age: "Wiek",
+      n3_amount_of_bacteria: "Ilość bakterii",
+      n3_akkermansia: "Akkermansia",
+      n3_faecalibactrium: "Faecalibactrium",
+
       n3_table_header: "Nazwa",
       n3_value: "Wartość",
       examinationId: "Nr sprawozdania",
@@ -34,6 +39,7 @@ export const polish = {
       examinationType: "Typ badania",
       ph: "PH",
       consistency: "Konsystencja",
+      bacteriaCount: "Ogólna liczba bakterii",
 
       hasAkkermansiaMuciniphila: "Badanie w kierunku Akkermansia muciniphila",
       hasFaecalibactriumPrausnitzii:

@@ -105,3 +105,4 @@ dist
 
 # Electron build
 build
+values.db

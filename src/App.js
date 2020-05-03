@@ -12,7 +12,7 @@ import { ROUTES } from "./+utils/routings";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 80%;
   margin: 10px auto;
 `;
 

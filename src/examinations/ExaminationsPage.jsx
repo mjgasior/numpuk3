@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getExaminations } from "../+services/examinationReader";
+import { ExaminationTable } from "./+components/ExaminationTable";
 
 export const ExaminationsPage = () => {
-  return (
-    <div>
-      <h2>Strona z badaniami</h2>
-      <p>
-        This is the environment build: <i>{process.env.NODE_ENV}</i>
-      </p>
-    </div>
-  );
+  const [examinations, setExaminations] = useState([]);
+
+  useEffect(() => {
+    const loadExaminations = async () => {
+      const loadedExaminations = await getExaminations();
+      setExaminations(loadedExaminations);
+    };
+
+    loadExaminations();
+  }, []);
+
+  return <ExaminationTable examinations={examinations} />;
 };

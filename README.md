@@ -9,9 +9,10 @@ This app is based on `electron` and `create-react-app`.
 
 Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an executable version or run `yarn dist` to create an installer.
 
-## Logs:
+## Logs and database:
 
-Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\{process type}.log`.
+Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\main.log`.
+Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.db`.
 
 ## Exceljs cell types:
 
@@ -34,13 +35,14 @@ Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\{proc
 - `electron-log` - a simple logging module for Electron application
 - `exceljs` - library that allows to read, manipulate and write spreadsheet data and styles to XLSX and JSON which was reverse engineered from Excel spreadsheet files (it needs to be used from Electron part because of errors with file access)
 - `foreman` - it is used to run two processes in the same time - the React Webpack server and Electron (defined in Procfile)
+- `moment` - package that allows to easily parse, validate, manipulate, and display dates and times in JavaScript
+- `nedb` - a lightweight embedded document database management system (DBMS) written in JavaScript with MongoDB API
 
 ## Packages - React:
 
 - `i18next` - an internationalization framework written in and for JavaScript
 - `@material-ui/core` - an open-source project that features React components that implement Google's Material Design
 - `@material-ui/icons` - provides the Google Material icons packaged as a set of React components
-- `moment` - package that allows to easily parse, validate, manipulate, and display dates and times in JavaScript
 - `react-i18next` - an internationalization framework for React and React Native which is based on `i18next` and adds React specific features (e.g. hooks integration)
 - `react-router-dom` - the standard routing library for React, keeps your UI in sync with the URL - it has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in (these are Document Object Model bindings for React Router)
 - `styled-components` - allows to write plain CSS in components without worrying about class name collisions, it helps to write CSS that's scoped to a single component and does not leak to any other element in the page
@@ -51,6 +53,8 @@ Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\{proc
 - [Converting callbacks to promises](https://zellwk.com/blog/converting-callbacks-to-promises/)
 - [Electron with i18next serving translations from backend](https://github.com/reZach/i18next-electron-fs-backend)
 - [How To Read An Excel File In Node.js](https://medium.com/javascript-in-plain-english/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1)
+- [Persisting data in Electron](https://www.techiediaries.com/electron-data-persistence/)
+- [React Double Scrollbar](https://github.com/umchee/react-double-scrollbar)
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js "Stack Overflow answer")
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 - [Using Electron with React: The Basics](https://medium.com/@brockhoff/using-electron-with-react-the-basics-e93f9761f86f)

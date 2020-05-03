@@ -1,9 +1,12 @@
 import { exceljs, log } from "../../+apis/dependenciesApi";
 import { setConsistency } from "./+utils/normalizer";
+import { setValue } from "./+utils/dataReader";
 
 const GENERAL_DATA_SECTION = {
   ph: "H3",
   consistency: "H4",
+  bacteriaCountBase: "H6",
+  bacteriaCountExponent: "I6",
 };
 
 export const getPh = (worksheet) => {
@@ -41,4 +44,21 @@ export const getConsistency = (worksheet) => {
     throw new Error(`${cell.value} is not valid consistency value`);
   }
   return setConsistency(cell.value.trim());
+};
+
+export const getBacteriaCount = (worksheet) => {
+  const valueCell = worksheet.getCell(GENERAL_DATA_SECTION.bacteriaCountBase);
+  const exponentCell = worksheet.getCell(
+    GENERAL_DATA_SECTION.bacteriaCountExponent
+  );
+
+  const result = setValue(valueCell, exponentCell);
+  if (result !== undefined) {
+    return result;
+  }
+
+  log.error(
+    `Could not read bacteria count from cells ${valueCell.text} and ${exponentCell.text}`
+  );
+  return undefined;
 };
