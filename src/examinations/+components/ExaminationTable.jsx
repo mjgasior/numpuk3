@@ -7,6 +7,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { useTranslation } from "react-i18next";
 import { DoubleScrollbar } from "./DoubleScrollbar";
+import { ExtendedResultsCells } from "./ExtendedResultsCells";
+import { TooltipCell } from "./TooltipCell";
 
 export const ExaminationTable = ({ examinations }) => {
   const { t } = useTranslation("n3_metadata");
@@ -17,14 +19,16 @@ export const ExaminationTable = ({ examinations }) => {
         <TableHead>
           <TableRow>
             <TableCell>Płeć</TableCell>
-            <TableCell align="right">
-              Wiek w momencie pobrania materiału
-            </TableCell>
-            <TableCell align="right">PH</TableCell>
-            <TableCell align="right">Konsystencja</TableCell>
-            <TableCell align="right">Ilość bakterii</TableCell>
-            <TableCell align="right">Akkermansia Muciniphila</TableCell>
-            <TableCell align="right">Faecalibactrium Prausnitzii</TableCell>
+            <TooltipCell title={t("ageAtTest")}>{t("n3_age")}</TooltipCell>
+            <TableCell>{t("ph")}</TableCell>
+            <TableCell>{t("consistency")}</TableCell>
+            <TableCell>{t("n3_amount_of_bacteria")}</TableCell>
+            <TooltipCell title={t("hasAkkermansiaMuciniphila")}>
+              {t("n3_akkermansia")}
+            </TooltipCell>
+            <TooltipCell title={t("hasFaecalibactriumPrausnitzii")}>
+              {t("n3_faecalibactrium")}
+            </TooltipCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,29 +47,8 @@ export const ExaminationTable = ({ examinations }) => {
                 <TableCell component="th" scope="row">
                   {t(consistency)}
                 </TableCell>
-                <TableCell component="th" scope="row">
-                  brak danej
-                </TableCell>
-
-                {extendedResults ? (
-                  <>
-                    <TableCell component="th" scope="row">
-                      {t(extendedResults.hasAkkermansiaMuciniphila)}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {t(extendedResults.hasFaecalibactriumPrausnitzii)}
-                    </TableCell>
-                  </>
-                ) : (
-                  <>
-                    <TableCell component="th" scope="row">
-                      brak danej
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      brak danej
-                    </TableCell>
-                  </>
-                )}
+                <TableCell component="th" scope="row"></TableCell>
+                <ExtendedResultsCells data={extendedResults} />
               </TableRow>
             )
           )}

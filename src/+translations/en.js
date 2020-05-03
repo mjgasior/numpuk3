@@ -16,6 +16,11 @@ export const english = {
       n3_select_directory: "Select directory",
     },
     n3_metadata: {
+      n3_age: "Age",
+      n3_amount_of_bacteria: "Amount of bacteria",
+      n3_akkermansia: "Akkermansia",
+      n3_faecalibactrium: "Faecalibactrium",
+
       n3_table_header: "Key",
       n3_value: "Value",
       examinationId: "Examination ID",
