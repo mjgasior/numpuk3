@@ -15,7 +15,7 @@ export const processExaminations = async (
     try {
       logger.info(`Reading file: ${filepath}`);
       const exam = await parseExamination(filepath);
-      // await putExamination(exam);
+      await putExamination(exam);
       logger.info(`Saved file: ${filepath}`);
     } catch (error) {
       errorCount++;

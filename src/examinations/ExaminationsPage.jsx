@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getExaminations } from "../+services/examinationReader";
-import { ExaminationTable } from "./+components/ExaminationTable";
+import { ExaminationTable } from "./table/ExaminationTable";
+import { ExaminationFilters } from "./filters/ExaminationFilters";
 
 export const ExaminationsPage = () => {
   const [examinations, setExaminations] = useState([]);
@@ -14,5 +15,10 @@ export const ExaminationsPage = () => {
     loadExaminations();
   }, []);
 
-  return <ExaminationTable examinations={examinations} />;
+  return (
+    <>
+      <ExaminationFilters />
+      <ExaminationTable examinations={examinations} />
+    </>
+  );
 };

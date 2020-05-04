@@ -13,7 +13,6 @@ import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
 
 export const ExaminationTable = ({ examinations }) => {
   const { t } = useTranslation("n3_metadata");
-  console.log(examinations);
   return (
     <DoubleScrollbar>
       <Table size="small">
