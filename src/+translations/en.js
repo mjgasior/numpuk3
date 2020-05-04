@@ -19,6 +19,7 @@ export const english = {
       n3_open_log_directory: "Open log directory",
       n3_open_single: "Open single examination",
       n3_process_files: "Process files",
+      n3_processing_files: "Processing files",
       n3_select_directory: "Select directory",
     },
     n3_metadata: {

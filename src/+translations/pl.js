@@ -20,6 +20,7 @@ export const polish = {
       n3_open_log_directory: "Otwórz folder z logami",
       n3_open_single: "Otwórz pojedyncze badanie",
       n3_process_files: "Przetwarzaj pliki",
+      n3_processing_files: "Przetwarzanie plików",
       n3_select_directory: "Wybierz lokalizację",
       n3_select_file: "Wybierz plik",
     },
