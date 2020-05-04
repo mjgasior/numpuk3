@@ -11,8 +11,9 @@ import { ExtendedResultsCells } from "./+components/ExtendedResultsCells";
 import { TooltipCell } from "./+components/TooltipCell";
 import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
 
-export const ExaminationTable = ({ examinations }) => {
+export const ExaminationTable = React.memo(({ examinations }) => {
   const { t } = useTranslation("n3_metadata");
+  console.log("it DARA");
   return (
     <DoubleScrollbar>
       <Table size="small">
@@ -66,7 +67,7 @@ export const ExaminationTable = ({ examinations }) => {
       </Table>
     </DoubleScrollbar>
   );
-};
+});
 
 const getValue = (testType, results) => {
   if (testType.endsWith("spp.")) {

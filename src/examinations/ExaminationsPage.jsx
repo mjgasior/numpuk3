@@ -3,21 +3,47 @@ import { getExaminations } from "../+services/examinationReader";
 import { ExaminationTable } from "./table/ExaminationTable";
 import { ExaminationFilters } from "./filters/ExaminationFilters";
 
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
+
 export const ExaminationsPage = () => {
+  const [filters, setFilters] = useState();
   const [examinations, setExaminations] = useState([]);
+
+  const [state, setState] = useState({
+    hasKlebsiellaPneumoniae: true,
+  });
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
 
   useEffect(() => {
     const loadExaminations = async () => {
-      const loadedExaminations = await getExaminations();
+      console.log("it loads");
+      const loadedExaminations = await getExaminations(filters);
       setExaminations(loadedExaminations);
     };
 
     loadExaminations();
-  }, []);
+  }, [filters, state]);
 
   return (
     <>
-      <ExaminationFilters />
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={state.hasKlebsiellaPneumoniae}
+              onChange={handleChange}
+              name="hasKlebsiellaPneumoniae"
+            />
+          }
+          label="Klebsiella pneumoniae"
+        />
+      </FormGroup>
+      <ExaminationFilters setFilters={setFilters} />
       <ExaminationTable examinations={examinations} />
     </>
   );

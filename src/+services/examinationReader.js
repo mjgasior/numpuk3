@@ -1,12 +1,13 @@
 import { db } from "../+apis/dependenciesApi";
 import { logger } from "./logger";
 
-export const getExaminations = async () => {
-  const examinations = await getExaminationsAsync();
+export const getExaminations = async (filters) => {
+  const examinations = await getExaminationsAsync(filters);
   return examinations;
 };
 
-const getExaminationsAsync = () => {
+const getExaminationsAsync = (filters) => {
+  console.log(filters);
   return new Promise((resolve, reject) => {
     db.find({})
       .sort({ "metadata.examinationId": 1 })
