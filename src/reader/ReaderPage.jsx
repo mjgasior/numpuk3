@@ -6,6 +6,7 @@ import { SingleExamination } from "./singleExamination/SingleExamination";
 import { parseExamination } from "../+services/examinationParser";
 import styled from "styled-components";
 import { ExaminationsContext } from "../+context/ExaminationsContext";
+import { logger } from "../+services/logger";
 
 const Header = styled.div`
   margin-bottom: 10px;
@@ -29,6 +30,7 @@ export const ReaderPage = () => {
   const handlePickFiles = async () => {
     const selectedFile = await showSelectFileDialog(t);
     if (selectedFile) {
+      logger.info(`Reading single file ${selectedFile}`);
       const resultExamination = await parseExamination(selectedFile);
       setExamination(resultExamination);
     }
