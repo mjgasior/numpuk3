@@ -27,14 +27,18 @@ export const UploadPage = () => {
   const { t } = useTranslation();
   const classes = useStyles();
 
-  const [processedFiles, setProcessedFiles] = useState(0);
+  const [processedFilesCount, setProcessedFilesCount] = useState(0);
   const [isDialogOpen, setisDialogOpen] = useState(false);
 
   const handleProcessFiles = async () => {
     setisDialogOpen(true);
-    setProcessedFiles(0);
+    setProcessedFilesCount(0);
 
-    await processExaminations(filesList, selectedDirectory, setProcessedFiles);
+    await processExaminations(
+      filesList,
+      selectedDirectory,
+      setProcessedFilesCount
+    );
   };
 
   const handlePickFiles = async () => {
@@ -62,10 +66,10 @@ export const UploadPage = () => {
       <ProcessingDialog
         open={isDialogOpen}
         onClose={() => setisDialogOpen(false)}
-        processedFiles={processedFiles}
+        processedFiles={processedFilesCount}
         filesCount={filesList.length}
       />
-      {filesList.length !== 0 && (
+      {filesList.length > 0 && (
         <>
           <Button
             variant="contained"
