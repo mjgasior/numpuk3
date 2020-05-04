@@ -1,5 +1,5 @@
 import { setValue } from "./+utils/dataReader";
-import { log } from "../../+apis/dependenciesApi";
+import { logger } from "./../logger";
 
 export const getCandidiasisResults = (worksheet) => {
   let dictionary = {};
@@ -19,12 +19,12 @@ export const getCandidiasisResults = (worksheet) => {
         continue;
       }
 
-      log.error(
+      logger.error(
         `Could not read bacteria count from cells ${valueCell.text} and ${exponentCell.text}`
       );
       return undefined;
     } catch (err) {
-      log.error(err);
+      logger.error(err);
       throw new Error(`There was an error in section ${i}!`);
     }
   }

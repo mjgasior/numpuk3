@@ -1,5 +1,5 @@
 import { ALL_TEST_TYPES } from "./testTypes";
-import { log } from "../../../+apis/dependenciesApi";
+import { logger } from "./../../logger";
 
 const testsSet = new Set(ALL_TEST_TYPES);
 
@@ -31,18 +31,18 @@ export const tryFixTestName = (testName) => {
   );
 
   if (newName) {
-    log.warn(`${testName} fixed to ${newName}`);
+    logger.warn(`${testName} fixed to ${newName}`);
     return newName;
   } else {
-    log.warn(`Trying to find ${testName} in common mistakes`);
+    logger.warn(`Trying to find ${testName} in common mistakes`);
     const fixedName = COMMON_MISTAKES[testName.toLowerCase()];
 
     if (fixedName) {
-      log.warn(`${testName} fixed to ${fixedName}`);
+      logger.warn(`${testName} fixed to ${fixedName}`);
       return fixedName;
     }
 
-    log.error(`${testName} impossible to fix`);
+    logger.error(`${testName} impossible to fix`);
     return testName;
   }
 };

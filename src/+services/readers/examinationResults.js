@@ -1,5 +1,5 @@
 import { setValue } from "./+utils/dataReader";
-import { log } from "../../+apis/dependenciesApi";
+import { logger } from "./../logger";
 import { hasTest, tryFixTestName } from "./testTypes/testTypeService";
 
 export const getExaminationResults = (worksheet) => {
@@ -21,7 +21,7 @@ export const getExaminationResults = (worksheet) => {
         .text.trim();
 
       if (!hasTest(testName)) {
-        log.warn(`Trying to fix ${testName}`);
+        logger.warn(`Trying to fix ${testName}`);
         testName = tryFixTestName(testName);
       }
 
@@ -32,20 +32,20 @@ export const getExaminationResults = (worksheet) => {
         continue;
       }
 
-      log.error(
+      logger.error(
         `Could not read results from cells ${valueCell.text} and ${
           exponentCell.text
         } for row ${i + 23}`
       );
     } catch (err) {
-      log.error(err);
+      logger.error(err);
       throw new Error(`There was an error in section ${i}!`);
     }
   }
 
   const diff = i - o;
   if (diff > 30) {
-    log.info(`The amount of checks was greater than 30. ${diff} is max`);
+    logger.info(`The amount of checks was greater than 30. ${diff} is max`);
   }
 
   return dictionary;

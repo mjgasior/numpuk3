@@ -3,6 +3,7 @@ export const polish = {
     translation: {
       n3_add_new_examinations: "Dodaj nowe badania",
       n3_close: "Zamknij",
+      n3_delete_logs: "Usuń logi",
       n3_examinations: "Badania",
 
       n3_load_directory: "Wybierz lokalizację",
@@ -11,6 +12,7 @@ export const polish = {
       n3_load_file: "Wybierz plik",
       n3_load_file_title: "Wczytaj badanie z pliku",
 
+      n3_logs: "Logi aplikacji",
       n3_open_single: "Otwórz pojedyncze badanie",
       n3_process_files: "Przetwarzaj pliki",
       n3_select_directory: "Wybierz lokalizację",

@@ -1,4 +1,4 @@
-import { log } from "../../+apis/dependenciesApi";
+import { logger } from "./../logger";
 
 const EXAMINATION_TYPE = {
   UNKNOWN: "UNKNOWN",
@@ -29,7 +29,7 @@ export const getExaminationType = (worksheet) => {
     return EXAMINATION_TYPE.CANDIDIASIS;
   }
 
-  log.warn("Unknown examination type!");
+  logger.warn("Unknown examination type!");
   return EXAMINATION_TYPE.UNKNOWN;
 };
 

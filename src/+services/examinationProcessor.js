@@ -1,5 +1,5 @@
 import { parseExamination } from "./examinationParser";
-import { log } from "../+apis/dependenciesApi";
+import { logger } from "./logger";
 import { putExamination } from "./examinationWriter";
 
 export const processExaminations = async (
@@ -13,17 +13,17 @@ export const processExaminations = async (
     const filepath = `${directory}/${files[index]}`;
 
     try {
-      log.info(`Reading file: ${filepath}`);
+      logger.info(`Reading file: ${filepath}`);
       const exam = await parseExamination(filepath);
       // await putExamination(exam);
-      log.info(`Saved file: ${filepath}`);
+      logger.info(`Saved file: ${filepath}`);
     } catch (error) {
       errorCount++;
       errorFiles.push(filepath);
-      log.error(error);
+      logger.error(error);
     }
     setProcessedFiles(index + 1);
   }
-  log.info(`${errorCount} files with major errors`);
-  log.info(errorFiles);
+  logger.info(`${errorCount} files with major errors`);
+  logger.info(errorFiles);
 };
