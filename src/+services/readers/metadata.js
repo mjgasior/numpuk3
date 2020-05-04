@@ -1,6 +1,7 @@
 import { isPeselValid, getBirthdateFromPesel } from "./+utils/peselParser";
 import { setGender, setDate, setAge } from "./+utils/normalizer";
-import { log, exceljs, moment } from "../../+apis/dependenciesApi";
+import { exceljs, moment } from "../../+apis/dependenciesApi";
+import { logger } from "../logger";
 
 const META_DATA_SECTION = {
   examinationId: "D2",
@@ -22,7 +23,7 @@ export const getMetadata = (worksheet) => {
 
     if (cell.type === exceljs.ValueType.Date) {
       const date = moment(cell.value).format("DD.MM.YYYY");
-      log.debug(
+      logger.debug(
         `Date ${cell.value} parsed into ${date} for ${key} of cell ${META_DATA_SECTION[key]}`
       );
       metadata[key] = date;
@@ -51,7 +52,7 @@ export const getMetadata = (worksheet) => {
   );
 
   if (metadata.personalId !== undefined && !isPeselValid(metadata.personalId)) {
-    log.warn(`${metadata.personalId} is an invalid PESEL number`);
+    logger.warn(`${metadata.personalId} is an invalid PESEL number`);
   }
 
   return metadata;
@@ -62,11 +63,11 @@ const setBirthdate = (birthdate, personalId) => {
   if (formattedBirthdate === undefined) {
     if (isPeselValid(personalId)) {
       const date = getBirthdateFromPesel(personalId);
-      log.warn(`${date} set from PESEL`);
+      logger.warn(`${date} set from PESEL`);
       return date;
     }
 
-    log.error(
+    logger.error(
       "Could not set birth date - not valid both birthday field and PESEL."
     );
     return undefined;

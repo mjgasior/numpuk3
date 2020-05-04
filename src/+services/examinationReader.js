@@ -1,4 +1,5 @@
-import { db, log } from "../+apis/dependenciesApi";
+import { db } from "../+apis/dependenciesApi";
+import { logger } from "./logger";
 
 export const getExaminations = async () => {
   const examinations = await getExaminationsAsync();
@@ -11,7 +12,7 @@ const getExaminationsAsync = () => {
       .sort({ "metadata.examinationId": 1 })
       .exec(function (err, docs) {
         if (err) {
-          log.error(err);
+          logger.error(err);
           reject(err);
         }
         resolve(docs);

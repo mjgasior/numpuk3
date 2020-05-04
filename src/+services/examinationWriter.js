@@ -1,4 +1,5 @@
-import { db, log } from "../+apis/dependenciesApi";
+import { db } from "../+apis/dependenciesApi";
+import { logger } from "./logger";
 
 export const putExamination = async (examination) => {
   const savedExamination = await saveDocumentAsync(examination);
@@ -9,7 +10,7 @@ const saveDocumentAsync = (examination) => {
   return new Promise((resolve, reject) => {
     db.insert(examination, (err, newDoc) => {
       if (err) {
-        log.error(err);
+        logger.error(err);
         reject(err);
       }
       resolve(newDoc);

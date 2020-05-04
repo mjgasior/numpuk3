@@ -1,6 +1,7 @@
-import { exceljs, log } from "../../+apis/dependenciesApi";
+import { exceljs } from "../../+apis/dependenciesApi";
 import { setConsistency } from "./+utils/normalizer";
 import { setValue } from "./+utils/dataReader";
+import { logger } from "../logger";
 
 const GENERAL_DATA_SECTION = {
   ph: "H3",
@@ -19,16 +20,16 @@ export const getPh = (worksheet) => {
   if (cell.type === exceljs.ValueType.String) {
     const cellValue = cell.value.toLowerCase().trim();
     if (cellValue === "zbyt mała ilość materiału") {
-      log.warn("Too little sample to rate PH value!");
+      logger.warn("Too little sample to rate PH value!");
       return undefined;
     } else if (cellValue !== "" && !isNaN(cellValue)) {
       const parsedValue = parseFloat(cellValue);
-      log.warn(
+      logger.warn(
         `Value of ${cellValue} was parsed into ${parsedValue} because of wrong format.`
       );
       return parsedValue;
     }
-    log.warn(`Value of "${cellValue}" was set to be undefined.`);
+    logger.warn(`Value of "${cellValue}" was set to be undefined.`);
     return undefined;
   }
 
@@ -57,7 +58,7 @@ export const getBacteriaCount = (worksheet) => {
     return result;
   }
 
-  log.error(
+  logger.error(
     `Could not read bacteria count from cells ${valueCell.text} and ${exponentCell.text}`
   );
   return undefined;
