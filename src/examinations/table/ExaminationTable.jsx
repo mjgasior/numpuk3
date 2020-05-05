@@ -15,7 +15,7 @@ export const ExaminationTable = React.memo(({ examinations }) => {
   const { t } = useTranslation("n3_metadata");
   return (
     <DoubleScrollbar>
-      <Table size="small">
+      <Table size="small" stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell>{t("gender")}</TableCell>

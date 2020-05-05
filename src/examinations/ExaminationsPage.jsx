@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getExaminations } from "../+services/examinationReader";
 import { ExaminationTable } from "./table/ExaminationTable";
-import { ExaminationFilters } from "./filters/ExaminationFilters";
 
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -45,7 +44,6 @@ export const ExaminationsPage = () => {
           label="Klebsiella pneumoniae"
         />
       </FormGroup>
-      <ExaminationFilters setFilters={setFilters} />
       <ExaminationTable examinations={examinations} />
     </>
   );
