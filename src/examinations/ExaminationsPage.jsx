@@ -12,7 +12,7 @@ export const ExaminationsPage = () => {
   const [examinations, setExaminations] = useState([]);
 
   const [state, setState] = useState({
-    hasKlebsiellaPneumoniae: true,
+    hasKlebsiellaPneumoniae: false,
   });
 
   const handleChange = (event) => {
@@ -22,7 +22,9 @@ export const ExaminationsPage = () => {
   useEffect(() => {
     const loadExaminations = async () => {
       console.log("it loads");
-      const loadedExaminations = await getExaminations(filters);
+      const loadedExaminations = await getExaminations(
+        state.hasKlebsiellaPneumoniae
+      );
       setExaminations(loadedExaminations);
     };
 
