@@ -16,6 +16,7 @@ const getExaminationsAsync = (filters) => {
           logger.error(err);
           reject(err);
         }
+        console.log(docs);
         resolve(docs);
       });
   });
