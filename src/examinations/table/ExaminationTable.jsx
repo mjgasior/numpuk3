@@ -51,21 +51,31 @@ export const ExaminationTable = React.memo(({ examinations, columns }) => {
             results,
           }) => (
             <TableRow key={metadata.examinationId}>
-              <TableCell component="th" scope="row">
-                {t(metadata.gender)}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {t(metadata.ageAtTest)}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {ph}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {t(consistency)}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {bacteriaCount}
-              </TableCell>
+              {columns.gender === 1 && (
+                <TableCell component="th" scope="row">
+                  {t(metadata.gender)}
+                </TableCell>
+              )}
+              {columns.ageAtTest === 1 && (
+                <TableCell component="th" scope="row">
+                  {t(metadata.ageAtTest)}
+                </TableCell>
+              )}
+              {columns.ph === 1 && (
+                <TableCell component="th" scope="row">
+                  {ph}
+                </TableCell>
+              )}
+              {columns.consistency === 1 && (
+                <TableCell component="th" scope="row">
+                  {t(consistency)}
+                </TableCell>
+              )}
+              {columns.bacteriaCount === 1 && (
+                <TableCell component="th" scope="row">
+                  {bacteriaCount}
+                </TableCell>
+              )}
               <ExtendedResultsCells data={extendedResults} />
               {ALL_TEST_TYPES.map((testType, i) => (
                 <TableCell key={testType + i} align="right">
