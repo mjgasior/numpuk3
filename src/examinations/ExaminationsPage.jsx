@@ -1,18 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { getExaminations } from "../+services/examinationReader";
-import { ExaminationTable } from "./+components/ExaminationTable";
+import React from "react";
+
+import { ExaminationTable } from "./table/ExaminationTable";
+import { VisibilityDialog } from "./visibility/VisibilityDialog";
+import { HeaderMenu } from "./+components/HeaderMenu";
+import { useVisibilityDialog } from "./+hooks/useDialog";
+import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
+import { useExaminations } from "./+hooks/useExaminations";
+import styled from "styled-components";
+
+const ExaminationsViewContainer = styled.div`
+  overflow: hidden;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ExaminationsTableContainer = styled.div`
+  flex-grow: 1;
+  overflow: auto;
+`;
 
 export const ExaminationsPage = () => {
-  const [examinations, setExaminations] = useState([]);
+  const { metadataVisibility, setMetadataVisibility } = useVisibilityFilters();
 
-  useEffect(() => {
-    const loadExaminations = async () => {
-      const loadedExaminations = await getExaminations();
-      setExaminations(loadedExaminations);
-    };
+  const {
+    isVisibilityDialogOpen,
+    openVisibilityDialog,
+    closeVisibilityDialog,
+  } = useVisibilityDialog();
 
-    loadExaminations();
-  }, []);
+  const { examinations } = useExaminations(metadataVisibility);
 
-  return <ExaminationTable examinations={examinations} />;
+  return (
+    <ExaminationsViewContainer>
+      <HeaderMenu openVisibility={openVisibilityDialog} />
+      <VisibilityDialog
+        metadataVisibility={metadataVisibility}
+        open={isVisibilityDialogOpen}
+        onAccept={(newMetadataVisibility) => {
+          closeVisibilityDialog();
+          setMetadataVisibility(newMetadataVisibility);
+        }}
+        onCancel={closeVisibilityDialog}
+      />
+      <ExaminationsTableContainer>
+        <ExaminationTable
+          examinations={examinations}
+          columns={metadataVisibility}
+        />
+      </ExaminationsTableContainer>
+    </ExaminationsViewContainer>
+  );
 };
