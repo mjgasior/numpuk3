@@ -16,7 +16,7 @@ const StyledText = styled.div`
 
 const RowContainer = styled.div`
   display: flex;
-  padding: 0px 10px 10px;
+  padding: 10px 10px 10px;
   border-bottom: solid 1px;
   border-bottom-color: ${({ theme }) => theme.customPurple};
   user-select: none;

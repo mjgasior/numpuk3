@@ -14,13 +14,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 10px auto;
+  margin: 0 auto;
+  height: 100%;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px;
+  overflow: auto;
 `;
 
 export const App = () => {
