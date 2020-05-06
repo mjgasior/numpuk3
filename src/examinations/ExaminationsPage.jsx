@@ -29,7 +29,7 @@ export const ExaminationsPage = () => {
     closeVisibilityDialog,
   } = useVisibilityDialog();
 
-  const { examinations } = useExaminations();
+  const { examinations } = useExaminations(metadataVisibility);
 
   return (
     <ExaminationsViewContainer>
@@ -44,7 +44,10 @@ export const ExaminationsPage = () => {
         onCancel={closeVisibilityDialog}
       />
       <ExaminationsTableContainer>
-        <ExaminationTable examinations={examinations} />
+        <ExaminationTable
+          examinations={examinations}
+          columns={metadataVisibility}
+        />
       </ExaminationsTableContainer>
     </ExaminationsViewContainer>
   );

@@ -10,17 +10,23 @@ import { ExtendedResultsCells } from "./+components/ExtendedResultsCells";
 import { TooltipCell } from "./+components/TooltipCell";
 import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
 
-export const ExaminationTable = React.memo(({ examinations }) => {
+export const ExaminationTable = React.memo(({ examinations, columns }) => {
   const { t } = useTranslation("n3_metadata");
   return (
     <Table size="small" stickyHeader>
       <TableHead>
         <TableRow>
-          <TableCell>{t("gender")}</TableCell>
-          <TooltipCell title={t("ageAtTest")}>{t("n3_age")}</TooltipCell>
-          <TableCell>{t("ph")}</TableCell>
-          <TableCell>{t("consistency")}</TableCell>
-          <TableCell>{t("n3_amount_of_bacteria")}</TableCell>
+          {columns.gender === 1 && <TableCell>{t("gender")}</TableCell>}
+          {columns.ageAtTest === 1 && (
+            <TooltipCell title={t("ageAtTest")}>{t("n3_age")}</TooltipCell>
+          )}
+          {columns.ph === 1 && <TableCell>{t("ph")}</TableCell>}
+          {columns.consistency === 1 && (
+            <TableCell>{t("consistency")}</TableCell>
+          )}
+          {columns.bacteriaCount === 1 && (
+            <TableCell>{t("n3_amount_of_bacteria")}</TableCell>
+          )}
           <TooltipCell title={t("hasAkkermansiaMuciniphila")}>
             {t("n3_akkermansia")}
           </TooltipCell>
@@ -36,7 +42,14 @@ export const ExaminationTable = React.memo(({ examinations }) => {
       </TableHead>
       <TableBody>
         {examinations.map(
-          ({ metadata, ph, consistency, extendedResults, results }) => (
+          ({
+            metadata,
+            ph,
+            consistency,
+            bacteriaCount,
+            extendedResults,
+            results,
+          }) => (
             <TableRow key={metadata.examinationId}>
               <TableCell component="th" scope="row">
                 {t(metadata.gender)}
@@ -50,7 +63,9 @@ export const ExaminationTable = React.memo(({ examinations }) => {
               <TableCell component="th" scope="row">
                 {t(consistency)}
               </TableCell>
-              <TableCell component="th" scope="row"></TableCell>
+              <TableCell component="th" scope="row">
+                {bacteriaCount}
+              </TableCell>
               <ExtendedResultsCells data={extendedResults} />
               {ALL_TEST_TYPES.map((testType, i) => (
                 <TableCell key={testType + i} align="right">

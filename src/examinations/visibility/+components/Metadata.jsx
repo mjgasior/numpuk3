@@ -22,10 +22,10 @@ export const Metadata = ({ metadataVisibility, setMetadataVisibility }) => {
 
   const classes = useStyles();
 
-  const handleChange = (event) => {
+  const handleChange = (name, value) => {
     setMetadataVisibility({
       ...metadataVisibility,
-      [event.target.name]: event.target.checked,
+      [name]: value,
     });
   };
 
