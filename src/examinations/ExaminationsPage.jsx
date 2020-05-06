@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { getExaminations } from "../+services/examinationReader";
-import { ExaminationTable } from "./table/ExaminationTable";
+import React from "react";
 
-import styled from "styled-components";
+import { ExaminationTable } from "./table/ExaminationTable";
 import { VisibilityDialog } from "./visibility/VisibilityDialog";
+import { HeaderMenu } from "./+components/HeaderMenu";
+import { useVisibilityDialog } from "./+hooks/useDialog";
+import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
+import { useExaminations } from "./+hooks/useExaminations";
+import styled from "styled-components";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -18,38 +21,27 @@ const ExaminationsTableContainer = styled.div`
 `;
 
 export const ExaminationsPage = () => {
-  const [metadataVisibility, setMetadataVisibility] = useState({
-    gender: true,
-    ageAtTest: true,
-    ph: true,
-    bacteriaCount: true,
-    consistency: true,
-  });
+  const { metadataVisibility, setMetadataVisibility } = useVisibilityFilters();
 
-  console.log(metadataVisibility);
+  const {
+    isVisibilityDialogOpen,
+    openVisibilityDialog,
+    closeVisibilityDialog,
+  } = useVisibilityDialog();
 
-  const [isVisibilityDialogOpen, setIsVisibilityDialogOpen] = useState(true);
-  const [examinations, setExaminations] = useState([]);
-
-  useEffect(() => {
-    const loadExaminations = async () => {
-      const loadedExaminations = await getExaminations(true);
-      setExaminations(loadedExaminations);
-    };
-
-    loadExaminations();
-  }, []);
+  const { examinations } = useExaminations();
 
   return (
     <ExaminationsViewContainer>
+      <HeaderMenu openVisibility={openVisibilityDialog} />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         open={isVisibilityDialogOpen}
         onAccept={(newMetadataVisibility) => {
-          setIsVisibilityDialogOpen(false);
+          closeVisibilityDialog();
           setMetadataVisibility(newMetadataVisibility);
         }}
-        onCancel={() => setIsVisibilityDialogOpen(false)}
+        onCancel={closeVisibilityDialog}
       />
       <ExaminationsTableContainer>
         <ExaminationTable examinations={examinations} />
