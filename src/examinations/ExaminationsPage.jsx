@@ -5,6 +5,19 @@ import { ExaminationTable } from "./table/ExaminationTable";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import styled from "styled-components";
+
+const ExaminationsViewContainer = styled.div`
+  overflow: hidden;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ExaminationsTableContainer = styled.div`
+  flex-grow: 1;
+  overflow: auto;
+`;
 
 export const ExaminationsPage = () => {
   const [filters, setFilters] = useState();
@@ -31,7 +44,7 @@ export const ExaminationsPage = () => {
   }, [filters, state]);
 
   return (
-    <>
+    <ExaminationsViewContainer>
       <FormGroup row>
         <FormControlLabel
           control={
@@ -44,7 +57,9 @@ export const ExaminationsPage = () => {
           label="Klebsiella pneumoniae"
         />
       </FormGroup>
-      <ExaminationTable examinations={examinations} />
-    </>
+      <ExaminationsTableContainer>
+        <ExaminationTable examinations={examinations} />
+      </ExaminationsTableContainer>
+    </ExaminationsViewContainer>
   );
 };

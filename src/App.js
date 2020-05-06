@@ -22,6 +22,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px;
+  flex-grow: 1;
   overflow: auto;
 `;
 
