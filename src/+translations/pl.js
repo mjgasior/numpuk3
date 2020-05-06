@@ -2,9 +2,12 @@ export const polish = {
   pl: {
     translation: {
       n3_add_new_examinations: "Dodaj nowe badania",
+      n3_apply: "Zastosuj",
+      n3_cancel: "Anuluj",
       n3_close: "Zamknij",
       n3_delete_logs: "Usuń logi",
       n3_examinations: "Badania",
+      n3_filters: "Filtry",
 
       n3_load_directory: "Wybierz lokalizację",
       n3_load_directory_title: "Wczytaj badania z wybranej lokalizacji",

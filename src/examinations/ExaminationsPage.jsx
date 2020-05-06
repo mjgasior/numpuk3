@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getExaminations } from "../+services/examinationReader";
 import { ExaminationTable } from "./table/ExaminationTable";
 
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import styled from "styled-components";
+import { VisibilityDialog } from "./visibility/VisibilityDialog";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -20,43 +18,39 @@ const ExaminationsTableContainer = styled.div`
 `;
 
 export const ExaminationsPage = () => {
-  const [filters, setFilters] = useState();
-  const [examinations, setExaminations] = useState([]);
-
-  const [state, setState] = useState({
-    hasKlebsiellaPneumoniae: false,
+  const [metadataVisibility, setMetadataVisibility] = useState({
+    gender: true,
+    ageAtTest: true,
+    ph: true,
+    bacteriaCount: true,
+    consistency: true,
   });
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  console.log(metadataVisibility);
+
+  const [isVisibilityDialogOpen, setIsVisibilityDialogOpen] = useState(true);
+  const [examinations, setExaminations] = useState([]);
 
   useEffect(() => {
     const loadExaminations = async () => {
-      console.log("it loads");
-      const loadedExaminations = await getExaminations(
-        state.hasKlebsiellaPneumoniae
-      );
+      const loadedExaminations = await getExaminations(true);
       setExaminations(loadedExaminations);
     };
 
     loadExaminations();
-  }, [filters, state]);
+  }, []);
 
   return (
     <ExaminationsViewContainer>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={state.hasKlebsiellaPneumoniae}
-              onChange={handleChange}
-              name="hasKlebsiellaPneumoniae"
-            />
-          }
-          label="Klebsiella pneumoniae"
-        />
-      </FormGroup>
+      <VisibilityDialog
+        metadataVisibility={metadataVisibility}
+        open={isVisibilityDialogOpen}
+        onAccept={(newMetadataVisibility) => {
+          setIsVisibilityDialogOpen(false);
+          setMetadataVisibility(newMetadataVisibility);
+        }}
+        onCancel={() => setIsVisibilityDialogOpen(false)}
+      />
       <ExaminationsTableContainer>
         <ExaminationTable examinations={examinations} />
       </ExaminationsTableContainer>
