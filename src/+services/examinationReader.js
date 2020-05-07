@@ -3,7 +3,6 @@ import { logger } from "./logger";
 
 export const getExaminations = async (metadataVisibility) => {
   const examinations = await getExaminationsAsync(metadataVisibility);
-  console.log(examinations);
   return examinations;
 };
 
@@ -28,19 +27,11 @@ const getExaminationsAsync = (metadataVisibility, hasKlebsiellaPneumoniae) => {
 };
 
 const getProjection = (metadataVisibility) => {
-  const MAPPER = {
-    gender: "metadata.gender",
-    ageAtTest: "metadata.ageAtTest",
-    ph: "ph",
-    consistency: "consistency",
-    bacteriaCount: "bacteriaCount",
-  };
-
   const projection = {};
 
   Object.keys(metadataVisibility).forEach((data) => {
-    if (metadataVisibility[data] === 0) {
-      projection[MAPPER[data]] = 0;
+    if (!metadataVisibility[data]) {
+      projection[data] = 0;
     }
   });
 
