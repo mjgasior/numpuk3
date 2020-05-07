@@ -22,7 +22,7 @@ export const HeaderMenu = ({ openVisibility, openFilters }) => {
         startIcon={<VisibilityIcon />}
         onClick={openVisibility}
       >
-        {t("n3_select_directory")}
+        {t("n3_set_column_visibility")}
       </Button>
       <Button
         variant="contained"
@@ -30,7 +30,7 @@ export const HeaderMenu = ({ openVisibility, openFilters }) => {
         startIcon={<FilterListIcon />}
         onClick={openFilters}
       >
-        {t("n3_select_directory")}
+        {t("n3_set_column_filters")}
       </Button>
     </div>
   );

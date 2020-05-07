@@ -29,7 +29,7 @@ export const VisibilityDialog = ({
       disableBackdropClick
       disableEscapeKeyDown
     >
-      <DialogTitle>{t("n3_filters")}</DialogTitle>
+      <DialogTitle>{t("n3_set_column_visibility")}</DialogTitle>
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
           <Metadata
