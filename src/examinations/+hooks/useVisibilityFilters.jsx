@@ -2,11 +2,13 @@ import { useState } from "react";
 
 export const useVisibilityFilters = () => {
   const [metadataVisibility, setMetadataVisibility] = useState({
-    gender: 1,
-    ageAtTest: 1,
-    ph: 1,
-    bacteriaCount: 1,
-    consistency: 1,
+    gender: true,
+    ageAtTest: true,
+    ph: true,
+    bacteriaCount: true,
+    consistency: true,
+    hasAkkermansiaMuciniphila: true,
+    hasFaecalibactriumPrausnitzii: true,
   });
   return { metadataVisibility, setMetadataVisibility };
 };

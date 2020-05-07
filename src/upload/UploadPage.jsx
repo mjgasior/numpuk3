@@ -10,6 +10,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import { processExaminations } from "../+services/examinationProcessor";
 import { ProcessingDialog } from "./+components/ProcessingDialog";
+import { useDialog } from "../+hooks/useDialog";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -28,10 +29,10 @@ export const UploadPage = () => {
   const classes = useStyles();
 
   const [processedFilesCount, setProcessedFilesCount] = useState(0);
-  const [isDialogOpen, setisDialogOpen] = useState(false);
+  const { isDialogOpen, openDialog, closeDialog } = useDialog("");
 
   const handleProcessFiles = async () => {
-    setisDialogOpen(true);
+    openDialog();
     setProcessedFilesCount(0);
 
     await processExaminations(
@@ -65,7 +66,7 @@ export const UploadPage = () => {
       </Button>
       <ProcessingDialog
         open={isDialogOpen}
-        onClose={() => setisDialogOpen(false)}
+        onClose={closeDialog}
         processedFiles={processedFilesCount}
         filesCount={filesList.length}
       />

@@ -5,13 +5,13 @@ import Grid from "@material-ui/core/Grid";
 
 export const SingleExamination = ({ examination }) => {
   const {
-    metadata,
+    results,
     examinationType,
     ph,
     consistency,
-    results,
-    extendedResults,
     bacteriaCount,
+    extendedResults,
+    ...metadata
   } = examination;
 
   return (

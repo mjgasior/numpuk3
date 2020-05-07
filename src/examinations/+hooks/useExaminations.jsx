@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { getExaminations } from "../../+services/examinationReader";
 
 export const useExaminations = (metadataVisibility) => {
-  console.log(metadataVisibility);
   const [examinations, setExaminations] = useState([]);
 
   useEffect(() => {

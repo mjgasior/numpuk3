@@ -4,13 +4,13 @@ import Switch from "@material-ui/core/Switch";
 
 export const FormSwitch = ({ onChange, t, visibilityState, objectKey }) => {
   const handleChange = (event) =>
-    onChange(event.target.name, event.target.checked ? 1 : 0);
+    onChange(event.target.name, event.target.checked);
 
   return (
     <FormControlLabel
       control={
         <Switch
-          checked={visibilityState[objectKey] === 1}
+          checked={visibilityState[objectKey]}
           onChange={handleChange}
           name={objectKey}
         />
