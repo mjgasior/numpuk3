@@ -43,6 +43,5 @@ const getProjection = (metadataVisibility) => {
     }
   });
 
-  console.log(projection);
   return projection;
 };

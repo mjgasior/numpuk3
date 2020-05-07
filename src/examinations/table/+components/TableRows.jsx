@@ -17,17 +17,21 @@ export const TableRows = ({ columns, examinations }) => {
     <TableBody>
       {examinations.map(({ results, ...data }) => (
         <TableRow key={data.examinationId}>
-          {Object.keys(rest).map((keyName) => (
-            <TableCell component="th" scope="row">
-              {t(data[keyName])}
-            </TableCell>
-          ))}
-          {hasAkkermansiaMuciniphila === 1 && (
+          {Object.keys(rest).map((keyName) => {
+            if (rest[keyName]) {
+              return (
+                <TableCell component="th" scope="row">
+                  {t(data[keyName])}
+                </TableCell>
+              );
+            }
+          })}
+          {hasAkkermansiaMuciniphila && (
             <TableCell component="th" scope="row">
               {t(getLabel(data.hasAkkermansiaMuciniphila))}
             </TableCell>
           )}
-          {hasFaecalibactriumPrausnitzii === 1 && (
+          {hasFaecalibactriumPrausnitzii && (
             <TableCell component="th" scope="row">
               {t(getLabel(data.hasFaecalibactriumPrausnitzii))}
             </TableCell>

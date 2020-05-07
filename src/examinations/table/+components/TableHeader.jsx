@@ -11,21 +11,21 @@ export const TableHeader = ({ columns }) => {
   return (
     <TableHead>
       <TableRow>
-        {columns.gender === 1 && <TableCell>{t("gender")}</TableCell>}
-        {columns.ageAtTest === 1 && (
+        {columns.gender && <TableCell>{t("gender")}</TableCell>}
+        {columns.ageAtTest && (
           <TooltipCell title={t("ageAtTest")}>{t("n3_age")}</TooltipCell>
         )}
-        {columns.ph === 1 && <TableCell>{t("ph")}</TableCell>}
-        {columns.consistency === 1 && <TableCell>{t("consistency")}</TableCell>}
-        {columns.bacteriaCount === 1 && (
+        {columns.ph && <TableCell>{t("ph")}</TableCell>}
+        {columns.consistency && <TableCell>{t("consistency")}</TableCell>}
+        {columns.bacteriaCount && (
           <TableCell>{t("n3_amount_of_bacteria")}</TableCell>
         )}
-        {columns.hasAkkermansiaMuciniphila === 1 && (
+        {columns.hasAkkermansiaMuciniphila && (
           <TooltipCell title={t("hasAkkermansiaMuciniphila")}>
             {t("n3_akkermansia")}
           </TooltipCell>
         )}
-        {columns.hasFaecalibactriumPrausnitzii === 1 && (
+        {columns.hasFaecalibactriumPrausnitzii && (
           <TooltipCell title={t("hasFaecalibactriumPrausnitzii")}>
             {t("n3_faecalibactrium")}
           </TooltipCell>
