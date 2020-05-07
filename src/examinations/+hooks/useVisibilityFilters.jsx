@@ -7,6 +7,8 @@ export const useVisibilityFilters = () => {
     ph: 1,
     bacteriaCount: 1,
     consistency: 1,
+    hasAkkermansiaMuciniphila: 1,
+    hasFaecalibactriumPrausnitzii: 1,
   });
   return { metadataVisibility, setMetadataVisibility };
 };
