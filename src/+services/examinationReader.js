@@ -3,6 +3,7 @@ import { logger } from "./logger";
 
 export const getExaminations = async (metadataVisibility) => {
   const examinations = await getExaminationsAsync(metadataVisibility);
+  console.log(examinations);
   return examinations;
 };
 
@@ -14,7 +15,7 @@ const getExaminationsAsync = (metadataVisibility, hasKlebsiellaPneumoniae) => {
 
   return new Promise((resolve, reject) => {
     db.find(findQuery)
-      .sort({ "metadata.examinationId": 1 })
+      .sort({ examinationId: 1 })
       .projection(getProjection(metadataVisibility))
       .exec(function (err, docs) {
         if (err) {

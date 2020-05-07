@@ -38,20 +38,13 @@ export const TableRows = ({ columns, examinations }) => {
           )}
           {ALL_TEST_TYPES.map((testType, i) => (
             <TableCell key={testType + i} align="right">
-              {getValue(testType, results)}
+              {results[testType]}
             </TableCell>
           ))}
         </TableRow>
       ))}
     </TableBody>
   );
-};
-
-const getValue = (testType, results) => {
-  if (testType.endsWith("spp.")) {
-    testType = testType.replace("spp.", "spp");
-  }
-  return results[testType];
 };
 
 const getLabel = (value) => {
