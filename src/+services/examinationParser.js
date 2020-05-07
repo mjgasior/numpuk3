@@ -1,5 +1,5 @@
 import { exceljs } from "../+apis/dependenciesApi";
-import { getMetadata } from "./readers/metadata";
+import { setMetadata } from "./readers/metadata";
 import {
   getExaminationType,
   getIsCandidiasis,
@@ -34,39 +34,28 @@ const getWorksheet = async (filename) => {
 export const parseExamination = async (filename) => {
   const worksheet = await getWorksheet(filename);
 
-  const metadata = getMetadata(worksheet);
-  const examinationType = getExaminationType(worksheet);
-  const ph = getPh(worksheet);
-  const consistency = getConsistency(worksheet);
+  const model = {};
 
-  let results = {};
-  let bacteriaCount;
-  if (getIsUnknown(examinationType)) {
+  setMetadata(worksheet, model);
+  model.examinationType = getExaminationType(worksheet);
+  model.ph = getPh(worksheet);
+  model.consistency = getConsistency(worksheet);
+
+  if (getIsUnknown(model.examinationType)) {
     throw new Error("Unknown examination type!");
-  } else if (getIsCandidiasis(examinationType)) {
-    results = getCandidiasisResults(worksheet);
+  } else if (getIsCandidiasis(model.examinationType)) {
+    model.results = getCandidiasisResults(worksheet);
   } else {
-    results = getExaminationResults(worksheet);
-    bacteriaCount = getBacteriaCount(worksheet);
+    model.results = getExaminationResults(worksheet);
+    model.bacteriaCount = getBacteriaCount(worksheet);
   }
 
-  let extendedResults;
-  if (getIsExtended(examinationType)) {
-    extendedResults = {
-      hasAkkermansiaMuciniphila: setHasAkkermansiaMuciniphila(worksheet),
-      hasFaecalibactriumPrausnitzii: setHasFaecalibactriumPrausnitzii(
-        worksheet
-      ),
-    };
+  if (getIsExtended(model.examinationType)) {
+    model.hasAkkermansiaMuciniphila = setHasAkkermansiaMuciniphila(worksheet);
+    model.hasFaecalibactriumPrausnitzii = setHasFaecalibactriumPrausnitzii(
+      worksheet
+    );
   }
 
-  return {
-    metadata,
-    examinationType,
-    ph,
-    bacteriaCount,
-    consistency,
-    results,
-    extendedResults,
-  };
+  return model;
 };

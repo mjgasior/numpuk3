@@ -16,8 +16,7 @@ const META_DATA_SECTION = {
   dateOfTestEnd: "D12",
 };
 
-export const getMetadata = (worksheet) => {
-  let metadata = {};
+export const setMetadata = (worksheet, metadata) => {
   Object.keys(META_DATA_SECTION).forEach((key) => {
     const cell = worksheet.getCell(META_DATA_SECTION[key]);
 
@@ -54,8 +53,6 @@ export const getMetadata = (worksheet) => {
   if (metadata.personalId !== undefined && !isPeselValid(metadata.personalId)) {
     logger.warn(`${metadata.personalId} is an invalid PESEL number`);
   }
-
-  return metadata;
 };
 
 const setBirthdate = (birthdate, personalId) => {
