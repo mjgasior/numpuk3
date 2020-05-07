@@ -14,8 +14,33 @@ export const processExaminations = async (
 
     try {
       logger.info(`Reading file: ${filepath}`);
-      const exam = await parseExamination(filepath);
-      await putExamination(exam);
+
+      const {
+        examinationId,
+        sampleId,
+        gender,
+        ageAtTest,
+        ph,
+        consistency,
+        bacteriaCount,
+        hasAkkermansiaMuciniphila,
+        hasFaecalibactriumPrausnitzii,
+        results,
+      } = await parseExamination(filepath);
+
+      await putExamination({
+        examinationId,
+        sampleId,
+        gender,
+        ageAtTest,
+        ph,
+        consistency,
+        bacteriaCount,
+        hasAkkermansiaMuciniphila,
+        hasFaecalibactriumPrausnitzii,
+        results,
+      });
+
       logger.info(`Saved file: ${filepath}`);
     } catch (error) {
       errorCount++;

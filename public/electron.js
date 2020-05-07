@@ -22,9 +22,7 @@ let db = new Datastore({
   timestampData: true,
 });
 
-db.ensureIndex({ fieldName: "metadata.examinationId", unique: true }, function (
-  err
-) {
+db.ensureIndex({ fieldName: "examinationId", unique: true }, function (err) {
   if (err) {
     log.error("Error loading the DB: " + err);
   }
