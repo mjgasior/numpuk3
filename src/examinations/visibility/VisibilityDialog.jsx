@@ -13,12 +13,15 @@ export const VisibilityDialog = ({
   onAccept,
   open,
   metadataVisibility,
+  testsVisibility,
 }) => {
   const { t } = useTranslation();
 
-  const [newVisibilityState, setNewVisibilityState] = useState(
+  const [newMetadataVisibility, setNewMetadataVisibility] = useState(
     metadataVisibility
   );
+
+  const [newTestsVisibility, setNewTestsVisibility] = useState(testsVisibility);
 
   return (
     <Dialog
@@ -26,6 +29,7 @@ export const VisibilityDialog = ({
       open={open}
       scroll="paper"
       fullWidth={true}
+      maxWidth="lg"
       disableBackdropClick
       disableEscapeKeyDown
     >
@@ -33,14 +37,21 @@ export const VisibilityDialog = ({
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
           <Metadata
-            setMetadataVisibility={setNewVisibilityState}
-            metadataVisibility={newVisibilityState}
+            setMetadataVisibility={setNewMetadataVisibility}
+            metadataVisibility={newMetadataVisibility}
+          />
+          <Metadata
+            setMetadataVisibility={setNewTestsVisibility}
+            metadataVisibility={newTestsVisibility}
           />
         </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>{t("n3_cancel")}</Button>
-        <Button onClick={() => onAccept(newVisibilityState)} color="primary">
+        <Button
+          onClick={() => onAccept(newMetadataVisibility, newTestsVisibility)}
+          color="primary"
+        >
           {t("n3_apply")}
         </Button>
       </DialogActions>

@@ -21,7 +21,12 @@ const ExaminationsTableContainer = styled.div`
 `;
 
 export const ExaminationsPage = () => {
-  const { metadataVisibility, setMetadataVisibility } = useVisibilityFilters();
+  const {
+    metadataVisibility,
+    setMetadataVisibility,
+    testsVisibility,
+    setTestsVisibility,
+  } = useVisibilityFilters();
 
   const {
     isVisibilityDialogOpen,
@@ -29,24 +34,26 @@ export const ExaminationsPage = () => {
     closeVisibilityDialog,
   } = useVisibilityDialog();
 
-  const { examinations } = useExaminations(metadataVisibility);
+  const { examinations } = useExaminations(metadataVisibility, testsVisibility);
 
   return (
     <ExaminationsViewContainer>
       <HeaderMenu openVisibility={openVisibilityDialog} />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
+        testsVisibility={testsVisibility}
         open={isVisibilityDialogOpen}
-        onAccept={(newMetadataVisibility) => {
+        onAccept={(newMetadataVisibility, newTestsVisibility) => {
           closeVisibilityDialog();
           setMetadataVisibility(newMetadataVisibility);
+          setTestsVisibility(newTestsVisibility);
         }}
         onCancel={closeVisibilityDialog}
       />
       <ExaminationsTableContainer>
         <ExaminationTable
           examinations={examinations}
-          columns={metadataVisibility}
+          columns={{ metadataVisibility, testsVisibility }}
         />
       </ExaminationsTableContainer>
     </ExaminationsViewContainer>

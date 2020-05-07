@@ -4,15 +4,15 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 
 import { useTranslation } from "react-i18next";
-import { ALL_TEST_TYPES } from "../../../+services/readers/testTypes/testTypes";
 
 export const TableRows = ({ columns, examinations }) => {
   const { t } = useTranslation("n3_metadata");
+  const { metadataVisibility, testsVisibility } = columns;
   const {
     hasAkkermansiaMuciniphila,
     hasFaecalibactriumPrausnitzii,
     ...rest
-  } = columns;
+  } = metadataVisibility;
   return (
     <TableBody>
       {examinations.map(({ results, ...data }) => (
@@ -20,7 +20,7 @@ export const TableRows = ({ columns, examinations }) => {
           {Object.keys(rest).map((keyName) => {
             if (rest[keyName]) {
               return (
-                <TableCell component="th" scope="row">
+                <TableCell key={keyName} component="th" scope="row">
                   {t(data[keyName])}
                 </TableCell>
               );
@@ -36,11 +36,15 @@ export const TableRows = ({ columns, examinations }) => {
               {t(getLabel(data.hasFaecalibactriumPrausnitzii))}
             </TableCell>
           )}
-          {ALL_TEST_TYPES.map((testType, i) => (
-            <TableCell key={testType + i} align="right">
-              {results[testType]}
-            </TableCell>
-          ))}
+          {Object.keys(testsVisibility).map((testType, i) => {
+            if (testsVisibility[testType]) {
+              return (
+                <TableCell key={testType + i} align="right">
+                  {results[testType]}
+                </TableCell>
+              );
+            }
+          })}
         </TableRow>
       ))}
     </TableBody>

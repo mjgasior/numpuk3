@@ -1,12 +1,19 @@
 import { db } from "../+apis/dependenciesApi";
 import { logger } from "./logger";
 
-export const getExaminations = async (metadataVisibility) => {
-  const examinations = await getExaminationsAsync(metadataVisibility);
+export const getExaminations = async (metadataVisibility, testsVisibility) => {
+  const examinations = await getExaminationsAsync(
+    metadataVisibility,
+    testsVisibility
+  );
   return examinations;
 };
 
-const getExaminationsAsync = (metadataVisibility, hasKlebsiellaPneumoniae) => {
+const getExaminationsAsync = (
+  metadataVisibility,
+  testsVisibility,
+  hasKlebsiellaPneumoniae
+) => {
   let findQuery = {};
   if (hasKlebsiellaPneumoniae) {
     findQuery = { "results.Klebsiella pneumoniae": { $exists: true } };
@@ -15,7 +22,7 @@ const getExaminationsAsync = (metadataVisibility, hasKlebsiellaPneumoniae) => {
   return new Promise((resolve, reject) => {
     db.find(findQuery)
       .sort({ examinationId: 1 })
-      .projection(getProjection(metadataVisibility))
+      .projection(getProjection(metadataVisibility, testsVisibility))
       .exec(function (err, docs) {
         if (err) {
           logger.error(err);
@@ -26,12 +33,18 @@ const getExaminationsAsync = (metadataVisibility, hasKlebsiellaPneumoniae) => {
   });
 };
 
-const getProjection = (metadataVisibility) => {
+const getProjection = (metadataVisibility, testsVisibility) => {
   const projection = {};
 
   Object.keys(metadataVisibility).forEach((data) => {
     if (!metadataVisibility[data]) {
       projection[data] = 0;
+    }
+  });
+
+  Object.keys(testsVisibility).forEach((data) => {
+    if (!testsVisibility[data]) {
+      projection[`results.${data}`] = 0;
     }
   });
 
