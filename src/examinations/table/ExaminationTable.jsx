@@ -4,23 +4,24 @@ import Table from "@material-ui/core/Table";
 import { TableHeader } from "./+components/TableHeader";
 import { TableRows } from "./+components/TableRows";
 
-export const ExaminationTable = React.memo(({ examinations, columns }) => {
-  const { metadataVisibility, testsVisibility } = columns;
-  const testColumns = mapToArray(testsVisibility);
-  return (
-    <Table size="small" stickyHeader>
-      <TableHeader
-        metadataColumns={metadataVisibility}
-        testColumns={testColumns}
-      />
-      <TableRows
-        examinations={examinations}
-        metadataColumns={metadataVisibility}
-        testColumns={testColumns}
-      />
-    </Table>
-  );
-});
+export const ExaminationTable = React.memo(
+  ({ examinations, metadataColumns, testColumns }) => {
+    const testColumnsArray = mapToArray(testColumns);
+    return (
+      <Table size="small" stickyHeader>
+        <TableHeader
+          metadataColumns={metadataColumns}
+          testColumns={testColumnsArray}
+        />
+        <TableRows
+          examinations={examinations}
+          metadataColumns={metadataColumns}
+          testColumns={testColumnsArray}
+        />
+      </Table>
+    );
+  }
+);
 
 const mapToArray = (sourceObject) =>
   Object.keys(sourceObject).filter((key) => sourceObject[key]);

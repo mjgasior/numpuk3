@@ -3,10 +3,14 @@ import React from "react";
 import { ExaminationTable } from "./table/ExaminationTable";
 import { VisibilityDialog } from "./visibility/VisibilityDialog";
 import { HeaderMenu } from "./+components/HeaderMenu";
-import { useVisibilityDialog } from "./+hooks/useVisibilityDialog";
+import {
+  useVisibilityDialog,
+  useFiltersDialog,
+} from "./+hooks/useTableDialogs";
 import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
+import { FiltersDialog } from "./filters/FiltersDialog";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -34,11 +38,20 @@ export const ExaminationsPage = () => {
     closeVisibilityDialog,
   } = useVisibilityDialog();
 
+  const {
+    isFiltersDialogOpen,
+    openFiltersDialog,
+    closeFiltersDialog,
+  } = useFiltersDialog();
+
   const { examinations } = useExaminations(metadataVisibility, testsVisibility);
 
   return (
     <ExaminationsViewContainer>
-      <HeaderMenu openVisibility={openVisibilityDialog} />
+      <HeaderMenu
+        openVisibility={openVisibilityDialog}
+        openFilters={openFiltersDialog}
+      />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         testsVisibility={testsVisibility}
@@ -50,10 +63,12 @@ export const ExaminationsPage = () => {
         }}
         onCancel={closeVisibilityDialog}
       />
+      <FiltersDialog open={isFiltersDialogOpen} onCancel={closeFiltersDialog} />
       <ExaminationsTableContainer>
         <ExaminationTable
           examinations={examinations}
-          columns={{ metadataVisibility, testsVisibility }}
+          metadataColumns={metadataVisibility}
+          testColumns={testsVisibility}
         />
       </ExaminationsTableContainer>
     </ExaminationsViewContainer>
