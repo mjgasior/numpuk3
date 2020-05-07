@@ -7,15 +7,15 @@ const COMMON_MISTAKES = {
   "clostridium innocum": "Clostridium innocuum",
   "clostridium inoccum": "Clostridium innocuum",
 
-  "colinsella spp.": "Collinsella spp.",
+  "colinsella spp.": "Collinsella spp",
 
   "enterobacter cloaceae": "Enterobacter cloacae",
   "egerthella lenta": "Eggerthella lenta",
-  "morganellaspp.": "Morganella spp.",
-  "streptococcus sp..": "Streptococcus spp.",
+  "morganellaspp.": "Morganella spp",
+  "streptococcus sp..": "Streptococcus spp",
 
-  "staphyloccocus spp.": "Staphylococcus spp.",
-  "straphylococcus spp.": "Staphylococcus spp.",
+  "staphyloccocus spp.": "Staphylococcus spp",
+  "straphylococcus spp.": "Staphylococcus spp",
   "staphylococcus aures": "Staphylococcus aureus",
   "staphylococcus areus": "Staphylococcus aureus",
   "straphylococcus aureus": "Staphylococcus aureus",

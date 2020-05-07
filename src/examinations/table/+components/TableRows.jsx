@@ -4,15 +4,14 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 
 import { useTranslation } from "react-i18next";
-import { ALL_TEST_TYPES } from "../../../+services/readers/testTypes/testTypes";
 
-export const TableRows = ({ columns, examinations }) => {
+export const TableRows = ({ examinations, metadataColumns, testColumns }) => {
   const { t } = useTranslation("n3_metadata");
   const {
     hasAkkermansiaMuciniphila,
     hasFaecalibactriumPrausnitzii,
     ...rest
-  } = columns;
+  } = metadataColumns;
   return (
     <TableBody>
       {examinations.map(({ results, ...data }) => (
@@ -20,11 +19,12 @@ export const TableRows = ({ columns, examinations }) => {
           {Object.keys(rest).map((keyName) => {
             if (rest[keyName]) {
               return (
-                <TableCell component="th" scope="row">
+                <TableCell key={keyName} component="th" scope="row">
                   {t(data[keyName])}
                 </TableCell>
               );
             }
+            return null;
           })}
           {hasAkkermansiaMuciniphila && (
             <TableCell component="th" scope="row">
@@ -36,22 +36,15 @@ export const TableRows = ({ columns, examinations }) => {
               {t(getLabel(data.hasFaecalibactriumPrausnitzii))}
             </TableCell>
           )}
-          {ALL_TEST_TYPES.map((testType, i) => (
-            <TableCell key={testType + i} align="right">
-              {getValue(testType, results)}
+          {testColumns.map((testType) => (
+            <TableCell key={testType} align="right">
+              {results[testType]}
             </TableCell>
           ))}
         </TableRow>
       ))}
     </TableBody>
   );
-};
-
-const getValue = (testType, results) => {
-  if (testType.endsWith("spp.")) {
-    testType = testType.replace("spp.", "spp");
-  }
-  return results[testType];
 };
 
 const getLabel = (value) => {

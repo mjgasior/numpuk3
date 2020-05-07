@@ -18,14 +18,14 @@ export const getExaminationResults = (worksheet) => {
       let testName = worksheet
         .getRow(i + 23)
         .getCell(7)
-        .text.trim();
+        .text.trim()
+        .replace(".", "");
 
       if (!hasTest(testName)) {
         logger.warn(`Trying to fix ${testName}`);
         testName = tryFixTestName(testName);
       }
 
-      testName = testName.replace("spp.", "spp");
       const result = setValue(valueCell, exponentCell);
       if (result !== undefined) {
         dictionary[testName] = result;
