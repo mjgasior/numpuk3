@@ -5,14 +5,13 @@ import TableRow from "@material-ui/core/TableRow";
 
 import { useTranslation } from "react-i18next";
 
-export const TableRows = ({ columns, examinations }) => {
+export const TableRows = ({ examinations, metadataColumns, testColumns }) => {
   const { t } = useTranslation("n3_metadata");
-  const { metadataVisibility, testsVisibility } = columns;
   const {
     hasAkkermansiaMuciniphila,
     hasFaecalibactriumPrausnitzii,
     ...rest
-  } = metadataVisibility;
+  } = metadataColumns;
   return (
     <TableBody>
       {examinations.map(({ results, ...data }) => (
@@ -36,15 +35,11 @@ export const TableRows = ({ columns, examinations }) => {
               {t(getLabel(data.hasFaecalibactriumPrausnitzii))}
             </TableCell>
           )}
-          {Object.keys(testsVisibility).map((testType, i) => {
-            if (testsVisibility[testType]) {
-              return (
-                <TableCell key={testType + i} align="right">
-                  {results[testType]}
-                </TableCell>
-              );
-            }
-          })}
+          {testColumns.map((testType) => (
+            <TableCell key={testType} align="right">
+              {results[testType]}
+            </TableCell>
+          ))}
         </TableRow>
       ))}
     </TableBody>
