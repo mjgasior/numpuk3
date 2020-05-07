@@ -22,10 +22,5 @@ export const ExaminationTable = React.memo(({ examinations, columns }) => {
   );
 });
 
-const mapToArray = (sourceObject) => {
-  return Object.keys(sourceObject).filter((key) => {
-    if (sourceObject[key]) {
-      return key;
-    }
-  });
-};
+const mapToArray = (sourceObject) =>
+  Object.keys(sourceObject).filter((key) => sourceObject[key]);

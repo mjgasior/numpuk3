@@ -24,6 +24,7 @@ export const TableRows = ({ examinations, metadataColumns, testColumns }) => {
                 </TableCell>
               );
             }
+            return null;
           })}
           {hasAkkermansiaMuciniphila && (
             <TableCell component="th" scope="row">
