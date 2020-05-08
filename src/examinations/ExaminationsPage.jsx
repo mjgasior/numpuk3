@@ -11,6 +11,7 @@ import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { FiltersDialog } from "./filters/FiltersDialog";
+import TablePagination from "@material-ui/core/TablePagination";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -71,6 +72,15 @@ export const ExaminationsPage = () => {
           testColumns={testsVisibility}
         />
       </ExaminationsTableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={examinations.length}
+        rowsPerPage={5}
+        page={1}
+        onChangePage={() => null}
+        onChangeRowsPerPage={() => null}
+      />
     </ExaminationsViewContainer>
   );
 };
