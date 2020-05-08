@@ -15,9 +15,10 @@ export const getExaminations = async (
 
 const getExaminationsAsync = (
   projection,
-  { page, rowsPerPage },
+  pagination,
   hasKlebsiellaPneumoniae
 ) => {
+  const { page, rowsPerPage } = pagination;
   let findQuery = {};
   if (hasKlebsiellaPneumoniae) {
     findQuery = { "results.Klebsiella pneumoniae": { $exists: true } };
