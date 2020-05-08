@@ -1,19 +1,27 @@
 import { useState, useEffect } from "react";
 import { getExaminations } from "../../+services/examinationReader";
 
-export const useExaminations = (metadataVisibility, testsVisibility) => {
+export const useExaminations = (
+  metadataVisibility,
+  testsVisibility,
+  pagination
+) => {
   const [examinationsData, setExaminationsData] = useState({
     examinations: [],
   });
 
   useEffect(() => {
     const loadExaminations = async () => {
-      const data = await getExaminations(metadataVisibility, testsVisibility);
+      const data = await getExaminations(
+        metadataVisibility,
+        testsVisibility,
+        pagination
+      );
       setExaminationsData(data);
     };
 
     loadExaminations();
-  }, [metadataVisibility, testsVisibility]);
+  }, [metadataVisibility, testsVisibility, pagination]);
 
   return examinationsData;
 };

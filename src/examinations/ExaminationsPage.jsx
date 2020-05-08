@@ -54,7 +54,8 @@ export const ExaminationsPage = () => {
 
   const { examinations, count } = useExaminations(
     metadataVisibility,
-    testsVisibility
+    testsVisibility,
+    pagination
   );
 
   return (

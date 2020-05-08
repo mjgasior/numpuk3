@@ -1,15 +1,23 @@
 import { db } from "../+apis/dependenciesApi";
 import { logger } from "./logger";
 
-export const getExaminations = async (metadataVisibility, testsVisibility) => {
+export const getExaminations = async (
+  metadataVisibility,
+  testsVisibility,
+  pagination
+) => {
   const projection = getProjection(metadataVisibility, testsVisibility);
-  const examinations = await getExaminationsAsync(projection);
+  const examinations = await getExaminationsAsync(projection, pagination);
   const count = await getExaminationsCountAsync();
 
   return { examinations, count };
 };
 
-const getExaminationsAsync = (projection, hasKlebsiellaPneumoniae) => {
+const getExaminationsAsync = (
+  projection,
+  { page, rowsPerPage },
+  hasKlebsiellaPneumoniae
+) => {
   let findQuery = {};
   if (hasKlebsiellaPneumoniae) {
     findQuery = { "results.Klebsiella pneumoniae": { $exists: true } };
@@ -17,6 +25,8 @@ const getExaminationsAsync = (projection, hasKlebsiellaPneumoniae) => {
 
   return new Promise((resolve, reject) => {
     db.find(findQuery)
+      .skip(page * rowsPerPage)
+      .limit(rowsPerPage)
       .sort({ examinationId: 1 })
       .projection(projection)
       .exec((err, docs) => {
