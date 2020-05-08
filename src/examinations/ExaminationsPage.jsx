@@ -11,6 +11,8 @@ import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { FiltersDialog } from "./filters/FiltersDialog";
+import { Pagination } from "./table/Pagination";
+import { usePagination } from "./+hooks/usePagination";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -22,6 +24,10 @@ const ExaminationsViewContainer = styled.div`
 const ExaminationsTableContainer = styled.div`
   flex-grow: 1;
   overflow: auto;
+`;
+
+const PaginationContainer = styled.div`
+  margin: 5px;
 `;
 
 export const ExaminationsPage = () => {
@@ -44,7 +50,13 @@ export const ExaminationsPage = () => {
     closeFiltersDialog,
   } = useFiltersDialog();
 
-  const { examinations } = useExaminations(metadataVisibility, testsVisibility);
+  const pagination = usePagination();
+
+  const { examinations, count } = useExaminations(
+    metadataVisibility,
+    testsVisibility,
+    pagination
+  );
 
   return (
     <ExaminationsViewContainer>
@@ -71,6 +83,9 @@ export const ExaminationsPage = () => {
           testColumns={testsVisibility}
         />
       </ExaminationsTableContainer>
+      <PaginationContainer>
+        <Pagination count={count} {...pagination} />
+      </PaginationContainer>
     </ExaminationsViewContainer>
   );
 };
