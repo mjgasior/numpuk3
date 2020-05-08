@@ -2,18 +2,14 @@ import { db } from "../+apis/dependenciesApi";
 import { logger } from "./logger";
 
 export const getExaminations = async (metadataVisibility, testsVisibility) => {
-  const examinations = await getExaminationsAsync(
-    metadataVisibility,
-    testsVisibility
-  );
-  return examinations;
+  const projection = getProjection(metadataVisibility, testsVisibility);
+  const examinations = await getExaminationsAsync(projection);
+  const count = await getExaminationsCountAsync();
+
+  return { examinations, count };
 };
 
-const getExaminationsAsync = (
-  metadataVisibility,
-  testsVisibility,
-  hasKlebsiellaPneumoniae
-) => {
+const getExaminationsAsync = (projection, hasKlebsiellaPneumoniae) => {
   let findQuery = {};
   if (hasKlebsiellaPneumoniae) {
     findQuery = { "results.Klebsiella pneumoniae": { $exists: true } };
@@ -22,14 +18,26 @@ const getExaminationsAsync = (
   return new Promise((resolve, reject) => {
     db.find(findQuery)
       .sort({ examinationId: 1 })
-      .projection(getProjection(metadataVisibility, testsVisibility))
-      .exec(function (err, docs) {
+      .projection(projection)
+      .exec((err, docs) => {
         if (err) {
           logger.error(err);
           reject(err);
         }
         resolve(docs);
       });
+  });
+};
+
+const getExaminationsCountAsync = () => {
+  return new Promise((resolve, reject) => {
+    db.count({}, (err, count) => {
+      if (err) {
+        logger.error(err);
+        reject(err);
+      }
+      resolve(count);
+    });
   });
 };
 

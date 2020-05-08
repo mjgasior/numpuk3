@@ -49,7 +49,10 @@ export const ExaminationsPage = () => {
     closeFiltersDialog,
   } = useFiltersDialog();
 
-  const { examinations } = useExaminations(metadataVisibility, testsVisibility);
+  const { examinations, count } = useExaminations(
+    metadataVisibility,
+    testsVisibility
+  );
 
   return (
     <ExaminationsViewContainer>
@@ -77,7 +80,7 @@ export const ExaminationsPage = () => {
         />
       </ExaminationsTableContainer>
       <PaginationContainer>
-        <Pagination />
+        <Pagination count={count} />
       </PaginationContainer>
     </ExaminationsViewContainer>
   );
