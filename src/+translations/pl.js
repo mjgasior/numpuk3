@@ -28,6 +28,9 @@ export const polish = {
       n3_select_file: "Wybierz plik",
       n3_set_column_filters: "Ustaw filtry kolumn",
       n3_set_column_visibility: "Ustaw widoczność kolumn",
+
+      n3_label_rows_per_page: "Wierszy na stronę",
+      n3_label_displayed_rows: "od {{from}}. do {{to}}. z {{count}}",
     },
     n3_metadata: {
       n3_age: "Wiek",
