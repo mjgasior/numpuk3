@@ -12,6 +12,7 @@ import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { FiltersDialog } from "./filters/FiltersDialog";
 import { Pagination } from "./table/Pagination";
+import { usePagination } from "./+hooks/usePagination";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -49,6 +50,8 @@ export const ExaminationsPage = () => {
     closeFiltersDialog,
   } = useFiltersDialog();
 
+  const pagination = usePagination();
+
   const { examinations, count } = useExaminations(
     metadataVisibility,
     testsVisibility
@@ -80,7 +83,7 @@ export const ExaminationsPage = () => {
         />
       </ExaminationsTableContainer>
       <PaginationContainer>
-        <Pagination count={count} />
+        <Pagination count={count} {...pagination} />
       </PaginationContainer>
     </ExaminationsViewContainer>
   );
