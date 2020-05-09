@@ -12,7 +12,6 @@ import styled from "styled-components";
 import { FiltersDialog } from "./filters/FiltersDialog";
 import { Pagination } from "./Pagination";
 import { usePagination } from "./+hooks/usePagination";
-import { Grid } from "react-virtualized";
 import { Table } from "./Table";
 
 const ExaminationsViewContainer = styled.div`

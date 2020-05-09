@@ -8,6 +8,7 @@ export const useExaminations = (
 ) => {
   const [examinationsData, setExaminationsData] = useState({
     examinations: [],
+    count: 0,
   });
 
   useEffect(() => {
