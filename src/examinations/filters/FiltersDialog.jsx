@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
+import Checkbox from "@material-ui/core/Checkbox";
 
 export const FiltersDialog = ({ onCancel, open }) => {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ export const FiltersDialog = ({ onCancel, open }) => {
       <DialogTitle>{t("n3_set_column_filters")}</DialogTitle>
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
-          <p>asdas</p>
+          <Checkbox defaultChecked color="primary" />
         </Grid>
       </DialogContent>
       <DialogActions>
