@@ -23,7 +23,19 @@ export const useExaminations = (
     loadExaminations();
   }, [metadataVisibility, testsVisibility, pagination]);
 
-  console.log("I fetch");
+  return morphToGrid(metadataVisibility, testsVisibility, examinationsData);
+};
 
-  return examinationsData;
+const morphToGrid = (metadata, tests, objectExaminations) => {
+  console.log(objectExaminations);
+  const headers = Object.keys(metadata).concat(Object.keys(tests));
+  const output = [];
+  output[0] = headers;
+  objectExaminations.examinations.forEach((item, i) => {
+    const row = [];
+    headers.forEach((key) => row.push(item[key]));
+    output[i + 1] = row;
+  });
+  console.log(output);
+  return { examinations: output, count: 10 };
 };
