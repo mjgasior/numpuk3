@@ -19,6 +19,7 @@
     "i18next": "^19.4.4",
     "moment": "^2.25.3",
     "nedb": "^1.8.0",
+    "promise-worker": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.4.0",

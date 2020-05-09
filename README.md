@@ -37,6 +37,7 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - `foreman` - it is used to run two processes in the same time - the React Webpack server and Electron (defined in Procfile)
 - `moment` - package that allows to easily parse, validate, manipulate, and display dates and times in JavaScript
 - `nedb` - a lightweight embedded document database management system (DBMS) written in JavaScript with MongoDB API
+- `promise-worker` - a small and performant [library](https://github.com/nolanlawson/promise-worker) for communicating with Web Workers or Service Workers, using Promises
 
 ## Packages - React:
 
