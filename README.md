@@ -54,9 +54,15 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - [Converting callbacks to promises](https://zellwk.com/blog/converting-callbacks-to-promises/)
 - [Electron with i18next serving translations from backend](https://github.com/reZach/i18next-electron-fs-backend)
 - [How To Read An Excel File In Node.js](https://medium.com/javascript-in-plain-english/how-to-read-an-excel-file-in-node-js-6e669e9a3ce1)
-- [ipcMain and workers](https://medium.com/swlh/how-to-run-background-worker-processes-in-an-electron-app-e0dc310a93cc)
 - [Persisting data in Electron](https://www.techiediaries.com/electron-data-persistence/)
 - [React Double Scrollbar](https://github.com/umchee/react-double-scrollbar)
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js "Stack Overflow answer")
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 - [Using Electron with React: The Basics](https://medium.com/@brockhoff/using-electron-with-react-the-basics-e93f9761f86f)
+
+## Some additional articles about multithreading:
+
+- [Electron performance](https://www.electronjs.org/docs/tutorial/performance)
+- [ipcMain and workers](https://medium.com/swlh/how-to-run-background-worker-processes-in-an-electron-app-e0dc310a93cc)
+- [Node.js worker threads](https://nodejs.org/api/worker_threads.html)
+- [Web workers vs Service workers vs Worklets](https://bitsofco.de/web-workers-vs-service-workers-vs-worklets/)
