@@ -24,7 +24,8 @@
     "react-i18next": "^11.4.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "tubular-react": "^4.1.25"
   },
   "devDependencies": {
     "electron": "^8.2.5",
