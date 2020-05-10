@@ -28,12 +28,15 @@ export const useExaminations = (
 
 const morphToGrid = (metadata, tests, objectExaminations) => {
   console.log(objectExaminations);
-  const headers = Object.keys(metadata).concat(Object.keys(tests));
+
+  const metadataColumns = Object.keys(metadata);
+  const testColumns = Object.keys(tests);
   const output = [];
-  output[0] = headers;
+  output[0] = metadataColumns.concat(testColumns);
   objectExaminations.examinations.forEach((item, i) => {
     const row = [];
-    headers.forEach((key) => row.push(item[key]));
+    metadataColumns.forEach((key) => row.push(item[key]));
+    testColumns.forEach((key) => row.push(item.results[key]));
     output[i + 1] = row;
   });
   console.log(output);
