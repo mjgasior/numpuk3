@@ -10,9 +10,9 @@ import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { FiltersDialog } from "./filters/FiltersDialog";
-import { Pagination } from "./Pagination";
+import { Pagination } from "./+components/Pagination";
 import { usePagination } from "./+hooks/usePagination";
-import { Table } from "./Table";
+import { GridTable } from "./grid/GridTable";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -77,7 +77,7 @@ export const ExaminationGrid = () => {
       />
       <FiltersDialog open={isFiltersDialogOpen} onCancel={closeFiltersDialog} />
       <ExaminationsTableContainer>
-        <Table examinations={examinations} />
+        <GridTable examinations={examinations} />
       </ExaminationsTableContainer>
       <PaginationContainer>
         <Pagination count={count} {...pagination} />
