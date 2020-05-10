@@ -1292,7 +1292,7 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@material-ui/core@^4.9.12", "@material-ui/core@^4.9.13":
+"@material-ui/core@^4.9.13":
   version "4.9.13"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.9.13.tgz#024962bcdda05139e1bad17a1815bf4088702b15"
   integrity sha512-GEXNwUr+laZ0N+F1efmHB64Fyg+uQIRXLqbSejg3ebSXgLYNpIjnMOPRfWdu4rICq0dAIgvvNXGkKDMcf3AMpA==
@@ -9608,11 +9608,6 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-promise-polyfill@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.1.0.tgz#30059da54d1358ce905ac581f287e184aedf995d"
-  integrity sha512-OzSf6gcCUQ01byV4BgwyUCswlaQQ6gzXc23aLQWhicvfX9kfsUiUhgt3CCQej8jDnl8/PhGF31JdHX2/MzF3WA==
-
 promise@^8.0.3:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.1.0.tgz#697c25c3dfe7435dd79fcd58c38a135888eaf05e"
@@ -9628,7 +9623,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9870,15 +9865,6 @@ react-error-overlay@^6.0.7:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
 
-react-form-validator-core@^0.6.5:
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/react-form-validator-core/-/react-form-validator-core-0.6.5.tgz#5f74b20b2be1e6e2ed04585bf81557eb26b37eec"
-  integrity sha512-TOGksWHld6wHrCpAoTJBeS6xc6iOXWYCmNb3GPHCY8IjnMpJY2Uv/t73w/gCYWJgv3ucA+jxUsf4qKmx1f3QEQ==
-  dependencies:
-    promise-polyfill "8.1.0"
-    prop-types "^15.0.0"
-    react-lifecycles-compat "^3.0.2"
-
 react-i18next@^11.4.0:
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.4.0.tgz#dde6bf3a695910af7a4270fea2e111bc331cf151"
@@ -9892,7 +9878,7 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
@@ -11635,33 +11621,6 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
-tubular-common@^4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/tubular-common/-/tubular-common-4.0.5.tgz#e0f2a26bbce59b8cb0f49a0bcda0e3004038ddc6"
-  integrity sha512-W2YOT1w5/zUcGjS2rCviv52F/PeIiT6ge+yPrBkftDtdkPvnqqBekA6byEe8ZissQVVtHID2FnbVPwDY2Q3enQ==
-  dependencies:
-    uno-js "^0.7.10"
-
-tubular-react-common@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tubular-react-common/-/tubular-react-common-2.0.4.tgz#8794912c8498454452d8b662a01a0e32f40ee20d"
-  integrity sha512-qW0HqPt39iL6vehXhV9ViKuwMGOD/5I51wuyiw/NasHgx6CBgNFNUQ3Gxuis5/RiWupZACujrQuvYVY/6E2+vA==
-  dependencies:
-    tubular-common "^4.0.5"
-
-tubular-react@^4.1.25:
-  version "4.1.25"
-  resolved "https://registry.yarnpkg.com/tubular-react/-/tubular-react-4.1.25.tgz#367387abbb9ec3eaa2450f8cf5d03f9f4686c36a"
-  integrity sha512-KDCCIfsnR5V483UhrxWusmTB6ghM1tWhBp0ZnoVtOGEsaBIP4kgPP0ER7n3BNjcpRqql3kueffKwDNaLfHOWNw==
-  dependencies:
-    "@material-ui/core" "^4.9.12"
-    "@material-ui/icons" "^4.9.1"
-    react-virtualized "^9.21.2"
-    tubular-common "^4.0.5"
-    tubular-react-common "2.0.4"
-    uno-material-ui "^2.0.3"
-    uno-react "^0.15.6"
-
 tunnel-agent@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
@@ -11804,29 +11763,6 @@ universalify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-1.0.0.tgz#b61a1da173e8435b2fe3c67d29b9adf8594bd16d"
   integrity sha512-rb6X1W158d7pRQBg5gkR8uPaSfiids68LTJQYOtEUhoJUWBdaQHsuT/EUduxXYxcrt4r5PJ4fuHW1MHT6p0qug==
-
-uno-js@^0.7.10, uno-js@^0.7.11:
-  version "0.7.16"
-  resolved "https://registry.yarnpkg.com/uno-js/-/uno-js-0.7.16.tgz#eb60c84b4e9b0e74c8b3e8211f80db62b1acf958"
-  integrity sha512-IQsgYUYAGbGq+3KNCdKMvnf3EccpYEOPG8cu5PF3cHLPf8KmF+VifLq4qRn8+61eAypDljzAjQsBhVISCmLdFQ==
-
-uno-material-ui@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/uno-material-ui/-/uno-material-ui-2.0.3.tgz#81fd3d4d4c63852e93fa9a73ddd343d7cb834278"
-  integrity sha512-x13gl2fi/lRvsTf42FttWMIpNs47uaM/ejmKVUQX5nPd423WLrVUFVY/Wigp/fqmA4PDs5LwPn3fHjT3cbTHGw==
-  dependencies:
-    "@material-ui/core" "^4.9.12"
-    "@material-ui/icons" "^4.9.1"
-    react-form-validator-core "^0.6.5"
-    uno-react "^0.15.6"
-
-uno-react@^0.15.6:
-  version "0.15.7"
-  resolved "https://registry.yarnpkg.com/uno-react/-/uno-react-0.15.7.tgz#dac3e637e2bf7ffc0fad92d5b056f1a865dc8e1c"
-  integrity sha512-ZFcjLfPTTX+opijV3PZt3dX43x0HEbfrIm/Jd1ZSLdOv5AMwWXKx4kUN2DTRKXlhoxkHSoeU6UQj1DaHW9T7HA==
-  dependencies:
-    react-form-validator-core "^0.6.5"
-    uno-js "^0.7.11"
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
