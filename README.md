@@ -59,3 +59,9 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js "Stack Overflow answer")
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 - [Using Electron with React: The Basics](https://medium.com/@brockhoff/using-electron-with-react-the-basics-e93f9761f86f)
+
+### useEffect problems:
+
+- [Dealing with infinite loops in useEffect hook](https://dev.to/webcoderkz/dealing-with-infinite-loops-in-useeffect-hook-j11)
+- [How to make complex object as an argument for useEffect](https://stackoverflow.com/questions/61705127/how-to-make-complex-object-as-an-argument-for-useeffect)
+- [You’re overusing useMemo: Rethinking Hooks memoization](https://blog.logrocket.com/rethinking-hooks-memoization/)
