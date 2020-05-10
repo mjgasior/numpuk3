@@ -61,8 +61,8 @@ export const polish = {
       hasFaecalibactriumPrausnitzii:
         "Badanie w kierunku Faecalibactrium prausnitzii",
 
-      n3_positive: "Dodatni",
-      n3_negative: "Ujemny",
+      POSITIVE: "Dodatni",
+      NEGATIVE: "Ujemny",
 
       FEMALE: "Kobieta",
       MALE: "Mężczyzna",

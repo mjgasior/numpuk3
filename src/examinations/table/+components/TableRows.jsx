@@ -28,12 +28,12 @@ export const TableRows = ({ examinations, metadataColumns, testColumns }) => {
           })}
           {hasAkkermansiaMuciniphila && (
             <TableCell component="th" scope="row">
-              {t(getLabel(data.hasAkkermansiaMuciniphila))}
+              {t(data.hasAkkermansiaMuciniphila)}
             </TableCell>
           )}
           {hasFaecalibactriumPrausnitzii && (
             <TableCell component="th" scope="row">
-              {t(getLabel(data.hasFaecalibactriumPrausnitzii))}
+              {t(data.hasFaecalibactriumPrausnitzii)}
             </TableCell>
           )}
           {testColumns.map((testType) => (
@@ -45,11 +45,4 @@ export const TableRows = ({ examinations, metadataColumns, testColumns }) => {
       ))}
     </TableBody>
   );
-};
-
-const getLabel = (value) => {
-  if (value === undefined) {
-    return;
-  }
-  return value ? "n3_positive" : "n3_negative";
 };

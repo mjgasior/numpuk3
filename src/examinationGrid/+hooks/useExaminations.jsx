@@ -8,7 +8,6 @@ export const useExaminations = (
 ) => {
   const [examinationsData, setExaminationsData] = useState({
     examinations: [],
-    count: 0,
   });
 
   useEffect(() => {
@@ -24,7 +23,20 @@ export const useExaminations = (
     loadExaminations();
   }, [metadataVisibility, testsVisibility, pagination]);
 
-  console.log("I fetch");
+  return morphToGrid(metadataVisibility, testsVisibility, examinationsData);
+};
 
-  return examinationsData;
+const morphToGrid = (metadata, tests, objectExaminations) => {
+  const metadataColumns = Object.keys(metadata);
+  const testColumns = Object.keys(tests);
+  const output = [];
+  output[0] = metadataColumns.concat(testColumns);
+  objectExaminations.examinations.forEach((item, i) => {
+    const row = [];
+    metadataColumns.forEach((key) => row.push(item[key]));
+    testColumns.forEach((key) => row.push(item.results[key]));
+    output[i + 1] = row;
+  });
+
+  return { examinations: output, count: objectExaminations.count };
 };

@@ -6,10 +6,22 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
+import { Metadata } from "./+components/Metadata";
 
-export const FiltersDialog = ({ onCancel, open }) => {
+export const VisibilityDialog = ({
+  onCancel,
+  onAccept,
+  open,
+  metadataVisibility,
+  testsVisibility,
+}) => {
   const { t } = useTranslation();
+
+  const [newMetadataVisibility, setNewMetadataVisibility] = useState(
+    metadataVisibility
+  );
+
+  const [newTestsVisibility, setNewTestsVisibility] = useState(testsVisibility);
 
   return (
     <Dialog
@@ -21,15 +33,25 @@ export const FiltersDialog = ({ onCancel, open }) => {
       disableBackdropClick
       disableEscapeKeyDown
     >
-      <DialogTitle>{t("n3_set_column_filters")}</DialogTitle>
+      <DialogTitle>{t("n3_set_column_visibility")}</DialogTitle>
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
-          <Checkbox defaultChecked color="primary" />
+          <Metadata
+            setMetadataVisibility={setNewMetadataVisibility}
+            metadataVisibility={newMetadataVisibility}
+          />
+          <Metadata
+            setMetadataVisibility={setNewTestsVisibility}
+            metadataVisibility={newTestsVisibility}
+          />
         </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>{t("n3_cancel")}</Button>
-        <Button onClick={onCancel} color="primary">
+        <Button
+          onClick={() => onAccept(newMetadataVisibility, newTestsVisibility)}
+          color="primary"
+        >
           {t("n3_apply")}
         </Button>
       </DialogActions>

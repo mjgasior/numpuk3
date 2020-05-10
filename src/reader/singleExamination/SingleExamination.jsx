@@ -1,6 +1,5 @@
 import React from "react";
 import { ObjectTable } from "./+components/ObjectTable";
-import { SpecificDataTable } from "./+components/SpecificDataTable";
 import Grid from "@material-ui/core/Grid";
 
 export const SingleExamination = ({ examination }) => {
@@ -10,7 +9,8 @@ export const SingleExamination = ({ examination }) => {
     ph,
     consistency,
     bacteriaCount,
-    extendedResults,
+    hasAkkermansiaMuciniphila,
+    hasFaecalibactriumPrausnitzii,
     ...metadata
   } = examination;
 
@@ -22,9 +22,15 @@ export const SingleExamination = ({ examination }) => {
       <Grid item xs={6}>
         <Grid container spacing={3} direction="column">
           <Grid item xs={12}>
-            <SpecificDataTable
-              data={{ examinationType, ph, consistency, bacteriaCount }}
-              extendedResults={extendedResults}
+            <ObjectTable
+              data={{
+                examinationType,
+                ph,
+                consistency,
+                bacteriaCount,
+                hasAkkermansiaMuciniphila,
+                hasFaecalibactriumPrausnitzii,
+              }}
             />
           </Grid>
           <Grid item xs={12}>

@@ -45,6 +45,7 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - `@material-ui/icons` - provides the Google Material icons packaged as a set of React components
 - `react-i18next` - an internationalization framework for React and React Native which is based on `i18next` and adds React specific features (e.g. hooks integration)
 - `react-router-dom` - the standard routing library for React, keeps your UI in sync with the URL - it has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in (these are Document Object Model bindings for React Router)
+- `react-virtualized` - React components for efficiently rendering large lists and tabular data (a virtualization library)
 - `styled-components` - allows to write plain CSS in components without worrying about class name collisions, it helps to write CSS that's scoped to a single component and does not leak to any other element in the page
 
 ## Resources:
@@ -59,3 +60,10 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js "Stack Overflow answer")
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 - [Using Electron with React: The Basics](https://medium.com/@brockhoff/using-electron-with-react-the-basics-e93f9761f86f)
+
+### useEffect problems:
+
+- [Dealing with infinite loops in useEffect hook](https://dev.to/webcoderkz/dealing-with-infinite-loops-in-useeffect-hook-j11)
+- [How to make complex object as an argument for useEffect](https://stackoverflow.com/questions/61705127/how-to-make-complex-object-as-an-argument-for-useeffect)
+- [React hooks... Oops! Part 2 - why does my effect run multiple times with the same dependencies?](https://lukaszmakuch.pl/post/react-hooks-oops-part-2-effect-runs-multiple-times-with-the-same-dependencies/)
+- [You’re overusing useMemo: Rethinking Hooks memoization](https://blog.logrocket.com/rethinking-hooks-memoization/)
