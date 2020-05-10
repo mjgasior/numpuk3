@@ -20,11 +20,8 @@ export const useExaminations = (
       );
       setExaminationsData(data);
     };
-
     loadExaminations();
   }, [metadataVisibility, testsVisibility, pagination]);
-
-  console.log("I fetch");
 
   return examinationsData;
 };
