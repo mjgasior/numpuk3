@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const StyledCell = styled.div`
@@ -10,10 +10,11 @@ const StyledCell = styled.div`
   padding: 0px 10px;
   min-height: 50px;
   box-sizing: border-box;
-  background: ${(props) => (props.isHeader ? "#f2f2f2" : "transparent")};
+  background: ${(props) => (props.row % 2 ? "transparent" : "#fbfbfb")};
 `;
 
-export const Cell = ({ content, style, isHeader }) => {
+export const Cell = ({ content, style, row }) => {
+  const { t } = useTranslation("n3_metadata");
   return (
     <div
       style={{
@@ -21,7 +22,7 @@ export const Cell = ({ content, style, isHeader }) => {
         whiteSpace: "nowrap",
       }}
     >
-      <StyledCell isHeader={isHeader}>{content}</StyledCell>
+      <StyledCell row={row}>{t(content)}</StyledCell>
     </div>
   );
 };

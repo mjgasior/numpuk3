@@ -5,8 +5,8 @@ import {
   CellMeasurerCache,
   Grid,
 } from "react-virtualized";
-import { useTranslation } from "react-i18next";
 import { Cell } from "./Cell";
+import { Header } from "./Header";
 
 const cache = new CellMeasurerCache({
   defaultWidth: 100,
@@ -15,7 +15,6 @@ const cache = new CellMeasurerCache({
 });
 
 export const GridTable = React.memo(({ examinations }) => {
-  const { t } = useTranslation("n3_metadata");
   const cellRenderer = ({ columnIndex, key, parent, rowIndex, style }) => {
     return (
       <CellMeasurer
@@ -25,12 +24,20 @@ export const GridTable = React.memo(({ examinations }) => {
         parent={parent}
         rowIndex={rowIndex}
       >
-        <Cell
-          isHeader={rowIndex === 0}
-          key={key}
-          content={t(examinations[rowIndex][columnIndex])}
-          style={style}
-        />
+        {rowIndex === 0 ? (
+          <Header
+            key={key}
+            content={examinations[rowIndex][columnIndex]}
+            style={style}
+          />
+        ) : (
+          <Cell
+            row={rowIndex}
+            key={key}
+            content={examinations[rowIndex][columnIndex]}
+            style={style}
+          />
+        )}
       </CellMeasurer>
     );
   };
