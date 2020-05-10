@@ -3,8 +3,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledCell = styled.div`
+  display: flex;
+  align-items: center;
+
   border-bottom: 1px solid #ddd;
-  padding: 10px;
+  padding: 0px 10px;
   min-height: 50px;
   box-sizing: border-box;
   background: ${(props) => (props.isHeader ? "#f2f2f2" : "transparent")};
