@@ -27,8 +27,6 @@ export const useExaminations = (
 };
 
 const morphToGrid = (metadata, tests, objectExaminations) => {
-  console.log(objectExaminations);
-
   const metadataColumns = Object.keys(metadata);
   const testColumns = Object.keys(tests);
   const output = [];
@@ -39,6 +37,6 @@ const morphToGrid = (metadata, tests, objectExaminations) => {
     testColumns.forEach((key) => row.push(item.results[key]));
     output[i + 1] = row;
   });
-  console.log(output);
-  return { examinations: output, count: 10 };
+
+  return { examinations: output, count: objectExaminations.count };
 };

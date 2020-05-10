@@ -59,8 +59,8 @@ export const english = {
       hasAkkermansiaMuciniphila: "Akkermansia muciniphila test",
       hasFaecalibactriumPrausnitzii: "Faecalibactrium prausnitzii test",
 
-      n3_positive: "Positive",
-      n3_negative: "Negative",
+      POSITIVE: "Positive",
+      NEGATIVE: "Negative",
 
       FEMALE: "Kobieta",
       MALE: "Mężczyzna",

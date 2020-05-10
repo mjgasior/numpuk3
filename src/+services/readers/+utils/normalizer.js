@@ -33,12 +33,17 @@ export const setDate = (stringDate) => {
   return undefined;
 };
 
+const MARKER = {
+  POSITIVE: "POSITIVE",
+  NEGATIVE: "NEGATIVE",
+};
+
 export const setHasMarkers = (marker) => {
   switch (marker) {
     case "DODATNI":
-      return true;
+      return MARKER.POSITIVE;
     case "UJEMNY":
-      return false;
+      return MARKER.NEGATIVE;
     default:
       throw new Error(`${marker} is not a valid marker value`);
   }
