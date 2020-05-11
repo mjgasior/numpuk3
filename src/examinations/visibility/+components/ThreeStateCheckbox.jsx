@@ -1,20 +1,17 @@
 import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 
-export const ThreeStateCheckbox = ({ isVisible }) => {
-  const [checked, setChecked] = React.useState(true);
-  const [indeterminate, setIndeterminate] = React.useState(true);
+export const ThreeStateCheckbox = ({ isChecked, isVisible, onChange }) => {
+  const checked = getIsChecked(isChecked);
+  const indeterminate = getIsIndeterminate(isChecked);
 
   const handleCheckboxChange = () => {
     if (indeterminate) {
-      setChecked(false);
-      setIndeterminate(false);
+      onChange(true);
     } else if (checked) {
-      setChecked(true);
-      setIndeterminate(true);
+      onChange(false);
     } else {
-      setChecked(true);
-      setIndeterminate(false);
+      onChange();
     }
   };
 
@@ -28,4 +25,18 @@ export const ThreeStateCheckbox = ({ isVisible }) => {
       disabled={!isVisible}
     />
   );
+};
+
+const getIsChecked = (value) => {
+  if (value === undefined) {
+    return true;
+  }
+  return value;
+};
+
+const getIsIndeterminate = (value) => {
+  if (value === undefined) {
+    return true;
+  }
+  return false;
 };

@@ -17,33 +17,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FiltersList = React.memo(({ visibility, setVisibility }) => {
-  const { t } = useTranslation("n3_metadata");
+export const FiltersList = React.memo(
+  ({ visibility, setVisibility, filters, setFilters }) => {
+    const { t } = useTranslation("n3_metadata");
 
-  const classes = useStyles();
+    const classes = useStyles();
 
-  const handleChange = (name, value) => {
-    setVisibility({
-      ...visibility,
-      [name]: value,
-    });
-  };
+    const handleChange = (name, value) => {
+      setVisibility({
+        ...visibility,
+        [name]: value,
+      });
+    };
 
-  return (
-    <Grid item xs={6}>
-      <Paper className={classes.paper}>
-        <FormGroup>
-          {Object.keys(visibility).map((objectKey) => (
-            <Filter
-              t={t}
-              key={objectKey}
-              objectKey={objectKey}
-              isVisible={visibility[objectKey]}
-              onChange={handleChange}
-            />
-          ))}
-        </FormGroup>
-      </Paper>
-    </Grid>
-  );
-});
+    const handleFilterChange = (name, value) => {
+      if (value === undefined) {
+        const copy = { ...filters };
+        delete copy[name];
+        setFilters(copy);
+      } else {
+        setFilters({
+          ...filters,
+          [name]: value,
+        });
+      }
+    };
+
+    console.log(filters);
+
+    return (
+      <Grid item xs={6}>
+        <Paper className={classes.paper}>
+          <FormGroup>
+            {Object.keys(visibility).map((objectKey) => (
+              <Filter
+                t={t}
+                key={objectKey}
+                objectKey={objectKey}
+                isVisible={visibility[objectKey]}
+                onVisibilityChange={handleChange}
+                isFiltered={filters[objectKey]}
+                onFilterChange={handleFilterChange}
+              />
+            ))}
+          </FormGroup>
+        </Paper>
+      </Grid>
+    );
+  }
+);

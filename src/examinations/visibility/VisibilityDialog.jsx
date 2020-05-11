@@ -7,6 +7,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
 import { FiltersList } from "./+components/FiltersList";
+import { VisibilityList } from "./+components/VisibilityList";
 
 export const VisibilityDialog = ({
   onCancel,
@@ -22,6 +23,7 @@ export const VisibilityDialog = ({
   );
 
   const [newTestsVisibility, setNewTestsVisibility] = useState(testsVisibility);
+  const [newTestsFilters, setNewTestsFilters] = useState({});
 
   return (
     <Dialog
@@ -34,13 +36,15 @@ export const VisibilityDialog = ({
       <DialogTitle>{t("n3_set_column_visibility")}</DialogTitle>
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
-          <FiltersList
-            setVisibility={setNewMetadataVisibility}
+          <VisibilityList
             visibility={newMetadataVisibility}
+            setVisibility={setNewMetadataVisibility}
           />
           <FiltersList
-            setVisibility={setNewTestsVisibility}
             visibility={newTestsVisibility}
+            setVisibility={setNewTestsVisibility}
+            filters={newTestsFilters}
+            setFilters={setNewTestsFilters}
           />
         </Grid>
       </DialogContent>
