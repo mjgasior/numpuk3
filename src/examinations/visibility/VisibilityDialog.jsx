@@ -35,12 +35,12 @@ export const VisibilityDialog = ({
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
           <FiltersList
-            setMetadataVisibility={setNewMetadataVisibility}
-            metadataVisibility={newMetadataVisibility}
+            setVisibility={setNewMetadataVisibility}
+            visibility={newMetadataVisibility}
           />
           <FiltersList
-            setMetadataVisibility={setNewTestsVisibility}
-            metadataVisibility={newTestsVisibility}
+            setVisibility={setNewTestsVisibility}
+            visibility={newTestsVisibility}
           />
         </Grid>
       </DialogContent>

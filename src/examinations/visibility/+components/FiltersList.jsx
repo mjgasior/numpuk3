@@ -17,35 +17,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FiltersList = React.memo(
-  ({ metadataVisibility, setMetadataVisibility }) => {
-    const { t } = useTranslation("n3_metadata");
+export const FiltersList = React.memo(({ visibility, setVisibility }) => {
+  const { t } = useTranslation("n3_metadata");
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const handleChange = (name, value) => {
-      setMetadataVisibility({
-        ...metadataVisibility,
-        [name]: value,
-      });
-    };
+  const handleChange = (name, value) => {
+    setVisibility({
+      ...visibility,
+      [name]: value,
+    });
+  };
 
-    return (
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>
-          <FormGroup>
-            {Object.keys(metadataVisibility).map((objectKey) => (
-              <Filter
-                t={t}
-                key={objectKey}
-                objectKey={objectKey}
-                visibilityState={metadataVisibility}
-                onChange={handleChange}
-              />
-            ))}
-          </FormGroup>
-        </Paper>
-      </Grid>
-    );
-  }
-);
+  return (
+    <Grid item xs={6}>
+      <Paper className={classes.paper}>
+        <FormGroup>
+          {Object.keys(visibility).map((objectKey) => (
+            <Filter
+              t={t}
+              key={objectKey}
+              objectKey={objectKey}
+              isVisible={visibility[objectKey]}
+              onChange={handleChange}
+            />
+          ))}
+        </FormGroup>
+      </Paper>
+    </Grid>
+  );
+});
