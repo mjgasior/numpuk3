@@ -72,7 +72,6 @@ const getProjection = (metadataVisibility, testsVisibility) => {
 
 const getQuery = (testFilters) => {
   const query = {};
-  console.log(testFilters);
   Object.keys(testFilters).forEach((data) => {
     const value = testFilters[data];
     if (value === true) {
@@ -81,6 +80,5 @@ const getQuery = (testFilters) => {
       query[`results.${data}`] = 0;
     }
   });
-  console.log(query);
   return query;
 };
