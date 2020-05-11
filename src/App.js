@@ -9,7 +9,6 @@ import { ReaderPage } from "./reader/ReaderPage";
 import { ExaminationsContext } from "./+context/ExaminationsContext";
 import { ROUTES } from "./+utils/routings";
 import { LogsPage } from "./logs/LogsPage";
-import { ExaminationGrid } from "./examinationGrid/ExaminationGrid";
 
 const Container = styled.div`
   display: flex;
