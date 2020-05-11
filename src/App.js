@@ -50,10 +50,6 @@ export const App = () => {
             <Switch>
               <Route path={ROUTES.UPLOAD} component={UploadPage} />
               <Route path={ROUTES.EXAMINATIONS} component={ExaminationsPage} />
-              <Route
-                path={ROUTES.EXAMINATION_GRID}
-                component={ExaminationGrid}
-              />
               <Route path={ROUTES.LOGS} component={LogsPage} />
               <Route path={ROUTES.READER} component={ReaderPage} />
             </Switch>
