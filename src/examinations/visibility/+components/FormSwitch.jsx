@@ -11,10 +11,6 @@ export const FormSwitch = React.memo(
     const handleChange = (event) =>
       onChange(event.target.name, event.target.checked);
 
-    const handleCheckboxChange = (event) => {
-      setChecked(event.target.checked);
-    };
-
     const isVisible = visibilityState[objectKey];
 
     return (

@@ -3,14 +3,10 @@ import React from "react";
 import { ExaminationTable } from "./table/ExaminationTable";
 import { VisibilityDialog } from "./visibility/VisibilityDialog";
 import { HeaderMenu } from "./+components/HeaderMenu";
-import {
-  useVisibilityDialog,
-  useFiltersDialog,
-} from "./+hooks/useTableDialogs";
+import { useVisibilityDialog } from "./+hooks/useTableDialogs";
 import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
-import { FiltersDialog } from "./filters/FiltersDialog";
 import { Pagination } from "./table/Pagination";
 import { usePagination } from "./+hooks/usePagination";
 
@@ -44,12 +40,6 @@ export const ExaminationsPage = () => {
     closeVisibilityDialog,
   } = useVisibilityDialog();
 
-  const {
-    isFiltersDialogOpen,
-    openFiltersDialog,
-    closeFiltersDialog,
-  } = useFiltersDialog();
-
   const pagination = usePagination();
 
   const { examinations, count } = useExaminations(
@@ -60,10 +50,7 @@ export const ExaminationsPage = () => {
 
   return (
     <ExaminationsViewContainer>
-      <HeaderMenu
-        openVisibility={openVisibilityDialog}
-        openFilters={openFiltersDialog}
-      />
+      <HeaderMenu openVisibility={openVisibilityDialog} />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         testsVisibility={testsVisibility}
@@ -75,7 +62,6 @@ export const ExaminationsPage = () => {
         }}
         onCancel={closeVisibilityDialog}
       />
-      <FiltersDialog open={isFiltersDialogOpen} onCancel={closeFiltersDialog} />
       <ExaminationsTableContainer>
         <ExaminationTable
           examinations={examinations}
