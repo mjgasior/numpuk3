@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
-import { Metadata } from "./+components/Metadata";
+import { SwitchList } from "./+components/SwitchList";
 
 export const VisibilityDialog = ({
   onCancel,
@@ -30,17 +30,15 @@ export const VisibilityDialog = ({
       scroll="paper"
       fullWidth={true}
       maxWidth="lg"
-      disableBackdropClick
-      disableEscapeKeyDown
     >
       <DialogTitle>{t("n3_set_column_visibility")}</DialogTitle>
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
-          <Metadata
+          <SwitchList
             setMetadataVisibility={setNewMetadataVisibility}
             metadataVisibility={newMetadataVisibility}
           />
-          <Metadata
+          <SwitchList
             setMetadataVisibility={setNewTestsVisibility}
             metadataVisibility={newTestsVisibility}
           />

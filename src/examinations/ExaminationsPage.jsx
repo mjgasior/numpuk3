@@ -67,7 +67,7 @@ export const ExaminationsPage = () => {
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         testsVisibility={testsVisibility}
-        open={isVisibilityDialogOpen}
+        open={!isVisibilityDialogOpen}
         onAccept={(newMetadataVisibility, newTestsVisibility) => {
           closeVisibilityDialog();
           setMetadataVisibility(newMetadataVisibility);

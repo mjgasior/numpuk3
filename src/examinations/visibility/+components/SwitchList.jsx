@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Metadata = React.memo(
+export const SwitchList = React.memo(
   ({ metadataVisibility, setMetadataVisibility }) => {
     const { t } = useTranslation("n3_metadata");
 
