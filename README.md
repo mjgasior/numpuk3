@@ -14,19 +14,9 @@ Run `yarn run pack` (not `yarn pack` because this invokes packing!) to build an 
 Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\main.log`.
 Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.db`.
 
-## Exceljs cell types:
+## Snippets:
 
-    Null: 0
-    Merge: 1
-    Number: 2
-    String: 3
-    Date: 4
-    Hyperlink: 5
-    Formula: 6
-    SharedString: 7
-    RichText: 8
-    Boolean: 9
-    Error: 10
+- `git branch | %{ $_.Trim() } | ?{ $_ -ne 'master' } | %{ git branch -D $_ }` - delete all local branches except master (on Windows)
 
 ## Packages - Electron:
 
