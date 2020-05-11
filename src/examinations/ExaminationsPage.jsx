@@ -3,14 +3,10 @@ import React from "react";
 import { ExaminationTable } from "./table/ExaminationTable";
 import { VisibilityDialog } from "./visibility/VisibilityDialog";
 import { HeaderMenu } from "./+components/HeaderMenu";
-import {
-  useVisibilityDialog,
-  useFiltersDialog,
-} from "./+hooks/useTableDialogs";
+import { useVisibilityDialog } from "./+hooks/useTableDialogs";
 import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
-import { FiltersDialog } from "./filters/FiltersDialog";
 import { Pagination } from "./table/Pagination";
 import { usePagination } from "./+hooks/usePagination";
 
@@ -36,6 +32,8 @@ export const ExaminationsPage = () => {
     setMetadataVisibility,
     testsVisibility,
     setTestsVisibility,
+    testFilters,
+    setTestFilters,
   } = useVisibilityFilters();
 
   const {
@@ -44,38 +42,35 @@ export const ExaminationsPage = () => {
     closeVisibilityDialog,
   } = useVisibilityDialog();
 
-  const {
-    isFiltersDialogOpen,
-    openFiltersDialog,
-    closeFiltersDialog,
-  } = useFiltersDialog();
-
   const pagination = usePagination();
 
   const { examinations, count } = useExaminations(
     metadataVisibility,
     testsVisibility,
+    testFilters,
     pagination
   );
 
   return (
     <ExaminationsViewContainer>
-      <HeaderMenu
-        openVisibility={openVisibilityDialog}
-        openFilters={openFiltersDialog}
-      />
+      <HeaderMenu openVisibility={openVisibilityDialog} />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         testsVisibility={testsVisibility}
+        testFilters={testFilters}
         open={isVisibilityDialogOpen}
-        onAccept={(newMetadataVisibility, newTestsVisibility) => {
+        onAccept={(
+          newMetadataVisibility,
+          newTestsVisibility,
+          newTestFilters
+        ) => {
           closeVisibilityDialog();
           setMetadataVisibility(newMetadataVisibility);
           setTestsVisibility(newTestsVisibility);
+          setTestFilters(newTestFilters);
         }}
         onCancel={closeVisibilityDialog}
       />
-      <FiltersDialog open={isFiltersDialogOpen} onCancel={closeFiltersDialog} />
       <ExaminationsTableContainer>
         <ExaminationTable
           examinations={examinations}

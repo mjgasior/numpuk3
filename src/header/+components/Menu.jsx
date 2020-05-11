@@ -13,9 +13,6 @@ export const Menu = () => {
   const { t } = useTranslation();
   return (
     <>
-      <ButtonLink title={t("n3_examinations")} to={ROUTES.EXAMINATION_GRID}>
-        <ListIcon />
-      </ButtonLink>
       <ButtonLink title={t("n3_examinations")} to={ROUTES.EXAMINATIONS}>
         <ListIcon />
       </ButtonLink>

@@ -26,7 +26,6 @@ export const polish = {
       n3_processing_files: "Przetwarzanie plików",
       n3_select_directory: "Wybierz lokalizację",
       n3_select_file: "Wybierz plik",
-      n3_set_column_filters: "Ustaw filtry kolumn",
       n3_set_column_visibility: "Ustaw widoczność kolumn",
 
       n3_label_rows_per_page: "Wierszy na stronę",

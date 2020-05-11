@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
 
 export const useVisibilityFilters = () => {
@@ -16,12 +16,19 @@ export const useVisibilityFilters = () => {
     createInitialObject(ALL_TEST_TYPES)
   );
 
-  return {
-    metadataVisibility,
-    setMetadataVisibility,
-    testsVisibility,
-    setTestsVisibility,
-  };
+  const [testFilters, setTestFilters] = useState({});
+
+  return useMemo(
+    () => ({
+      metadataVisibility,
+      setMetadataVisibility,
+      testsVisibility,
+      setTestsVisibility,
+      testFilters,
+      setTestFilters,
+    }),
+    [metadataVisibility, testsVisibility, testFilters]
+  );
 };
 
 const createInitialObject = (sourceArray) => {

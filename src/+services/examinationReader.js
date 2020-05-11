@@ -4,25 +4,25 @@ import { logger } from "./logger";
 export const getExaminations = async (
   metadataVisibility,
   testsVisibility,
+  testFilters,
   pagination
 ) => {
+  const findQuery = getQuery(testFilters);
   const projection = getProjection(metadataVisibility, testsVisibility);
-  const examinations = await getExaminationsAsync(projection, pagination);
+
+  const examinations = await getExaminationsAsync(
+    projection,
+    findQuery,
+    pagination
+  );
+
   const count = await getExaminationsCountAsync();
 
   return { examinations, count };
 };
 
-const getExaminationsAsync = (
-  projection,
-  pagination,
-  hasKlebsiellaPneumoniae
-) => {
+const getExaminationsAsync = (projection, findQuery, pagination) => {
   const { page, rowsPerPage } = pagination;
-  let findQuery = {};
-  if (hasKlebsiellaPneumoniae) {
-    findQuery = { "results.Klebsiella pneumoniae": { $exists: true } };
-  }
 
   return new Promise((resolve, reject) => {
     db.find(findQuery)
@@ -68,4 +68,17 @@ const getProjection = (metadataVisibility, testsVisibility) => {
   });
 
   return projection;
+};
+
+const getQuery = (testFilters) => {
+  const query = {};
+  Object.keys(testFilters).forEach((data) => {
+    const value = testFilters[data];
+    if (value === true) {
+      query[`results.${data}`] = { $gt: 0 };
+    } else if (value === false) {
+      query[`results.${data}`] = 0;
+    }
+  });
+  return query;
 };

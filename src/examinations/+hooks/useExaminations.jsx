@@ -4,6 +4,7 @@ import { getExaminations } from "../../+services/examinationReader";
 export const useExaminations = (
   metadataVisibility,
   testsVisibility,
+  testFilters,
   pagination
 ) => {
   const [examinationsData, setExaminationsData] = useState({
@@ -16,12 +17,13 @@ export const useExaminations = (
       const data = await getExaminations(
         metadataVisibility,
         testsVisibility,
+        testFilters,
         pagination
       );
       setExaminationsData(data);
     };
     loadExaminations();
-  }, [metadataVisibility, testsVisibility, pagination]);
+  }, [metadataVisibility, testsVisibility, testFilters, pagination]);
 
   return examinationsData;
 };

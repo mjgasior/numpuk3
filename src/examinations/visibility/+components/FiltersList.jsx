@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useTranslation } from "react-i18next";
-import { FormSwitch } from "./FormSwitch";
+import { Filter } from "./Filter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,30 +17,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Metadata = React.memo(
-  ({ metadataVisibility, setMetadataVisibility }) => {
+export const FiltersList = React.memo(
+  ({ visibility, setVisibility, filters, setFilters }) => {
     const { t } = useTranslation("n3_metadata");
 
     const classes = useStyles();
 
     const handleChange = (name, value) => {
-      setMetadataVisibility({
-        ...metadataVisibility,
+      setVisibility({
+        ...visibility,
         [name]: value,
       });
     };
+
+    const handleFilterChange = (name, value) => {
+      if (value === undefined) {
+        const copy = { ...filters };
+        delete copy[name];
+        setFilters(copy);
+      } else {
+        setFilters({
+          ...filters,
+          [name]: value,
+        });
+      }
+    };
+
+    console.log(filters);
 
     return (
       <Grid item xs={6}>
         <Paper className={classes.paper}>
           <FormGroup>
-            {Object.keys(metadataVisibility).map((objectKey) => (
-              <FormSwitch
+            {Object.keys(visibility).map((objectKey) => (
+              <Filter
                 t={t}
                 key={objectKey}
                 objectKey={objectKey}
-                visibilityState={metadataVisibility}
-                onChange={handleChange}
+                isVisible={visibility[objectKey]}
+                onVisibilityChange={handleChange}
+                isFiltered={filters[objectKey]}
+                onFilterChange={handleFilterChange}
               />
             ))}
           </FormGroup>

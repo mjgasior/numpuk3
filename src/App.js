@@ -9,7 +9,6 @@ import { ReaderPage } from "./reader/ReaderPage";
 import { ExaminationsContext } from "./+context/ExaminationsContext";
 import { ROUTES } from "./+utils/routings";
 import { LogsPage } from "./logs/LogsPage";
-import { ExaminationGrid } from "./examinationGrid/ExaminationGrid";
 
 const Container = styled.div`
   display: flex;
@@ -50,10 +49,6 @@ export const App = () => {
             <Switch>
               <Route path={ROUTES.UPLOAD} component={UploadPage} />
               <Route path={ROUTES.EXAMINATIONS} component={ExaminationsPage} />
-              <Route
-                path={ROUTES.EXAMINATION_GRID}
-                component={ExaminationGrid}
-              />
               <Route path={ROUTES.LOGS} component={LogsPage} />
               <Route path={ROUTES.READER} component={ReaderPage} />
             </Switch>

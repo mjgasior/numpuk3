@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import FilterListIcon from "@material-ui/icons/FilterList";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -11,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const HeaderMenu = ({ openVisibility, openFilters }) => {
+export const HeaderMenu = ({ openVisibility }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
@@ -23,14 +22,6 @@ export const HeaderMenu = ({ openVisibility, openFilters }) => {
         onClick={openVisibility}
       >
         {t("n3_set_column_visibility")}
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.button}
-        startIcon={<FilterListIcon />}
-        onClick={openFilters}
-      >
-        {t("n3_set_column_filters")}
       </Button>
     </div>
   );
