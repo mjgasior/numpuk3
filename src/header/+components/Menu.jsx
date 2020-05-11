@@ -6,7 +6,8 @@ import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import BallotIcon from "@material-ui/icons/Ballot";
 import { ButtonLink } from "./ButtonLink";
 import { CloseButton } from "./CloseButton";
-import { ROUTES } from "../+utils/routings";
+import { ROUTES } from "../../+utils/routings";
+import { LanguageSwitch } from "./LanguageSwitch";
 
 export const Menu = () => {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ export const Menu = () => {
       <ButtonLink title={t("n3_logs")} to={ROUTES.LOGS}>
         <BallotIcon />
       </ButtonLink>
+      <LanguageSwitch />
       <CloseButton />
     </>
   );
