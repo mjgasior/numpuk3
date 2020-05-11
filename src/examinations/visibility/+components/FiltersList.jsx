@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useTranslation } from "react-i18next";
-import { FormSwitch } from "./FormSwitch";
+import { Filter } from "./Filter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const SwitchList = React.memo(
+export const FiltersList = React.memo(
   ({ metadataVisibility, setMetadataVisibility }) => {
     const { t } = useTranslation("n3_metadata");
 
@@ -35,7 +35,7 @@ export const SwitchList = React.memo(
         <Paper className={classes.paper}>
           <FormGroup>
             {Object.keys(metadataVisibility).map((objectKey) => (
-              <FormSwitch
+              <Filter
                 t={t}
                 key={objectKey}
                 objectKey={objectKey}

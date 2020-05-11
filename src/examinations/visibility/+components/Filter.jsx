@@ -1,13 +1,10 @@
 import React from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import Grid from "@material-ui/core/Grid";
 import { ThreeStateCheckbox } from "./ThreeStateCheckbox";
+import { LabelSwitch } from "./LabelSwitch";
 
-export const FormSwitch = React.memo(
+export const Filter = React.memo(
   ({ onChange, t, visibilityState, objectKey }) => {
-    const [checked, setChecked] = React.useState(true);
-
     const handleChange = (event) =>
       onChange(event.target.name, event.target.checked);
 
@@ -19,15 +16,11 @@ export const FormSwitch = React.memo(
           <ThreeStateCheckbox isVisible={isVisible} />
         </Grid>
         <Grid item xs={11} container direction="row" alignItems="flex-start">
-          <FormControlLabel
-            control={
-              <Switch
-                checked={isVisible}
-                onChange={handleChange}
-                name={objectKey}
-              />
-            }
+          <LabelSwitch
             label={t(objectKey)}
+            handleChange={handleChange}
+            name={objectKey}
+            isVisible={isVisible}
           />
         </Grid>
       </Grid>
