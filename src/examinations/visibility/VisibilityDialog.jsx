@@ -15,6 +15,7 @@ export const VisibilityDialog = ({
   open,
   metadataVisibility,
   testsVisibility,
+  testFilters,
 }) => {
   const { t } = useTranslation();
 
@@ -23,7 +24,7 @@ export const VisibilityDialog = ({
   );
 
   const [newTestsVisibility, setNewTestsVisibility] = useState(testsVisibility);
-  const [newTestsFilters, setNewTestsFilters] = useState({});
+  const [newTestsFilters, setNewTestsFilters] = useState(testFilters);
 
   return (
     <Dialog
@@ -51,7 +52,9 @@ export const VisibilityDialog = ({
       <DialogActions>
         <Button onClick={onCancel}>{t("n3_cancel")}</Button>
         <Button
-          onClick={() => onAccept(newMetadataVisibility, newTestsVisibility)}
+          onClick={() =>
+            onAccept(newMetadataVisibility, newTestsVisibility, newTestsFilters)
+          }
           color="primary"
         >
           {t("n3_apply")}

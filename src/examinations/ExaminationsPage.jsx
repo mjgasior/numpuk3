@@ -32,6 +32,8 @@ export const ExaminationsPage = () => {
     setMetadataVisibility,
     testsVisibility,
     setTestsVisibility,
+    testFilters,
+    setTestFilters,
   } = useVisibilityFilters();
 
   const {
@@ -45,6 +47,7 @@ export const ExaminationsPage = () => {
   const { examinations, count } = useExaminations(
     metadataVisibility,
     testsVisibility,
+    testFilters,
     pagination
   );
 
@@ -54,11 +57,17 @@ export const ExaminationsPage = () => {
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         testsVisibility={testsVisibility}
-        open={!isVisibilityDialogOpen}
-        onAccept={(newMetadataVisibility, newTestsVisibility) => {
+        testFilters={testFilters}
+        open={isVisibilityDialogOpen}
+        onAccept={(
+          newMetadataVisibility,
+          newTestsVisibility,
+          newTestFilters
+        ) => {
           closeVisibilityDialog();
           setMetadataVisibility(newMetadataVisibility);
           setTestsVisibility(newTestsVisibility);
+          setTestFilters(newTestFilters);
         }}
         onCancel={closeVisibilityDialog}
       />
