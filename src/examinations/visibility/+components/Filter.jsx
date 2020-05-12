@@ -40,6 +40,8 @@ const FilterComponent = ({
 export const Filter = React.memo(FilterComponent, areEqual);
 
 function areEqual(prevProps, nextProps) {
+  // console.log(prevProps);
+  // console.log(nextProps);
   const hasVisibilityNotChanged = prevProps.isVisible === nextProps.isVisible;
   const hasFiltersNotChanged = prevProps.isFiltered === nextProps.isFiltered;
   return hasVisibilityNotChanged && hasFiltersNotChanged;

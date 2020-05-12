@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -17,50 +17,60 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FiltersList = React.memo(
-  ({ visibility, setVisibility, filters, setFilters }) => {
-    const { t } = useTranslation("n3_metadata");
+export const FiltersList = ({ visibility, setVisibility }) => {
+  const [filters, setFilters] = useState({});
+  const { t } = useTranslation("n3_metadata");
+  console.log(filters);
+  const classes = useStyles();
 
-    const classes = useStyles();
+  const handleChange = (name, value) => {
+    setVisibility({
+      ...visibility,
+      [name]: value,
+    });
+  };
 
-    const handleChange = (name, value) => {
-      setVisibility({
-        ...visibility,
+  const handleFilterChange = (name, value) => {
+    console.log("Im here");
+    console.log(value);
+    if (value === undefined) {
+      console.log("Value undefined");
+      console.log(filters);
+      const copy = { ...filters };
+      delete copy[name];
+      console.log(copy);
+      setFilters(copy);
+    } else {
+      console.log("Value else");
+      console.log(filters);
+      const cop = {
+        ...filters,
         [name]: value,
-      });
-    };
+      };
+      console.log(cop);
+      setFilters(cop);
+    }
+  };
 
-    const handleFilterChange = (name, value) => {
-      if (value === undefined) {
-        const copy = { ...filters };
-        delete copy[name];
-        setFilters(copy);
-      } else {
-        setFilters({
-          ...filters,
-          [name]: value,
-        });
-      }
-    };
+  // console.log(filters);
 
-    return (
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>
-          <FormGroup>
-            {Object.keys(visibility).map((objectKey) => (
-              <Filter
-                t={t}
-                key={objectKey}
-                objectKey={objectKey}
-                isVisible={visibility[objectKey]}
-                onVisibilityChange={handleChange}
-                isFiltered={filters[objectKey]}
-                onFilterChange={handleFilterChange}
-              />
-            ))}
-          </FormGroup>
-        </Paper>
-      </Grid>
-    );
-  }
-);
+  return (
+    <Grid item xs={6}>
+      <Paper className={classes.paper}>
+        <FormGroup>
+          {Object.keys(visibility).map((objectKey) => (
+            <Filter
+              t={t}
+              key={objectKey}
+              objectKey={objectKey}
+              isVisible={visibility[objectKey]}
+              onVisibilityChange={handleChange}
+              isFiltered={filters[objectKey]}
+              onFilterChange={handleFilterChange}
+            />
+          ))}
+        </FormGroup>
+      </Paper>
+    </Grid>
+  );
+};

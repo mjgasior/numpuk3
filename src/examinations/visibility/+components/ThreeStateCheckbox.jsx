@@ -17,7 +17,6 @@ export const ThreeStateCheckbox = ({ isChecked, isVisible, onChange }) => {
 
   return (
     <Checkbox
-      defaultChecked
       indeterminate={indeterminate}
       color="primary"
       checked={checked}
