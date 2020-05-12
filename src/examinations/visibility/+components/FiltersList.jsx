@@ -43,8 +43,6 @@ export const FiltersList = React.memo(
       }
     };
 
-    console.log(filters);
-
     return (
       <Grid item xs={6}>
         <Paper className={classes.paper}>
