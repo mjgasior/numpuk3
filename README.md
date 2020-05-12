@@ -56,3 +56,4 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - [Inifinite loop when saving an object from async await](https://stackoverflow.com/questions/61717644/inifinite-loop-when-saving-an-object-from-async-await)
 - [React hooks... Oops! Part 2 - why does my effect run multiple times with the same dependencies?](https://lukaszmakuch.pl/post/react-hooks-oops-part-2-effect-runs-multiple-times-with-the-same-dependencies/)
 - [You’re overusing useMemo: Rethinking Hooks memoization](https://blog.logrocket.com/rethinking-hooks-memoization/)
+- [React.memo problem example](https://codesandbox.io/s/determined-liskov-hxzw0?file=/src/Toggle.jsx)

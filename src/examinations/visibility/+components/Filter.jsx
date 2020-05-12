@@ -37,7 +37,7 @@ const FilterComponent = ({
   );
 };
 
-export const Filter = React.memo(FilterComponent, areEqual);
+export const Filter = React.memo(FilterComponent);
 
 function areEqual(prevProps, nextProps) {
   // console.log(prevProps);
