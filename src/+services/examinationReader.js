@@ -16,7 +16,7 @@ export const getExaminations = async (
     pagination
   );
 
-  const count = await getExaminationsCountAsync();
+  const count = await getExaminationsCountAsync(findQuery);
 
   return { examinations, count };
 };
@@ -40,9 +40,9 @@ const getExaminationsAsync = (projection, findQuery, pagination) => {
   });
 };
 
-const getExaminationsCountAsync = () => {
+const getExaminationsCountAsync = (query) => {
   return new Promise((resolve, reject) => {
-    db.count({}, (err, count) => {
+    db.count(query, (err, count) => {
       if (err) {
         logger.error(err);
         reject(err);

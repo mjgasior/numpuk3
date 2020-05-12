@@ -35,6 +35,7 @@ export const VisibilityList = React.memo(({ visibility, setVisibility }) => {
         <FormGroup>
           {Object.keys(visibility).map((objectKey) => (
             <LabelSwitch
+              key={objectKey}
               label={t(objectKey)}
               handleChange={handleChange}
               name={objectKey}
