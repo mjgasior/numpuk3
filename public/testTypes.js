@@ -73,7 +73,36 @@ const ALL_TEST_TYPES = [
 ];
 
 module.exports.initializeTypes = function () {
-  // console.log(ALL_TEST_TYPES);
+  const fs = require("fs");
 
-  console.log(__dirname);
+  const path = "test-types.json";
+
+  try {
+    if (fs.existsSync(path)) {
+      console.log("Configuration file exists - loading");
+    } else {
+      console.log("Configuration file doesn't exist - creating");
+
+      let data = JSON.stringify(
+        {
+          anaerobic: ANAEROBIC_BACTERIA,
+          fungi: FUNGI,
+          gramMinus: GRAM_MINUS_BACTERIA,
+          gramPlus: GRAM_PLUS_BACTERIA,
+        },
+        null,
+        2
+      );
+
+      fs.writeFile(path, data, (err) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log("Data written to file");
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
