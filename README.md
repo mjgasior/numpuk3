@@ -29,8 +29,8 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - `electron-log` - a simple logging module for Electron application
 - `exceljs` - library that allows to read, manipulate and write spreadsheet data and styles to XLSX and JSON which was reverse engineered from Excel spreadsheet files (it needs to be used from Electron part because of errors with file access)
 - `foreman` - it is used to run two processes in the same time - the React Webpack server and Electron (defined in Procfile)
+- `lokijs` - a document oriented database written in javascript
 - `moment` - package that allows to easily parse, validate, manipulate, and display dates and times in JavaScript
-- `nedb` - a lightweight embedded document database management system (DBMS) written in JavaScript with MongoDB API
 
 ## Packages - React:
 

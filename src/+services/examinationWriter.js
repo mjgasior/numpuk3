@@ -8,12 +8,15 @@ export const putExamination = async (examination) => {
 
 const saveDocumentAsync = (examination) => {
   return new Promise((resolve, reject) => {
-    db.insert(examination, (err, newDoc) => {
+    console.log(db);
+    console.log(db.insert);
+    /*db.insert(examination, (err, newDoc) => {
       if (err) {
         logger.error(err);
         reject(err);
       }
       resolve(newDoc);
-    });
+    });*/
+    resolve({});
   });
 };

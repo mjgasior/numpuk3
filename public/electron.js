@@ -5,28 +5,14 @@ const log = require("electron-log");
 const path = require("path");
 const isDev = require("electron-is-dev");
 
-const Datastore = require("nedb");
+var loki = require("lokijs");
 let userData = app.getPath("userData");
 let databaseFilepath = path.join(userData, "values.db");
 
 log.info(databaseFilepath);
 
-let db = new Datastore({
-  filename: databaseFilepath,
-  autoload: true,
-  onload: (err) => {
-    if (err) {
-      log.error("Error loading the DB: " + err);
-    }
-  },
-  timestampData: true,
-});
-
-db.ensureIndex({ fieldName: "examinationId", unique: true }, function (err) {
-  if (err) {
-    log.error("Error loading the DB: " + err);
-  }
-});
+var database = new loki("examinations.db");
+var db = database.addCollection("users");
 
 global.database = db;
 
