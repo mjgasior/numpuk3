@@ -1,7 +1,14 @@
 import { logger } from "./logger";
 import { testTypes } from "../+apis/dependenciesApi";
 
-const testsSet = new Set(testTypes);
+const fullSet = [
+  ...testTypes.anaerobic,
+  ...testTypes.fungi,
+  ...testTypes.gramMinus,
+  ...testTypes.gramPlus,
+];
+
+const testsSet = new Set(fullSet);
 
 const COMMON_MISTAKES = {
   "clostridium innocum": "Clostridium innocuum",
@@ -21,7 +28,8 @@ const COMMON_MISTAKES = {
   "straphylococcus aureus": "Staphylococcus aureus",
 };
 
-export const getAllTypes = () => testTypes;
+export const getTypes = () => testTypes;
+export const getAllTypes = () => fullSet;
 
 export const hasTest = (testName) => {
   return testsSet.has(testName);
