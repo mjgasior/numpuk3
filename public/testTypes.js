@@ -80,6 +80,15 @@ module.exports.initializeTypes = function () {
   try {
     if (fs.existsSync(path)) {
       console.log("Configuration file exists - loading");
+
+      fs.readFile(path, (err, data) => {
+        if (err) {
+          throw err;
+        }
+        let testTypes = JSON.parse(data);
+        console.log(testTypes);
+        global.testTypes = testTypes;
+      });
     } else {
       console.log("Configuration file doesn't exist - creating");
 
@@ -98,7 +107,7 @@ module.exports.initializeTypes = function () {
         if (err) {
           throw err;
         }
-
+        global.testTypes = ALL_TEST_TYPES;
         console.log("Data written to file");
       });
     }

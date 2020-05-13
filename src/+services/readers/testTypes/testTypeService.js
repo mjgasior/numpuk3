@@ -1,5 +1,5 @@
-import { ALL_TEST_TYPES } from "./testTypes";
 import { logger } from "./../../logger";
+import { testTypes } from "../../../+apis/dependenciesApi";
 
 const testsSet = new Set(ALL_TEST_TYPES);
 
@@ -20,6 +20,8 @@ const COMMON_MISTAKES = {
   "staphylococcus areus": "Staphylococcus aureus",
   "straphylococcus aureus": "Staphylococcus aureus",
 };
+
+export const getAllTypes = () => testTypes;
 
 export const hasTest = (testName) => {
   return testsSet.has(testName);

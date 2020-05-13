@@ -2,7 +2,6 @@ require("dotenv").config();
 const { app, BrowserWindow } = require("electron");
 const log = require("electron-log");
 const { initializeTypes } = require("./testTypes");
-
 initializeTypes();
 
 const path = require("path");
