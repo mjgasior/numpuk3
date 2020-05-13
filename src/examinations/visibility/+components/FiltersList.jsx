@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -17,42 +17,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FiltersList = ({ visibility, setVisibility }) => {
-  const [filters, setFilters] = useState({});
+export const FiltersList = ({
+  visibility,
+  setVisibility,
+  filters,
+  setFilters,
+}) => {
   const { t } = useTranslation("n3_metadata");
-  console.log(filters);
   const classes = useStyles();
 
-  const handleChange = (name, value) => {
-    setVisibility({
-      ...visibility,
-      [name]: value,
-    });
-  };
-
-  const handleFilterChange = (name, value) => {
-    console.log("Im here");
-    console.log(value);
-    if (value === undefined) {
-      console.log("Value undefined");
-      console.log(filters);
-      const copy = { ...filters };
-      delete copy[name];
-      console.log(copy);
-      setFilters(copy);
-    } else {
-      console.log("Value else");
-      console.log(filters);
-      const cop = {
-        ...filters,
+  const handleChange = useCallback(
+    (name, value) => {
+      setVisibility((prevState) => ({
+        ...prevState,
         [name]: value,
-      };
-      console.log(cop);
-      setFilters(cop);
-    }
-  };
+      }));
+    },
+    [setVisibility]
+  );
 
-  // console.log(filters);
+  const handleFilterChange = useCallback(
+    (name, value) => {
+      setFilters((prevState) => {
+        if (value === undefined) {
+          const copy = { ...prevState };
+          delete copy[name];
+          return copy;
+        } else {
+          return {
+            ...prevState,
+            [name]: value,
+          };
+        }
+      });
+    },
+    [setFilters]
+  );
 
   return (
     <Grid item xs={6}>
