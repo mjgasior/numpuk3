@@ -22,14 +22,21 @@ export const TestTypeEditor = () => {
   };
 
   return (
-    <ReactJson
-      src={types}
-      name={false}
-      enableClipboard={false}
-      displayDataTypes={false}
-      onDelete={handleDelete}
-      onAdd={handleAdd}
-      onEdit={handleEdit}
-    />
+    <>
+      {Object.keys(types).map((type) => (
+        <>
+          <div>{type}</div>
+          <ReactJson
+            src={types[type]}
+            name={false}
+            enableClipboard={false}
+            displayDataTypes={false}
+            onDelete={handleDelete}
+            onAdd={handleAdd}
+            onEdit={handleEdit}
+          />
+        </>
+      ))}
+    </>
   );
 };
