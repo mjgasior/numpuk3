@@ -65,9 +65,58 @@ const GRAM_MINUS_BACTERIA = [
   "Comamonas kerstersii",
 ];
 
-export const ALL_TEST_TYPES = [
+const ALL_TEST_TYPES = [
   ...ANAEROBIC_BACTERIA,
   ...FUNGI,
   ...GRAM_MINUS_BACTERIA,
   ...GRAM_PLUS_BACTERIA,
 ];
+
+module.exports.initializeTypes = function () {
+  const fs = require("fs");
+
+  const path = "test-types.json";
+
+  try {
+    if (fs.existsSync(path)) {
+      console.log("Configuration file exists - loading");
+
+      fs.readFile(path, (err, data) => {
+        if (err) {
+          throw err;
+        }
+        const testTypes = JSON.parse(data);
+        console.log(testTypes);
+        global.testTypes = [
+          ...testTypes.anaerobic,
+          ...testTypes.fungi,
+          ...testTypes.gramMinus,
+          ...testTypes.gramPlus,
+        ];
+      });
+    } else {
+      console.log("Configuration file doesn't exist - creating");
+
+      const data = JSON.stringify(
+        {
+          anaerobic: ANAEROBIC_BACTERIA,
+          fungi: FUNGI,
+          gramMinus: GRAM_MINUS_BACTERIA,
+          gramPlus: GRAM_PLUS_BACTERIA,
+        },
+        null,
+        2
+      );
+
+      fs.writeFile(path, data, (err) => {
+        if (err) {
+          throw err;
+        }
+        global.testTypes = ALL_TEST_TYPES;
+        console.log("Data written to file");
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};

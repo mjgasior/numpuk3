@@ -6,6 +6,7 @@ let log = {
   warn: (m) => console.warn(m),
 };
 let db;
+let testTypes = [];
 
 if (window.require) {
   const electron = window.require("electron");
@@ -13,6 +14,7 @@ if (window.require) {
   moment = electron.remote.require("moment");
   log = electron.remote.require("electron-log");
   db = electron.remote.getGlobal("database");
+  testTypes = electron.remote.getGlobal("testTypes");
 }
 
-export { exceljs, moment, log, db };
+export { exceljs, moment, log, db, testTypes };

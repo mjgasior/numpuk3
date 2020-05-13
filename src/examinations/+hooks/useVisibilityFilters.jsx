@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ALL_TEST_TYPES } from "../../+services/readers/testTypes/testTypes";
+import { getAllTypes } from "../../+services/testTypeService";
 
 export const useVisibilityFilters = () => {
   const [metadataVisibility, setMetadataVisibility] = useState({
@@ -13,7 +13,7 @@ export const useVisibilityFilters = () => {
   });
 
   const [testsVisibility, setTestsVisibility] = useState(
-    createInitialObject(ALL_TEST_TYPES)
+    createInitialObject(getAllTypes())
   );
 
   const [testFilters, setTestFilters] = useState({});

@@ -1,7 +1,7 @@
-import { ALL_TEST_TYPES } from "./testTypes";
-import { logger } from "./../../logger";
+import { logger } from "./logger";
+import { testTypes } from "../+apis/dependenciesApi";
 
-const testsSet = new Set(ALL_TEST_TYPES);
+const testsSet = new Set(testTypes);
 
 const COMMON_MISTAKES = {
   "clostridium innocum": "Clostridium innocuum",
@@ -21,12 +21,14 @@ const COMMON_MISTAKES = {
   "straphylococcus aureus": "Staphylococcus aureus",
 };
 
+export const getAllTypes = () => testTypes;
+
 export const hasTest = (testName) => {
   return testsSet.has(testName);
 };
 
 export const tryFixTestName = (testName) => {
-  const newName = ALL_TEST_TYPES.find((testType) =>
+  const newName = testTypes.find((testType) =>
     testType.toLowerCase().includes(testName.toLowerCase())
   );
 
