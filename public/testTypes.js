@@ -85,14 +85,19 @@ module.exports.initializeTypes = function () {
         if (err) {
           throw err;
         }
-        let testTypes = JSON.parse(data);
+        const testTypes = JSON.parse(data);
         console.log(testTypes);
-        global.testTypes = testTypes;
+        global.testTypes = [
+          ...testTypes.anaerobic,
+          ...testTypes.fungi,
+          ...testTypes.gramMinus,
+          ...testTypes.gramPlus,
+        ];
       });
     } else {
       console.log("Configuration file doesn't exist - creating");
 
-      let data = JSON.stringify(
+      const data = JSON.stringify(
         {
           anaerobic: ANAEROBIC_BACTERIA,
           fungi: FUNGI,

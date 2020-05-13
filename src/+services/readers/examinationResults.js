@@ -1,6 +1,6 @@
 import { setValue } from "./+utils/dataReader";
 import { logger } from "./../logger";
-import { hasTest, tryFixTestName } from "./testTypes/testTypeService";
+import { hasTest, tryFixTestName } from "./../testTypeService";
 
 export const getExaminationResults = (worksheet) => {
   let dictionary = {};

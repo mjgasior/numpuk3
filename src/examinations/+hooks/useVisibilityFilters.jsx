@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { getAllTypes } from "../../+services/readers/testTypes/testTypeService";
+import { getAllTypes } from "../../+services/testTypeService";
 
 export const useVisibilityFilters = () => {
   const [metadataVisibility, setMetadataVisibility] = useState({
