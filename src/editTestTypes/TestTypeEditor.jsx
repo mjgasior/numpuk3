@@ -12,16 +12,32 @@ export const TestTypeEditor = () => {
       setTypes(updated_src);
     } else {
       setTypes(existing_src);
+      return false;
     }
   };
 
   const handleEdit = ({ new_value, updated_src, existing_value }) => {
     if (existing_value !== new_value) {
       setTypes(updated_src);
+      console.log("ws");
     }
   };
 
   return (
+    <ReactJson
+      src={types}
+      name={false}
+      enableClipboard={false}
+      displayDataTypes={false}
+      onDelete={handleDelete}
+      onAdd={handleAdd}
+      onEdit={handleEdit}
+    />
+  );
+};
+
+/*
+ return (
     <>
       {Object.keys(types).map((type) => (
         <>
@@ -39,4 +55,4 @@ export const TestTypeEditor = () => {
       ))}
     </>
   );
-};
+  */
