@@ -14,6 +14,10 @@ Run `yarn run pack` (not `yarn pack` because this invokes yarn build-in packing!
 Logs are available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\logs\main.log`.
 Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.db`.
 
+### NeDB performance:
+
+- reading 630 files (start - 1589395505324; finish - 1589395976278)
+
 ## Snippets:
 
 - `git branch | %{ $_.Trim() } | ?{ $_ -ne 'master' } | %{ git branch -D $_ }` - delete all local branches except master (on Windows)

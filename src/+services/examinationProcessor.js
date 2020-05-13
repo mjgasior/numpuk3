@@ -9,6 +9,8 @@ export const processExaminations = async (
 ) => {
   let errorCount = 0;
   const errorFiles = [];
+
+  logger.info(Date.now());
   for (let index = 0; index < files.length; index++) {
     const filepath = `${directory}/${files[index]}`;
 
@@ -49,6 +51,7 @@ export const processExaminations = async (
     }
     setProcessedFiles(index + 1);
   }
+  logger.info(Date.now());
   logger.info(`${errorCount} files with major errors`);
   logger.info(errorFiles);
 };
