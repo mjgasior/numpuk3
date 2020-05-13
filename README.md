@@ -54,5 +54,6 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 
 - [Dealing with infinite loops in useEffect hook](https://dev.to/webcoderkz/dealing-with-infinite-loops-in-useeffect-hook-j11)
 - [Inifinite loop when saving an object from async await](https://stackoverflow.com/questions/61717644/inifinite-loop-when-saving-an-object-from-async-await)
+- [React memo closure problem example](https://stackoverflow.com/questions/61779826/why-the-props-that-are-passed-to-memo-are-dont-store-the-value)
 - [React hooks... Oops! Part 2 - why does my effect run multiple times with the same dependencies?](https://lukaszmakuch.pl/post/react-hooks-oops-part-2-effect-runs-multiple-times-with-the-same-dependencies/)
 - [You’re overusing useMemo: Rethinking Hooks memoization](https://blog.logrocket.com/rethinking-hooks-memoization/)

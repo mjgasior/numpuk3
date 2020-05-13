@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const VisibilityList = React.memo(({ visibility, setVisibility }) => {
+export const VisibilityList = ({ visibility, setVisibility }) => {
   const { t } = useTranslation("n3_metadata");
 
   const classes = useStyles();
@@ -35,6 +35,7 @@ export const VisibilityList = React.memo(({ visibility, setVisibility }) => {
         <FormGroup>
           {Object.keys(visibility).map((objectKey) => (
             <LabelSwitch
+              key={objectKey}
               label={t(objectKey)}
               handleChange={handleChange}
               name={objectKey}
@@ -45,4 +46,4 @@ export const VisibilityList = React.memo(({ visibility, setVisibility }) => {
       </Paper>
     </Grid>
   );
-});
+};
