@@ -25,30 +25,33 @@ const getExaminationsAsync = (projection, findQuery, pagination) => {
   const { page, rowsPerPage } = pagination;
 
   return new Promise((resolve, reject) => {
-    db.find(findQuery)
-      .skip(page * rowsPerPage)
-      .limit(rowsPerPage)
-      .sort({ examinationId: 1 })
-      .projection(projection)
-      .exec((err, docs) => {
-        if (err) {
-          logger.error(err);
-          reject(err);
-        }
-        resolve(docs);
-      });
+    try {
+      const docs = db
+        .chain()
+        .find(findQuery)
+        .offset(page * rowsPerPage)
+        .limit(rowsPerPage)
+        .simplesort("examinationId")
+        .data();
+      console.log(docs);
+      resolve(docs);
+    } catch (error) {
+      logger.error(error);
+      reject(error);
+    }
   });
 };
 
 const getExaminationsCountAsync = (query) => {
   return new Promise((resolve, reject) => {
-    db.count(query, (err, count) => {
-      if (err) {
-        logger.error(err);
-        reject(err);
-      }
+    try {
+      const count = db.count();
+      console.log(count);
       resolve(count);
-    });
+    } catch (error) {
+      logger.error(error);
+      reject(error);
+    }
   });
 };
 

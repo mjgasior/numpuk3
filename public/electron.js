@@ -12,7 +12,7 @@ let databaseFilepath = path.join(userData, "values.db");
 log.info(databaseFilepath);
 
 var database = new loki("examinations.db");
-var db = database.addCollection("users");
+var db = database.addCollection("users", { indices: ["examinationId"] });
 
 global.database = db;
 
