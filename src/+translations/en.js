@@ -26,6 +26,7 @@ export const english = {
       n3_select_directory: "Select directory",
       n3_select_file: "Select file",
       n3_set_column_visibility: "Set column visibility",
+      n3_test_types_editor: "Test types editor",
 
       n3_label_rows_per_page: "Rows per page",
       n3_label_displayed_rows: "from {{from}} to {{to}} out of {{count}}",
