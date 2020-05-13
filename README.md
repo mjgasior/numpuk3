@@ -47,6 +47,7 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - [Persisting data in Electron](https://www.techiediaries.com/electron-data-persistence/)
 - [React Double Scrollbar](https://github.com/umchee/react-double-scrollbar)
 - [Reading Excel file using node.js](https://stackoverflow.com/questions/28860728/reading-excel-file-using-node-js "Stack Overflow answer")
+- [Reading and Writing JSON Files with Node.js](https://stackabuse.com/reading-and-writing-json-files-with-node-js/)
 - [Readme.md markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 - [Using Electron with React: The Basics](https://medium.com/@brockhoff/using-electron-with-react-the-basics-e93f9761f86f)
 
