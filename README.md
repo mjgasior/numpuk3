@@ -61,3 +61,8 @@ Database is available at `C:\Users\%USERPROFILE%\AppData\Roaming\numpuk3\values.
 - [React memo closure problem example](https://stackoverflow.com/questions/61779826/why-the-props-that-are-passed-to-memo-are-dont-store-the-value)
 - [React hooks... Oops! Part 2 - why does my effect run multiple times with the same dependencies?](https://lukaszmakuch.pl/post/react-hooks-oops-part-2-effect-runs-multiple-times-with-the-same-dependencies/)
 - [You’re overusing useMemo: Rethinking Hooks memoization](https://blog.logrocket.com/rethinking-hooks-memoization/)
+
+### LokiJS:
+
+- [LokiJS docs on Phaser 3](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/lokijs/)
+- [LokiJS Wiki](https://github.com/techfort/LokiJS/wiki)
