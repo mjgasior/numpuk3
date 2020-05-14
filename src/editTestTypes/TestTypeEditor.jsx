@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { getTypes } from "../+services/testTypeService";
 import { JsonEditor } from "./+components/JsonEditor";
 
 export const TestTypeEditor = () => {
   const [types, setTypes] = useState(getTypes());
 
-  const handleDelete = (type, e) => {
-    setTypes((old) => ({ ...old, [type]: e.updated_src }));
-  };
+  const handleDelete = useCallback(
+    (type, e) => setTypes((old) => ({ ...old, [type]: e.updated_src })),
+    [setTypes]
+  );
 
-  const handleAdd = (type, e) => {
-    setTypes((old) => ({ ...old, [type]: e.updated_src }));
-  };
+  const handleAdd = useCallback(
+    (type, e) => setTypes((old) => ({ ...old, [type]: e.updated_src })),
+    [setTypes]
+  );
 
-  const handleEdit = (type, { new_value, updated_src, existing_value }) => {
-    if (existing_value !== new_value) {
-      setTypes((old) => ({ ...old, [type]: updated_src }));
-    }
-  };
+  const handleEdit = useCallback(
+    (type, { new_value, updated_src, existing_value }) => {
+      if (existing_value !== new_value) {
+        setTypes((old) => ({ ...old, [type]: updated_src }));
+      }
+    },
+    [setTypes]
+  );
 
   return (
     <>

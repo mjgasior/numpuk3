@@ -73,6 +73,11 @@ export const english = {
       CANDIDIASIS: "Candidiasis",
       REGULAR: "Regular",
       EXTENDED: "Extended",
+
+      anaerobic: "Anaerobic bacteria",
+      fungi: "Fungi",
+      gramMinus: "Gram negative bacteria",
+      gramPlus: "Gram positive bacteria",
     },
   },
 };

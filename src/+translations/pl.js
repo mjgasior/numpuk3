@@ -75,6 +75,11 @@ export const polish = {
       CANDIDIASIS: "Kandydoza",
       REGULAR: "Zwykły",
       EXTENDED: "Rozszerzony",
+
+      anaerobic: "Bakterie beztlenowe",
+      fungi: "Grzyby",
+      gramMinus: "Bakterie gram ujemne",
+      gramPlus: "Bakterie gram dodatnie",
     },
   },
 };
