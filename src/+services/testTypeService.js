@@ -1,11 +1,11 @@
 import { logger } from "./logger";
-import { testTypes } from "../+apis/dependenciesApi";
+import { tests } from "../+apis/dependenciesApi";
 
 const fullSet = [
-  ...testTypes.anaerobic,
-  ...testTypes.fungi,
-  ...testTypes.gramMinus,
-  ...testTypes.gramPlus,
+  ...tests.types.anaerobic,
+  ...tests.types.fungi,
+  ...tests.types.gramMinus,
+  ...tests.types.gramPlus,
 ];
 
 const testsSet = new Set(fullSet);
@@ -28,7 +28,8 @@ const COMMON_MISTAKES = {
   "straphylococcus aureus": "Staphylococcus aureus",
 };
 
-export const getTypes = () => testTypes;
+export const updateTypes = (data, callback) => tests.save(data, callback);
+export const getTypes = () => tests.types;
 export const getAllTypes = () => fullSet;
 
 export const hasTest = (testName) => {
@@ -36,7 +37,7 @@ export const hasTest = (testName) => {
 };
 
 export const tryFixTestName = (testName) => {
-  const newName = testTypes.find((testType) =>
+  const newName = tests.types.find((testType) =>
     testType.toLowerCase().includes(testName.toLowerCase())
   );
 

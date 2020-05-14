@@ -23,6 +23,8 @@ export const english = {
       n3_open_single: "Open single examination",
       n3_process_files: "Process files",
       n3_processing_files: "Processing files",
+      n3_save_changes: "Save changes",
+      n3_saved: "Saved",
       n3_select_directory: "Select directory",
       n3_select_file: "Select file",
       n3_set_column_visibility: "Set column visibility",

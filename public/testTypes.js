@@ -65,21 +65,41 @@ const GRAM_MINUS_BACTERIA = [
   "Comamonas kerstersii",
 ];
 
+const fs = require("fs");
+
+const FILENAME = "test-types.json";
+
+const saveToFile = (objectToSave, callback) => {
+  const jsonData = JSON.stringify(objectToSave, null, 2);
+  fs.writeFile(FILENAME, jsonData, (err) => {
+    if (err) {
+      throw err;
+    }
+    global.tests.types = objectToSave;
+    console.log("Data written to file");
+
+    if (callback) {
+      callback();
+    }
+  });
+};
+
+const loadFromFile = () => {
+  fs.readFile(FILENAME, (err, data) => {
+    if (err) {
+      throw err;
+    }
+    global.tests.types = JSON.parse(data);
+  });
+};
+
+global.tests = { save: saveToFile };
+
 module.exports.initializeTypes = function () {
-  const fs = require("fs");
-
-  const path = "test-types.json";
-
   try {
-    if (fs.existsSync(path)) {
+    if (fs.existsSync(FILENAME)) {
       console.log("Configuration file exists - loading");
-
-      fs.readFile(path, (err, data) => {
-        if (err) {
-          throw err;
-        }
-        global.testTypes = JSON.parse(data);
-      });
+      loadFromFile();
     } else {
       console.log("Configuration file doesn't exist - creating");
 
@@ -90,15 +110,7 @@ module.exports.initializeTypes = function () {
         gramPlus: GRAM_PLUS_BACTERIA,
       };
 
-      const jsonData = JSON.stringify(data, null, 2);
-
-      fs.writeFile(path, jsonData, (err) => {
-        if (err) {
-          throw err;
-        }
-        global.testTypes = data;
-        console.log("Data written to file");
-      });
+      saveToFile(data);
     }
   } catch (err) {
     console.error(err);
