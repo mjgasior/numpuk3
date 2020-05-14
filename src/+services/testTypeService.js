@@ -37,7 +37,7 @@ export const hasTest = (testName) => {
 };
 
 export const tryFixTestName = (testName) => {
-  const newName = tests.types.find((testType) =>
+  const newName = getAllTypes().find((testType) =>
     testType.toLowerCase().includes(testName.toLowerCase())
   );
 

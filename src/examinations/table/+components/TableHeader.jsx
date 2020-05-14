@@ -15,11 +15,11 @@ export const TableHeader = ({ metadataColumns, testColumns }) => {
           <TooltipCell title={t("ageAtTest")}>{t("n3_age")}</TooltipCell>
         )}
         {metadataColumns.ph && <TableCell>{t("ph")}</TableCell>}
-        {metadataColumns.consistency && (
-          <TableCell>{t("consistency")}</TableCell>
-        )}
         {metadataColumns.bacteriaCount && (
           <TableCell>{t("n3_amount_of_bacteria")}</TableCell>
+        )}
+        {metadataColumns.consistency && (
+          <TableCell>{t("consistency")}</TableCell>
         )}
         {metadataColumns.hasAkkermansiaMuciniphila && (
           <TooltipCell title={t("hasAkkermansiaMuciniphila")}>
