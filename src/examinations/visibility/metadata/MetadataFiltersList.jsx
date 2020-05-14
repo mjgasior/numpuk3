@@ -1,10 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { PhSlider } from "./PhFilter";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import FormGroup from "@material-ui/core/FormGroup";
+import { LabelSwitch } from "../+components/LabelSwitch";
 import { useTranslation } from "react-i18next";
-import { LabelSwitch } from "./../+components/LabelSwitch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const VisibilityList = ({ visibility, setVisibility }) => {
+export const MetadataFiltersList = ({ visibility, setVisibility }) => {
   const { t } = useTranslation("n3_metadata");
 
   const classes = useStyles();
@@ -34,13 +35,16 @@ export const VisibilityList = ({ visibility, setVisibility }) => {
       <Paper className={classes.paper}>
         <FormGroup>
           {Object.keys(visibility).map((objectKey) => (
-            <LabelSwitch
-              key={objectKey}
-              label={t(objectKey)}
-              handleChange={handleChange}
-              name={objectKey}
-              isVisible={visibility[objectKey]}
-            />
+            <>
+              <LabelSwitch
+                key={objectKey}
+                label={t(objectKey)}
+                handleChange={handleChange}
+                name={objectKey}
+                isVisible={visibility[objectKey]}
+              />
+              {objectKey === "ph" && <PhSlider />}
+            </>
           ))}
         </FormGroup>
       </Paper>
