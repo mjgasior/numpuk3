@@ -1,27 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
 import { PhSlider } from "./PhFilter";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import FormGroup from "@material-ui/core/FormGroup";
 import { LabelSwitch } from "../+components/LabelSwitch";
 import { useTranslation } from "react-i18next";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
+import { Block } from "../+components/Block";
 
 export const MetadataFiltersList = ({ visibility, setVisibility }) => {
   const { t } = useTranslation("n3_metadata");
 
-  const classes = useStyles();
+  const [] = useState({});
 
   const handleChange = (event) => {
     setVisibility({
@@ -31,23 +17,19 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
   };
 
   return (
-    <Grid item xs={6}>
-      <Paper className={classes.paper}>
-        <FormGroup>
-          {Object.keys(visibility).map((objectKey) => (
-            <>
-              <LabelSwitch
-                key={objectKey}
-                label={t(objectKey)}
-                handleChange={handleChange}
-                name={objectKey}
-                isVisible={visibility[objectKey]}
-              />
-              {objectKey === "ph" && <PhSlider />}
-            </>
-          ))}
-        </FormGroup>
-      </Paper>
-    </Grid>
+    <Block>
+      {Object.keys(visibility).map((objectKey) => (
+        <>
+          <LabelSwitch
+            key={objectKey}
+            label={t(objectKey)}
+            handleChange={handleChange}
+            name={objectKey}
+            isVisible={visibility[objectKey]}
+          />
+          {objectKey === "ph" && <PhSlider />}
+        </>
+      ))}
+    </Block>
   );
 };

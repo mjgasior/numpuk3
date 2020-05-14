@@ -1,21 +1,7 @@
 import React, { useCallback } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import FormGroup from "@material-ui/core/FormGroup";
 import { useTranslation } from "react-i18next";
 import { Filter } from "./Filter";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
+import { Block } from "../+components/Block";
 
 export const TestFiltersList = ({
   visibility,
@@ -24,7 +10,6 @@ export const TestFiltersList = ({
   setFilters,
 }) => {
   const { t } = useTranslation("n3_metadata");
-  const classes = useStyles();
 
   const handleChange = useCallback(
     (name, value) => {
@@ -55,22 +40,18 @@ export const TestFiltersList = ({
   );
 
   return (
-    <Grid item xs={6}>
-      <Paper className={classes.paper}>
-        <FormGroup>
-          {Object.keys(visibility).map((objectKey) => (
-            <Filter
-              t={t}
-              key={objectKey}
-              objectKey={objectKey}
-              isVisible={visibility[objectKey]}
-              onVisibilityChange={handleChange}
-              isFiltered={filters[objectKey]}
-              onFilterChange={handleFilterChange}
-            />
-          ))}
-        </FormGroup>
-      </Paper>
-    </Grid>
+    <Block>
+      {Object.keys(visibility).map((objectKey) => (
+        <Filter
+          t={t}
+          key={objectKey}
+          objectKey={objectKey}
+          isVisible={visibility[objectKey]}
+          onVisibilityChange={handleChange}
+          isFiltered={filters[objectKey]}
+          onFilterChange={handleFilterChange}
+        />
+      ))}
+    </Block>
   );
 };
