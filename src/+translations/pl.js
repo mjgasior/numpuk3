@@ -25,7 +25,8 @@ export const polish = {
       n3_process_files: "Przetwarzaj pliki",
       n3_processing_files: "Przetwarzanie plików",
       n3_save_changes: "Zapisz zmiany",
-      n3_saved: "Zapisano",
+      n3_saved_please_restart:
+        "Zapisano nowe typy testów, proszę zrestartować aplikację",
       n3_select_directory: "Wybierz lokalizację",
       n3_select_file: "Wybierz plik",
       n3_set_column_visibility: "Ustaw widoczność kolumn",

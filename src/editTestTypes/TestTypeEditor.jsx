@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { getTypes } from "../+services/testTypeService";
+import { getTypes, updateTypes } from "../+services/testTypeService";
 import { JsonEditor } from "./+components/JsonEditor";
 import { useTranslation } from "react-i18next";
 import Button from "@material-ui/core/Button";
@@ -41,7 +41,9 @@ export const TestTypeEditor = () => {
         <Button
           variant="contained"
           startIcon={<SaveIcon />}
-          onClick={() => setIsSnackbar(true)}
+          onClick={() => {
+            updateTypes(types, () => setIsSnackbar(true));
+          }}
         >
           {t("n3_save_changes")}
         </Button>
@@ -60,7 +62,7 @@ export const TestTypeEditor = () => {
       <Toast
         isOpen={isSnackbar}
         onClose={() => setIsSnackbar(false)}
-        message={t("n3_saved")}
+        message={t("n3_saved_please_restart")}
       />
     </>
   );
