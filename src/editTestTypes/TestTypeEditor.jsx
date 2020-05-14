@@ -1,58 +1,36 @@
 import React, { useState } from "react";
-import ReactJson from "react-json-view";
 import { getTypes } from "../+services/testTypeService";
+import { JsonEditor } from "./+components/JsonEditor";
 
 export const TestTypeEditor = () => {
   const [types, setTypes] = useState(getTypes());
 
-  const handleDelete = ({ updated_src }) => setTypes(updated_src);
-
-  const handleAdd = ({ new_value, updated_src, existing_src }) => {
-    if (Array.isArray(new_value)) {
-      setTypes(updated_src);
-    } else {
-      setTypes(existing_src);
-      return false;
-    }
+  const handleDelete = (type, e) => {
+    setTypes((old) => ({ ...old, [type]: e.updated_src }));
   };
 
-  const handleEdit = ({ new_value, updated_src, existing_value }) => {
+  const handleAdd = (type, e) => {
+    setTypes((old) => ({ ...old, [type]: e.updated_src }));
+  };
+
+  const handleEdit = (type, { new_value, updated_src, existing_value }) => {
     if (existing_value !== new_value) {
-      setTypes(updated_src);
-      console.log("ws");
+      setTypes((old) => ({ ...old, [type]: updated_src }));
     }
   };
 
   return (
-    <ReactJson
-      src={types}
-      name={false}
-      enableClipboard={false}
-      displayDataTypes={false}
-      onDelete={handleDelete}
-      onAdd={handleAdd}
-      onEdit={handleEdit}
-    />
-  );
-};
-
-/*
- return (
     <>
       {Object.keys(types).map((type) => (
-        <>
-          <div>{type}</div>
-          <ReactJson
-            src={types[type]}
-            name={false}
-            enableClipboard={false}
-            displayDataTypes={false}
-            onDelete={handleDelete}
-            onAdd={handleAdd}
-            onEdit={handleEdit}
-          />
-        </>
+        <JsonEditor
+          key={type}
+          type={type}
+          jsonData={types[type]}
+          onDelete={handleDelete}
+          onAdd={handleAdd}
+          onEdit={handleEdit}
+        />
       ))}
     </>
   );
-  */
+};
