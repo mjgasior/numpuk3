@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { ThreeStateCheckbox } from "./ThreeStateCheckbox";
-import { LabelSwitch } from "./LabelSwitch";
+import { LabelSwitch } from "./../+components/LabelSwitch";
 
 const FilterComponent = ({
   t,

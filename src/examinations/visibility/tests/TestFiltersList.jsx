@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FiltersList = ({
+export const TestFiltersList = ({
   visibility,
   setVisibility,
   filters,

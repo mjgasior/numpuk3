@@ -6,8 +6,8 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
-import { FiltersList } from "./+components/FiltersList";
-import { VisibilityList } from "./+components/VisibilityList";
+import { TestFiltersList } from "./tests/TestFiltersList";
+import { VisibilityList } from "./metadata/VisibilityList";
 
 export const VisibilityDialog = ({
   onCancel,
@@ -41,7 +41,7 @@ export const VisibilityDialog = ({
             visibility={newMetadataVisibility}
             setVisibility={setNewMetadataVisibility}
           />
-          <FiltersList
+          <TestFiltersList
             visibility={newTestsVisibility}
             setVisibility={setNewTestsVisibility}
             filters={newTestsFilters}

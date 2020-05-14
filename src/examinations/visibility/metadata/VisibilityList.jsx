@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useTranslation } from "react-i18next";
-import { LabelSwitch } from "./LabelSwitch";
+import { LabelSwitch } from "./../+components/LabelSwitch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
