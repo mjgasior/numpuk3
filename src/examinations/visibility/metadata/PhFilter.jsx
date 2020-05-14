@@ -1,10 +1,12 @@
 import React from "react";
 import Slider from "@material-ui/core/Slider";
+import { useTranslation } from "react-i18next";
+import { LabelSwitch } from "../+components/LabelSwitch";
 
 const MIN_PH = 0;
 const MAX_PH = 14;
 
-export const PhSlider = ({ ph, onPhChanged }) => {
+const PhSlider = ({ ph, onPhChanged }) => {
   return (
     <Slider
       min={MIN_PH}
@@ -17,5 +19,22 @@ export const PhSlider = ({ ph, onPhChanged }) => {
       valueLabelDisplay="auto"
       aria-labelledby="range-slider"
     />
+  );
+};
+
+export const PhFilter = ({ visibility, filter, onVisibility, onFilter }) => {
+  const { t } = useTranslation("n3_metadata");
+
+  return (
+    <>
+      <LabelSwitch
+        key="ph"
+        label={t("ph")}
+        handleChange={onVisibility}
+        name={"ph"}
+        isVisible={visibility}
+      />
+      <PhSlider ph={filter} onPhChanged={onFilter} />
+    </>
   );
 };

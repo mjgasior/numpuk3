@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PhSlider } from "./PhFilter";
+import { PhSlider, PhFilter } from "./PhFilter";
 import { LabelSwitch } from "../+components/LabelSwitch";
 import { useTranslation } from "react-i18next";
 import { Block } from "../+components/Block";
@@ -17,19 +17,20 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
     hasFaecalibactriumPrausnitzii: true,
   });
 
-  const handleChange = (event) => {
-    setVisibility({
-      ...visibility,
+  const handleChange = (event) =>
+    setVisibility((old) => ({
+      ...old,
       [event.target.name]: event.target.checked,
-    });
-  };
+    }));
 
   const handlePhChange = (newValue) =>
     setFilters((old) => ({ ...old, ph: newValue }));
 
+  const { ph, ...rest } = visibility;
+
   return (
     <Block>
-      {Object.keys(visibility).map((objectKey) => (
+      {Object.keys(rest).map((objectKey) => (
         <>
           <LabelSwitch
             key={objectKey}
@@ -38,11 +39,14 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
             name={objectKey}
             isVisible={visibility[objectKey]}
           />
-          {objectKey === "ph" && (
-            <PhSlider ph={filters.ph} onPhChanged={handlePhChange} />
-          )}
         </>
       ))}
+      <PhFilter
+        visibility={ph}
+        filter={filters.ph}
+        onVisibility={handleChange}
+        onFilter={handlePhChange}
+      />
     </Block>
   );
 };
