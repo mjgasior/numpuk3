@@ -23,9 +23,13 @@ export const english = {
       n3_open_single: "Open single examination",
       n3_process_files: "Process files",
       n3_processing_files: "Processing files",
+      n3_save_changes: "Save changes",
+      n3_saved_please_restart:
+        "New types saved, please restart the application",
       n3_select_directory: "Select directory",
       n3_select_file: "Select file",
       n3_set_column_visibility: "Set column visibility",
+      n3_test_types_editor: "Test types editor",
 
       n3_label_rows_per_page: "Rows per page",
       n3_label_displayed_rows: "from {{from}} to {{to}} out of {{count}}",
@@ -72,6 +76,11 @@ export const english = {
       CANDIDIASIS: "Candidiasis",
       REGULAR: "Regular",
       EXTENDED: "Extended",
+
+      anaerobic: "Anaerobic bacteria",
+      fungi: "Fungi",
+      gramMinus: "Gram negative bacteria",
+      gramPlus: "Gram positive bacteria",
     },
   },
 };

@@ -65,56 +65,52 @@ const GRAM_MINUS_BACTERIA = [
   "Comamonas kerstersii",
 ];
 
-const ALL_TEST_TYPES = [
-  ...ANAEROBIC_BACTERIA,
-  ...FUNGI,
-  ...GRAM_MINUS_BACTERIA,
-  ...GRAM_PLUS_BACTERIA,
-];
+const fs = require("fs");
+
+const FILENAME = "test-types.json";
+
+const saveToFile = (objectToSave, callback) => {
+  const jsonData = JSON.stringify(objectToSave, null, 2);
+  fs.writeFile(FILENAME, jsonData, (err) => {
+    if (err) {
+      throw err;
+    }
+    global.tests.types = objectToSave;
+    console.log("Data written to file");
+
+    if (callback) {
+      callback();
+    }
+  });
+};
+
+const loadFromFile = () => {
+  fs.readFile(FILENAME, (err, data) => {
+    if (err) {
+      throw err;
+    }
+    global.tests.types = JSON.parse(data);
+  });
+};
+
+global.tests = { save: saveToFile };
 
 module.exports.initializeTypes = function () {
-  const fs = require("fs");
-
-  const path = "test-types.json";
-
   try {
-    if (fs.existsSync(path)) {
+    if (fs.existsSync(FILENAME)) {
       console.log("Configuration file exists - loading");
-
-      fs.readFile(path, (err, data) => {
-        if (err) {
-          throw err;
-        }
-        const testTypes = JSON.parse(data);
-        console.log(testTypes);
-        global.testTypes = [
-          ...testTypes.anaerobic,
-          ...testTypes.fungi,
-          ...testTypes.gramMinus,
-          ...testTypes.gramPlus,
-        ];
-      });
+      loadFromFile();
     } else {
       console.log("Configuration file doesn't exist - creating");
 
-      const data = JSON.stringify(
-        {
-          anaerobic: ANAEROBIC_BACTERIA,
-          fungi: FUNGI,
-          gramMinus: GRAM_MINUS_BACTERIA,
-          gramPlus: GRAM_PLUS_BACTERIA,
-        },
-        null,
-        2
-      );
+      const data = {
+        anaerobic: ANAEROBIC_BACTERIA,
+        fungi: FUNGI,
+        gramMinus: GRAM_MINUS_BACTERIA,
+        gramPlus: GRAM_PLUS_BACTERIA,
+      };
 
-      fs.writeFile(path, data, (err) => {
-        if (err) {
-          throw err;
-        }
-        global.testTypes = ALL_TEST_TYPES;
-        console.log("Data written to file");
-      });
+      saveToFile(data);
     }
   } catch (err) {
     console.error(err);

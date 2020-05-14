@@ -24,9 +24,13 @@ export const polish = {
       n3_open_single: "Otwórz pojedyncze badanie",
       n3_process_files: "Przetwarzaj pliki",
       n3_processing_files: "Przetwarzanie plików",
+      n3_save_changes: "Zapisz zmiany",
+      n3_saved_please_restart:
+        "Zapisano nowe typy testów, proszę zrestartować aplikację",
       n3_select_directory: "Wybierz lokalizację",
       n3_select_file: "Wybierz plik",
       n3_set_column_visibility: "Ustaw widoczność kolumn",
+      n3_test_types_editor: "Edytor testów",
 
       n3_label_rows_per_page: "Wierszy na stronę",
       n3_label_displayed_rows: "od {{from}}. do {{to}}. z {{count}}",
@@ -74,6 +78,11 @@ export const polish = {
       CANDIDIASIS: "Kandydoza",
       REGULAR: "Zwykły",
       EXTENDED: "Rozszerzony",
+
+      anaerobic: "Bakterie beztlenowe",
+      fungi: "Grzyby",
+      gramMinus: "Bakterie gram ujemne",
+      gramPlus: "Bakterie gram dodatnie",
     },
   },
 };

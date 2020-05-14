@@ -35,7 +35,7 @@ global.database = db;
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
-    minWidth: 800,
+    minWidth: 1000,
     minHeight: 600,
     icon: `${path.join(__dirname, "./favicon.ico")}`,
     webPreferences: {

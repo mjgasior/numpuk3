@@ -1,6 +1,7 @@
 export const ROUTES = {
+  EDITOR: "/editor",
   EXAMINATIONS: "/examinations",
-  UPLOAD: "/upload",
-  READER: "/",
   LOGS: "/logs",
+  READER: "/",
+  UPLOAD: "/upload",
 };

@@ -24,7 +24,11 @@
     "Alistipes finegoldii",
     "Butyricimonas virosa"
   ],
-  "fungi": ["Candida albicans", "Candida non-albicans", "Grzyby pleśniowe"],
+  "fungi": [
+    "Candida albicans",
+    "Candida non-albicans",
+    "Grzyby pleśniowe"
+  ],
   "gramMinus": [
     "Escherichia coli",
     "Proteus spp",
