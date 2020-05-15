@@ -1,4 +1,4 @@
-import { showDirectoryDialog } from "../+utils/dialog";
+import { showDirectoryDialog } from "../../+utils/dialog";
 
 export const showExportDirectoryDialog = async (t) => {
   const options = {

@@ -6,7 +6,6 @@ import { TableRows } from "./+components/TableRows";
 
 export const ExaminationTable = React.memo(
   ({ examinations, metadataColumns, testColumns }) => {
-    console.log("sadasd");
     const testColumnsArray = mapToArray(testColumns);
     return (
       <Table size="small" stickyHeader>

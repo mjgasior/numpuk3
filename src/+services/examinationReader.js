@@ -96,12 +96,6 @@ const MARKER = {
   NEGATIVE: "NEGATIVE",
 };
 
-const CONSISTENCY = {
-  LIQUID: "LIQUID",
-  HALF_LIQUID: "HALF_LIQUID",
-  RIGID: "RIGID",
-};
-
 const hasConsistencyChanged = ({ LIQUID, HALF_LIQUID, RIGID }) => {
   return !(LIQUID === HALF_LIQUID && HALF_LIQUID === RIGID);
 };
