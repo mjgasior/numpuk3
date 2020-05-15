@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { PhFilter } from "./PhFilter";
-import { LabelSwitch } from "../+components/LabelSwitch";
 import { useTranslation } from "react-i18next";
 import { Block } from "../+components/Block";
 import { Filter } from "../+components/Filter";
+import { SliderFilter } from "./SliderFilter";
 
 export const MetadataFiltersList = ({ visibility, setVisibility }) => {
   const { t } = useTranslation("n3_metadata");
@@ -63,13 +62,25 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
         isFiltered={filters.gender}
         objectKey="gender"
       />
-      <Filter
+      <SliderFilter
         t={t}
-        onVisibilityChange={handleVisibilityChange}
-        isVisible={ageAtTest}
-        onFilterChange={handleFilterChange}
-        isFiltered={filters.ageAtTest}
         objectKey="ageAtTest"
+        visibility={ageAtTest}
+        filter={filters.ageAtTest}
+        onVisibility={handleVisibilityChange}
+        onFilter={handleFilterChange}
+        min={0}
+        max={140}
+      />
+      <SliderFilter
+        t={t}
+        objectKey="ph"
+        visibility={ph}
+        filter={filters.ph}
+        onVisibility={handleVisibilityChange}
+        onFilter={handleFilterChange}
+        min={0}
+        max={14}
       />
       <Filter
         t={t}
@@ -102,12 +113,6 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
         onFilterChange={handleFilterChange}
         isFiltered={filters.hasFaecalibactriumPrausnitzii}
         objectKey="hasFaecalibactriumPrausnitzii"
-      />
-      <PhFilter
-        visibility={ph}
-        filter={filters.ph}
-        onVisibility={handleVisibilityChange}
-        onFilter={handlePhChange}
       />
     </Block>
   );
