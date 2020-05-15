@@ -137,8 +137,6 @@ const getMetadataQuery = ({
     ];
   }
 
-  console.log(query);
-
   if (bacteriaCount !== undefined) {
     logger.info("Bacteria count filter not supported!");
   }
