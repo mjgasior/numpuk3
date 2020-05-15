@@ -15,7 +15,7 @@ const FilterComponent = ({
     onVisibilityChange(event.target.name, event.target.checked);
 
   const handleCheckboxChange = (value) => onFilterChange(objectKey, value);
-
+  console.log(objectKey);
   return (
     <Grid container spacing={3}>
       <Grid item xs={1}>

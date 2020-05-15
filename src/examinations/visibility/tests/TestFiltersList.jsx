@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Filter } from "../+components/Filter";
 import { Block } from "../+components/Block";
+import { useHandleCallback } from "../+hooks/useHandleCallback";
 
 export const TestFiltersList = ({
   visibility,
@@ -11,15 +12,7 @@ export const TestFiltersList = ({
 }) => {
   const { t } = useTranslation("n3_metadata");
 
-  const handleChange = useCallback(
-    (name, value) => {
-      setVisibility((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    },
-    [setVisibility]
-  );
+  const handleChange = useHandleCallback(setVisibility);
 
   const handleFilterChange = useCallback(
     (name, value) => {

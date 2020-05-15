@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Block } from "../+components/Block";
 import { Filter } from "../+components/Filter";
 import { SliderFilter } from "./SliderFilter";
+import { useHandleCallback } from "../+hooks/useHandleCallback";
 
 export const MetadataFiltersList = ({ visibility, setVisibility }) => {
   const { t } = useTranslation("n3_metadata");
@@ -17,30 +18,8 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
     hasFaecalibactriumPrausnitzii: undefined,
   });
 
-  const handleVisibilityChange = useCallback(
-    (name, value) => {
-      setVisibility((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    },
-    [setVisibility]
-  );
-
-  const handleFilterChange = useCallback(
-    (name, value) => {
-      setFilters((prevState) => {
-        return {
-          ...prevState,
-          [name]: value,
-        };
-      });
-    },
-    [setFilters]
-  );
-
-  const handlePhChange = (newValue) =>
-    setFilters((old) => ({ ...old, ph: newValue }));
+  const handleVisibilityChange = useHandleCallback(setVisibility);
+  const handleFilterChange = useHandleCallback(setFilters);
 
   const {
     gender,
