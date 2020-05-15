@@ -25,7 +25,11 @@ export const useVisibilityFilters = () => {
     ageAtTest: { min: 0, max: 140 },
     ph: { min: 0, max: 14 },
     bacteriaCount: undefined,
-    consistency: undefined,
+    consistency: {
+      LIQUID: true,
+      HALF_LIQUID: true,
+      RIGID: true,
+    },
     hasAkkermansiaMuciniphila: undefined,
     hasFaecalibactriumPrausnitzii: undefined,
   });

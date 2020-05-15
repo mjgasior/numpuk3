@@ -95,6 +95,16 @@ const MARKER = {
   NEGATIVE: "NEGATIVE",
 };
 
+const CONSISTENCY = {
+  LIQUID: "LIQUID",
+  HALF_LIQUID: "HALF_LIQUID",
+  RIGID: "RIGID",
+};
+
+const hasConsistencyChanged = ({ LIQUID, HALF_LIQUID, RIGID }) => {
+  return !(LIQUID === HALF_LIQUID && HALF_LIQUID === RIGID);
+};
+
 const getMetadataQuery = ({
   gender,
   hasAkkermansiaMuciniphila,
@@ -141,8 +151,13 @@ const getMetadataQuery = ({
     logger.info("Bacteria count filter not supported!");
   }
 
-  if (consistency !== undefined) {
-    logger.info("Bacteria count filter not supported!");
+  if (hasConsistencyChanged(consistency)) {
+    query.$or = [];
+    for (const key in consistency) {
+      if (consistency[key]) {
+        query.$or = [...query.$or, { consistency: key }];
+      }
+    }
   }
 
   return query;

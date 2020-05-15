@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Block } from "../+components/Block";
 import { Filter } from "../+components/Filter";
 import { SliderFilter } from "./SliderFilter";
 import { useHandleCallback } from "../+hooks/useHandleCallback";
+import { ConsistencyFilter } from "./ConsistencyFilter";
 
 export const MetadataFiltersList = ({
   visibility,
@@ -20,7 +21,6 @@ export const MetadataFiltersList = ({
     gender,
     ageAtTest,
     ph,
-    bacteriaCount,
     consistency,
     hasAkkermansiaMuciniphila,
     hasFaecalibactriumPrausnitzii,
@@ -35,6 +35,22 @@ export const MetadataFiltersList = ({
         onFilterChange={handleFilterChange}
         isFiltered={filters.gender}
         objectKey="gender"
+      />
+      <Filter
+        t={t}
+        onVisibilityChange={handleVisibilityChange}
+        isVisible={hasAkkermansiaMuciniphila}
+        onFilterChange={handleFilterChange}
+        isFiltered={filters.hasAkkermansiaMuciniphila}
+        objectKey="hasAkkermansiaMuciniphila"
+      />
+      <Filter
+        t={t}
+        onVisibilityChange={handleVisibilityChange}
+        isVisible={hasFaecalibactriumPrausnitzii}
+        onFilterChange={handleFilterChange}
+        isFiltered={filters.hasFaecalibactriumPrausnitzii}
+        objectKey="hasFaecalibactriumPrausnitzii"
       />
       <SliderFilter
         t={t}
@@ -56,37 +72,13 @@ export const MetadataFiltersList = ({
         min={0}
         max={14}
       />
-      <Filter
-        t={t}
-        onVisibilityChange={handleVisibilityChange}
-        isVisible={bacteriaCount}
-        onFilterChange={handleFilterChange}
-        isFiltered={filters.bacteriaCount}
-        objectKey="bacteriaCount"
-      />
-      <Filter
+      <ConsistencyFilter
         t={t}
         onVisibilityChange={handleVisibilityChange}
         isVisible={consistency}
-        onFilterChange={handleFilterChange}
-        isFiltered={filters.consistency}
+        onFilter={handleFilterChange}
+        filter={filters.consistency}
         objectKey="consistency"
-      />
-      <Filter
-        t={t}
-        onVisibilityChange={handleVisibilityChange}
-        isVisible={hasAkkermansiaMuciniphila}
-        onFilterChange={handleFilterChange}
-        isFiltered={filters.hasAkkermansiaMuciniphila}
-        objectKey="hasAkkermansiaMuciniphila"
-      />
-      <Filter
-        t={t}
-        onVisibilityChange={handleVisibilityChange}
-        isVisible={hasFaecalibactriumPrausnitzii}
-        onFilterChange={handleFilterChange}
-        isFiltered={filters.hasFaecalibactriumPrausnitzii}
-        objectKey="hasFaecalibactriumPrausnitzii"
       />
     </Block>
   );
