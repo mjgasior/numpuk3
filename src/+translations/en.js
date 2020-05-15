@@ -7,6 +7,7 @@ export const english = {
       n3_close: "Close",
       n3_delete_logs: "Delete logs",
       n3_examinations: "Examinations",
+      n3_export_to_excel: "Export to Excel",
       n3_filters: "Filters",
 
       n3_load_directory: "Select directory",

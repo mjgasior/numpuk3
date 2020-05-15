@@ -7,6 +7,7 @@ export const polish = {
       n3_close: "Zamknij",
       n3_delete_logs: "Usuń logi",
       n3_examinations: "Badania",
+      n3_export_to_excel: "Eksportuj do Excela",
       n3_filters: "Filtry",
 
       n3_load_directory: "Wybierz lokalizację",
