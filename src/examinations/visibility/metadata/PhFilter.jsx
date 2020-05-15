@@ -22,7 +22,7 @@ const PhSlider = ({ ph, onPhChanged }) => {
   );
 };
 
-export const PhFilter = ({ visibility, filter, onVisibility, onFilter }) => {
+const PhFilterComponent = ({ visibility, filter, onVisibility, onFilter }) => {
   const { t } = useTranslation("n3_metadata");
 
   return (
@@ -38,3 +38,13 @@ export const PhFilter = ({ visibility, filter, onVisibility, onFilter }) => {
     </>
   );
 };
+
+export const PhFilter = React.memo(PhFilterComponent, areEqual);
+
+function areEqual(prevProps, nextProps) {
+  const hasVisibilityNotChanged = prevProps.visibility === nextProps.visibility;
+  const hasFiltersNotChanged =
+    prevProps.filter.min === nextProps.filter.min &&
+    prevProps.filter.max === nextProps.filter.max;
+  return hasVisibilityNotChanged && hasFiltersNotChanged;
+}

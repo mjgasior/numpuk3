@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Filter } from "./Filter";
+import { Filter } from "../+components/Filter";
 import { Block } from "../+components/Block";
 
 export const TestFiltersList = ({
