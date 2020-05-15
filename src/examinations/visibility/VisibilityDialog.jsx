@@ -14,6 +14,7 @@ export const VisibilityDialog = ({
   onAccept,
   open,
   metadataVisibility,
+  metadataFilters,
   testsVisibility,
   testFilters,
 }) => {
@@ -22,6 +23,7 @@ export const VisibilityDialog = ({
   const [newMetadataVisibility, setNewMetadataVisibility] = useState(
     metadataVisibility
   );
+  const [newMetadataFilters, setNewMetadataFilters] = useState(metadataFilters);
 
   const [newTestsVisibility, setNewTestsVisibility] = useState(testsVisibility);
   const [newTestsFilters, setNewTestsFilters] = useState(testFilters);
@@ -40,6 +42,8 @@ export const VisibilityDialog = ({
           <MetadataFiltersList
             visibility={newMetadataVisibility}
             setVisibility={setNewMetadataVisibility}
+            filters={newMetadataFilters}
+            setFilters={setNewMetadataFilters}
           />
           <TestFiltersList
             visibility={newTestsVisibility}
@@ -53,7 +57,12 @@ export const VisibilityDialog = ({
         <Button onClick={onCancel}>{t("n3_cancel")}</Button>
         <Button
           onClick={() =>
-            onAccept(newMetadataVisibility, newTestsVisibility, newTestsFilters)
+            onAccept(
+              newMetadataVisibility,
+              newMetadataFilters,
+              newTestsVisibility,
+              newTestsFilters
+            )
           }
           color="primary"
         >

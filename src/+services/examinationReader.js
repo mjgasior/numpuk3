@@ -3,11 +3,12 @@ import { logger } from "./logger";
 
 export const getExaminations = async (
   metadataVisibility,
+  metadataFilters,
   testsVisibility,
   testFilters,
   pagination
 ) => {
-  const findQuery = getQuery(testFilters);
+  const findQuery = getQuery(metadataFilters, testFilters);
   const projection = getProjection(metadataVisibility, testsVisibility);
 
   const examinations = await getExaminationsAsync(
@@ -70,7 +71,7 @@ const getProjection = (metadataVisibility, testsVisibility) => {
   return projection;
 };
 
-const getQuery = (testFilters) => {
+const getQuery = (metadataFilters, testFilters) => {
   const query = {};
   Object.keys(testFilters).forEach((data) => {
     const value = testFilters[data];

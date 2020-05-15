@@ -3,6 +3,7 @@ import { getExaminations } from "../../+services/examinationReader";
 
 export const useExaminations = (
   metadataVisibility,
+  metadataFilters,
   testsVisibility,
   testFilters,
   pagination
@@ -16,6 +17,7 @@ export const useExaminations = (
     const loadExaminations = async () => {
       const data = await getExaminations(
         metadataVisibility,
+        metadataFilters,
         testsVisibility,
         testFilters,
         pagination
@@ -23,7 +25,13 @@ export const useExaminations = (
       setExaminationsData(data);
     };
     loadExaminations();
-  }, [metadataVisibility, testsVisibility, testFilters, pagination]);
+  }, [
+    metadataVisibility,
+    metadataFilters,
+    testsVisibility,
+    testFilters,
+    pagination,
+  ]);
 
   return examinationsData;
 };

@@ -5,18 +5,13 @@ import { Filter } from "../+components/Filter";
 import { SliderFilter } from "./SliderFilter";
 import { useHandleCallback } from "../+hooks/useHandleCallback";
 
-export const MetadataFiltersList = ({ visibility, setVisibility }) => {
+export const MetadataFiltersList = ({
+  visibility,
+  setVisibility,
+  filters,
+  setFilters,
+}) => {
   const { t } = useTranslation("n3_metadata");
-
-  const [filters, setFilters] = useState({
-    gender: undefined,
-    ageAtTest: { min: 0, max: 140 },
-    ph: { min: 0, max: 14 },
-    bacteriaCount: undefined,
-    consistency: undefined,
-    hasAkkermansiaMuciniphila: undefined,
-    hasFaecalibactriumPrausnitzii: undefined,
-  });
 
   const handleVisibilityChange = useHandleCallback(setVisibility);
   const handleFilterChange = useHandleCallback(setFilters);
