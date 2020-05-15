@@ -6,14 +6,15 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
-import { FiltersList } from "./+components/FiltersList";
-import { VisibilityList } from "./+components/VisibilityList";
+import { TestFiltersList } from "./tests/TestFiltersList";
+import { MetadataFiltersList } from "./metadata/MetadataFiltersList";
 
 export const VisibilityDialog = ({
   onCancel,
   onAccept,
   open,
   metadataVisibility,
+  metadataFilters,
   testsVisibility,
   testFilters,
 }) => {
@@ -22,6 +23,7 @@ export const VisibilityDialog = ({
   const [newMetadataVisibility, setNewMetadataVisibility] = useState(
     metadataVisibility
   );
+  const [newMetadataFilters, setNewMetadataFilters] = useState(metadataFilters);
 
   const [newTestsVisibility, setNewTestsVisibility] = useState(testsVisibility);
   const [newTestsFilters, setNewTestsFilters] = useState(testFilters);
@@ -37,11 +39,13 @@ export const VisibilityDialog = ({
       <DialogTitle>{t("n3_set_column_visibility")}</DialogTitle>
       <DialogContent dividers={true}>
         <Grid container spacing={3}>
-          <VisibilityList
+          <MetadataFiltersList
             visibility={newMetadataVisibility}
             setVisibility={setNewMetadataVisibility}
+            filters={newMetadataFilters}
+            setFilters={setNewMetadataFilters}
           />
-          <FiltersList
+          <TestFiltersList
             visibility={newTestsVisibility}
             setVisibility={setNewTestsVisibility}
             filters={newTestsFilters}
@@ -53,7 +57,12 @@ export const VisibilityDialog = ({
         <Button onClick={onCancel}>{t("n3_cancel")}</Button>
         <Button
           onClick={() =>
-            onAccept(newMetadataVisibility, newTestsVisibility, newTestsFilters)
+            onAccept(
+              newMetadataVisibility,
+              newMetadataFilters,
+              newTestsVisibility,
+              newTestsFilters
+            )
           }
           color="primary"
         >

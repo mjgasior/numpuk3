@@ -3,11 +3,12 @@ import { logger } from "./logger";
 
 export const getExaminations = async (
   metadataVisibility,
+  metadataFilters,
   testsVisibility,
   testFilters,
   pagination
 ) => {
-  const findQuery = getQuery(testFilters);
+  const findQuery = getQuery(metadataFilters, testFilters);
   const projection = getProjection(metadataVisibility, testsVisibility);
 
   const examinations = await getExaminationsAsync(
@@ -70,8 +71,9 @@ const getProjection = (metadataVisibility, testsVisibility) => {
   return projection;
 };
 
-const getQuery = (testFilters) => {
-  const query = {};
+const getQuery = (metadataFilters, testFilters) => {
+  const query = getMetadataQuery(metadataFilters);
+
   Object.keys(testFilters).forEach((data) => {
     const value = testFilters[data];
     if (value === true) {
@@ -80,5 +82,83 @@ const getQuery = (testFilters) => {
       query[`results.${data}`] = 0;
     }
   });
+  return query;
+};
+
+const GENDER = {
+  FEMALE: "FEMALE",
+  MALE: "MALE",
+};
+
+const MARKER = {
+  POSITIVE: "POSITIVE",
+  NEGATIVE: "NEGATIVE",
+};
+
+const CONSISTENCY = {
+  LIQUID: "LIQUID",
+  HALF_LIQUID: "HALF_LIQUID",
+  RIGID: "RIGID",
+};
+
+const hasConsistencyChanged = ({ LIQUID, HALF_LIQUID, RIGID }) => {
+  return !(LIQUID === HALF_LIQUID && HALF_LIQUID === RIGID);
+};
+
+const getMetadataQuery = ({
+  gender,
+  hasAkkermansiaMuciniphila,
+  hasFaecalibactriumPrausnitzii,
+  ageAtTest,
+  ph,
+  bacteriaCount,
+  consistency,
+}) => {
+  const query = {};
+
+  if (gender !== undefined) {
+    query.gender = gender ? GENDER.FEMALE : GENDER.MALE;
+  }
+
+  if (hasAkkermansiaMuciniphila !== undefined) {
+    query.hasAkkermansiaMuciniphila = hasAkkermansiaMuciniphila
+      ? MARKER.POSITIVE
+      : MARKER.NEGATIVE;
+  }
+
+  if (hasFaecalibactriumPrausnitzii !== undefined) {
+    query.hasFaecalibactriumPrausnitzii = hasFaecalibactriumPrausnitzii
+      ? MARKER.POSITIVE
+      : MARKER.NEGATIVE;
+  }
+
+  if (ageAtTest.min > 0 || ageAtTest.max < 140) {
+    query.$and = [
+      { ageAtTest: { $gte: ageAtTest.min } },
+      { ageAtTest: { $lte: ageAtTest.max } },
+    ];
+  }
+
+  if (ph.min > 0 || ph.max < 14) {
+    query.$and = [
+      ...query.$and,
+      { ph: { $gte: ph.min } },
+      { ph: { $lte: ph.max } },
+    ];
+  }
+
+  if (bacteriaCount !== undefined) {
+    logger.info("Bacteria count filter not supported!");
+  }
+
+  if (hasConsistencyChanged(consistency)) {
+    query.$or = [];
+    for (const key in consistency) {
+      if (consistency[key]) {
+        query.$or = [...query.$or, { consistency: key }];
+      }
+    }
+  }
+
   return query;
 };

@@ -2,7 +2,7 @@ import React from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
-export const LabelSwitch2 = ({ isVisible, label, name, handleChange }) => {
+export const LabelSwitch = ({ isVisible, label, name, handleChange }) => {
   return (
     <FormControlLabel
       control={
@@ -12,5 +12,3 @@ export const LabelSwitch2 = ({ isVisible, label, name, handleChange }) => {
     />
   );
 };
-
-export const LabelSwitch = React.memo(LabelSwitch2);

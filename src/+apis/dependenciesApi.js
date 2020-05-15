@@ -6,7 +6,10 @@ let log = {
   warn: (m) => console.warn(m),
 };
 let db;
-let tests = { types: [], save: () => null };
+let tests = {
+  types: { anaerobic: [], fungi: [], gramMinus: [], gramPlus: [] },
+  save: () => null,
+};
 
 if (window.require) {
   const electron = window.require("electron");
