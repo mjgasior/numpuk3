@@ -3,7 +3,7 @@ import React from "react";
 import { ExaminationTable } from "./table/ExaminationTable";
 import { VisibilityDialog } from "./visibility/VisibilityDialog";
 import { HeaderMenu } from "./+components/HeaderMenu";
-import { useVisibilityDialog } from "./+hooks/useTableDialogs";
+import { useVisibilityDialog, useExportDialog } from "./+hooks/useTableDialogs";
 import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
@@ -43,6 +43,12 @@ export const ExaminationsPage = () => {
     openVisibilityDialog,
     closeVisibilityDialog,
   } = useVisibilityDialog();
+
+  const {
+    isExportDialogOpen,
+    openExportDialog,
+    closeExportDialog,
+  } = useExportDialog();
 
   const pagination = usePagination();
 

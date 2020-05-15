@@ -8,20 +8,7 @@ export const getExaminations = async (
   testFilters,
   pagination
 ) => {
-  const onlyVisibleMetadataFilters = filterByVisibility(
-    metadataFilters,
-    metadataVisibility
-  );
-
-  const onlyVisibleTestFilters = filterByVisibility(
-    testFilters,
-    testsVisibility
-  );
-
-  const findQuery = getQuery(
-    onlyVisibleMetadataFilters,
-    onlyVisibleTestFilters
-  );
+  const findQuery = getQuery(metadataFilters, testFilters);
 
   const projection = getProjection(metadataVisibility, testsVisibility);
 
@@ -65,16 +52,6 @@ const getExaminationsCountAsync = (query) => {
       resolve(count);
     });
   });
-};
-
-const filterByVisibility = (filters, visibility) => {
-  const filtered = {};
-  for (const key in filters) {
-    if (visibility[key]) {
-      filtered[key] = filters[key];
-    }
-  }
-  return filtered;
 };
 
 const getProjection = (metadataVisibility, testsVisibility) => {

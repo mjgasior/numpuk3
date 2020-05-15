@@ -56,14 +56,24 @@ export const VisibilityDialog = ({
       <DialogActions>
         <Button onClick={onCancel}>{t("n3_cancel")}</Button>
         <Button
-          onClick={() =>
+          onClick={() => {
+            const onlyVisibleMetadataFilters = filterByVisibility(
+              newMetadataFilters,
+              newMetadataVisibility
+            );
+
+            const onlyVisibleTestFilters = filterByVisibility(
+              newTestsFilters,
+              newTestsVisibility
+            );
+
             onAccept(
               newMetadataVisibility,
-              newMetadataFilters,
+              onlyVisibleMetadataFilters,
               newTestsVisibility,
-              newTestsFilters
-            )
-          }
+              onlyVisibleTestFilters
+            );
+          }}
           color="primary"
         >
           {t("n3_apply")}
@@ -71,4 +81,14 @@ export const VisibilityDialog = ({
       </DialogActions>
     </Dialog>
   );
+};
+
+const filterByVisibility = (filters, visibility) => {
+  const filtered = {};
+  for (const key in filters) {
+    if (visibility[key]) {
+      filtered[key] = filters[key];
+    }
+  }
+  return filtered;
 };

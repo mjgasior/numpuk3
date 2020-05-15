@@ -14,11 +14,11 @@ export const Menu = () => {
   const { t } = useTranslation();
   return (
     <>
-      <ButtonLink title={t("n3_examinations")} to={ROUTES.EXAMINATIONS}>
-        <ListIcon />
-      </ButtonLink>
       <ButtonLink title={t("n3_open_single")} to={ROUTES.READER}>
         <FolderOpenIcon />
+      </ButtonLink>
+      <ButtonLink title={t("n3_examinations")} to={ROUTES.EXAMINATIONS}>
+        <ListIcon />
       </ButtonLink>
       <ButtonLink title={t("n3_add_new_examinations")} to={ROUTES.UPLOAD}>
         <CloudUploadIcon />
