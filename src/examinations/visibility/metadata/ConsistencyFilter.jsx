@@ -26,6 +26,7 @@ const ConsistencyFilterComponent = ({
         name={objectKey}
         isVisible={isVisible}
       />
+
       <FormGroup>
         {Object.keys(filter).map((objectKey) => (
           <NamedCheckbox
@@ -34,6 +35,7 @@ const ConsistencyFilterComponent = ({
             objectKey={objectKey}
             isChecked={filter[objectKey]}
             onChange={handleCheckboxChange}
+            isDisabled={!isVisible}
           />
         ))}
       </FormGroup>

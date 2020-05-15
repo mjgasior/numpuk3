@@ -1,9 +1,10 @@
 import React from "react";
 import Slider from "@material-ui/core/Slider";
 
-export const RangeSlider = ({ value, min, max, onChange }) => {
+export const RangeSlider = ({ value, min, max, onChange, isDisabled }) => {
   return (
     <Slider
+      disabled={isDisabled}
       min={min}
       max={max}
       step={0.1}
