@@ -26,7 +26,13 @@ const SliderFilterComponent = ({
         name={objectKey}
         isVisible={isVisible}
       />
-      <RangeSlider value={filter} onChange={handleChange} min={min} max={max} />
+      <RangeSlider
+        value={filter}
+        onChange={handleChange}
+        min={min}
+        max={max}
+        isDisabled={!isVisible}
+      />
     </>
   );
 };
