@@ -7,7 +7,7 @@ export const setAge = (birthDate, currentDate) => {
     const date2 = moment(currentDate, "DD.MM.YYYY");
 
     const diff = moment.duration(date2.diff(date1));
-    const age = diff.asYears().toFixed(3);
+    const age = parseFloat(diff.asYears().toFixed(3));
 
     if (age <= 0) {
       throw new Error(
