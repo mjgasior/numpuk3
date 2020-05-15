@@ -3,15 +3,18 @@ import { RangeSlider } from "./+components/RangeSlider";
 import { LabelSwitch } from "../+components/LabelSwitch";
 
 const SliderFilterComponent = ({
-  visibility,
+  isVisible,
+  onVisibilityChange,
   filter,
-  onVisibility,
   onFilter,
   min,
   max,
   objectKey,
   t,
 }) => {
+  const handleSwitchChange = (event) =>
+    onVisibilityChange(event.target.name, event.target.checked);
+
   const handleChange = (newValue) => onFilter(objectKey, newValue);
 
   return (
@@ -19,9 +22,9 @@ const SliderFilterComponent = ({
       <LabelSwitch
         key={objectKey}
         label={t(objectKey)}
-        handleChange={onVisibility}
+        handleChange={handleSwitchChange}
         name={objectKey}
-        isVisible={visibility}
+        isVisible={isVisible}
       />
       <RangeSlider value={filter} onChange={handleChange} min={min} max={max} />
     </>
@@ -31,7 +34,7 @@ const SliderFilterComponent = ({
 export const SliderFilter = React.memo(SliderFilterComponent, areEqual);
 
 function areEqual(prevProps, nextProps) {
-  const hasVisibilityNotChanged = prevProps.visibility === nextProps.visibility;
+  const hasVisibilityNotChanged = prevProps.isVisible === nextProps.isVisible;
   const hasFiltersNotChanged =
     prevProps.filter.min === nextProps.filter.min &&
     prevProps.filter.max === nextProps.filter.max;

@@ -11,8 +11,8 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
     gender: undefined,
     ageAtTest: { min: 0, max: 140 },
     ph: { min: 0, max: 14 },
-    bacteriaCount: {},
-    consistency: {},
+    bacteriaCount: undefined,
+    consistency: undefined,
     hasAkkermansiaMuciniphila: undefined,
     hasFaecalibactriumPrausnitzii: undefined,
   });
@@ -65,9 +65,9 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
       <SliderFilter
         t={t}
         objectKey="ageAtTest"
-        visibility={ageAtTest}
+        isVisible={ageAtTest}
+        onVisibilityChange={handleVisibilityChange}
         filter={filters.ageAtTest}
-        onVisibility={handleVisibilityChange}
         onFilter={handleFilterChange}
         min={0}
         max={140}
@@ -75,9 +75,9 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
       <SliderFilter
         t={t}
         objectKey="ph"
-        visibility={ph}
+        isVisible={ph}
+        onVisibilityChange={handleVisibilityChange}
         filter={filters.ph}
-        onVisibility={handleVisibilityChange}
         onFilter={handleFilterChange}
         min={0}
         max={14}
