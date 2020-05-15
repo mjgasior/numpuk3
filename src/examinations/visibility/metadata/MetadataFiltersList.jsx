@@ -18,11 +18,15 @@ export const MetadataFiltersList = ({ visibility, setVisibility }) => {
     hasFaecalibactriumPrausnitzii: undefined,
   });
 
-  const handleVisibilityChange = (event) =>
-    setVisibility((old) => ({
-      ...old,
-      [event.target.name]: event.target.checked,
-    }));
+  const handleVisibilityChange = useCallback(
+    (name, value) => {
+      setVisibility((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    },
+    [setVisibility]
+  );
 
   const handleFilterChange = useCallback(
     (name, value) => {
