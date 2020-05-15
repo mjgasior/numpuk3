@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const HeaderMenu = ({ openVisibility }) => {
+export const HeaderMenu = ({ openVisibility, openExport }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
@@ -28,7 +28,7 @@ export const HeaderMenu = ({ openVisibility }) => {
         variant="contained"
         className={classes.button}
         startIcon={<ArchiveIcon />}
-        onClick={openVisibility}
+        onClick={openExport}
       >
         {t("n3_export_to_excel")}
       </Button>

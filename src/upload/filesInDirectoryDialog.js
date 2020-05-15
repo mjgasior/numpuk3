@@ -4,7 +4,7 @@ import { EXAMINATION_FILE_EXTENSION_DOT } from "../+services/examinationParser";
 
 export const showFilesInDirectoryDialog = async (t) => {
   const options = {
-    title: t("n3_load_directory_title"),
+    title: t("n3_load_examinations_title"),
     buttonLabel: t("n3_load_directory"),
   };
 

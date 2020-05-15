@@ -9,6 +9,8 @@ import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { Pagination } from "./table/Pagination";
 import { usePagination } from "./+hooks/usePagination";
+import { useTranslation } from "react-i18next";
+import { ExportDialog } from "./export/ExportDialog";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -27,6 +29,7 @@ const PaginationContainer = styled.div`
 `;
 
 export const ExaminationsPage = () => {
+  const { t } = useTranslation();
   const {
     metadataVisibility,
     setMetadataVisibility,
@@ -62,7 +65,11 @@ export const ExaminationsPage = () => {
 
   return (
     <ExaminationsViewContainer>
-      <HeaderMenu openVisibility={openVisibilityDialog} />
+      <HeaderMenu
+        openVisibility={openVisibilityDialog}
+        openExport={openExportDialog}
+      />
+      <ExportDialog isOpen={isExportDialogOpen} onClose={closeExportDialog} />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         metadataFilters={metadataFilters}

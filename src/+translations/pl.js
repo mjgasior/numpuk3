@@ -11,7 +11,8 @@ export const polish = {
       n3_filters: "Filtry",
 
       n3_load_directory: "Wybierz lokalizację",
-      n3_load_directory_title: "Wczytaj badania z wybranej lokalizacji",
+      n3_load_directory_title: "Wybierz lokalizację do eksportu badań",
+      n3_load_examinations_title: "Wczytaj badania z wybranej lokalizacji",
 
       n3_load_file: "Wybierz plik",
       n3_load_file_title: "Wczytaj badanie z pliku",
