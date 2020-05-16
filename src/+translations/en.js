@@ -19,6 +19,7 @@ export const english = {
       n3_load_file_title: "Load examinations from selected directory",
 
       n3_logs: "Application logs",
+      n3_logs_deleted: "Logs deleted",
       n3_logs_path: "Logs are kept in file named and placed",
       n3_logs_warning:
         "Deleting logs is irreversible. Logs are important for error diagnostics and debugging, but they take up space. Please be careful!",

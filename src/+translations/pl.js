@@ -18,6 +18,7 @@ export const polish = {
       n3_load_file_title: "Wczytaj badanie z pliku",
 
       n3_logs: "Logi aplikacji",
+      n3_logs_deleted: "Logi usunięto",
       n3_logs_path:
         "Logi przetrzymywane są w pliku o nazwie i zlokalizowanym w",
       n3_logs_warning:

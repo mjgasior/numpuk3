@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import styled from "styled-components";
-import { Toast } from "./+components/Toast";
+import { Toast } from "./../+components/Toast";
 
 const ButtonContainer = styled.div`
   margin: 10px;
