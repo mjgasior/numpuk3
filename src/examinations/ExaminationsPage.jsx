@@ -3,12 +3,13 @@ import React from "react";
 import { ExaminationTable } from "./table/ExaminationTable";
 import { VisibilityDialog } from "./visibility/VisibilityDialog";
 import { HeaderMenu } from "./+components/HeaderMenu";
-import { useVisibilityDialog } from "./+hooks/useTableDialogs";
+import { useVisibilityDialog, useExportDialog } from "./+hooks/useTableDialogs";
 import { useVisibilityFilters } from "./+hooks/useVisibilityFilters";
 import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { Pagination } from "./table/Pagination";
 import { usePagination } from "./+hooks/usePagination";
+import { ExportDialog } from "./export/ExportDialog";
 
 const ExaminationsViewContainer = styled.div`
   overflow: hidden;
@@ -44,6 +45,12 @@ export const ExaminationsPage = () => {
     closeVisibilityDialog,
   } = useVisibilityDialog();
 
+  const {
+    isExportDialogOpen,
+    openExportDialog,
+    closeExportDialog,
+  } = useExportDialog();
+
   const pagination = usePagination();
 
   const { examinations, count } = useExaminations(
@@ -56,7 +63,18 @@ export const ExaminationsPage = () => {
 
   return (
     <ExaminationsViewContainer>
-      <HeaderMenu openVisibility={openVisibilityDialog} />
+      <HeaderMenu
+        openVisibility={openVisibilityDialog}
+        openExport={openExportDialog}
+      />
+      <ExportDialog
+        isOpen={isExportDialogOpen}
+        onClose={closeExportDialog}
+        metadataVisibility={metadataVisibility}
+        metadataFilters={metadataFilters}
+        testsVisibility={testsVisibility}
+        testFilters={testFilters}
+      />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}
         metadataFilters={metadataFilters}

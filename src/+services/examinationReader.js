@@ -8,20 +8,7 @@ export const getExaminations = async (
   testFilters,
   pagination
 ) => {
-  const onlyVisibleMetadataFilters = filterByVisibility(
-    metadataFilters,
-    metadataVisibility
-  );
-
-  const onlyVisibleTestFilters = filterByVisibility(
-    testFilters,
-    testsVisibility
-  );
-
-  const findQuery = getQuery(
-    onlyVisibleMetadataFilters,
-    onlyVisibleTestFilters
-  );
+  const findQuery = getQuery(metadataFilters, testFilters);
 
   const projection = getProjection(metadataVisibility, testsVisibility);
 
@@ -34,6 +21,23 @@ export const getExaminations = async (
   const count = await getExaminationsCountAsync(findQuery);
 
   return { examinations, count };
+};
+
+export const getData = async (
+  metadataVisibility,
+  metadataFilters,
+  testsVisibility,
+  testFilters,
+  pagination
+) => {
+  const findQuery = getQuery(metadataFilters, testFilters);
+  const projection = getProjection(metadataVisibility, testsVisibility);
+  return await getExaminationsAsync(projection, findQuery, pagination);
+};
+
+export const getCount = async (metadataFilters, testFilters) => {
+  const findQuery = getQuery(metadataFilters, testFilters);
+  return await getExaminationsCountAsync(findQuery);
 };
 
 const getExaminationsAsync = (projection, findQuery, pagination) => {
@@ -65,16 +69,6 @@ const getExaminationsCountAsync = (query) => {
       resolve(count);
     });
   });
-};
-
-const filterByVisibility = (filters, visibility) => {
-  const filtered = {};
-  for (const key in filters) {
-    if (visibility[key]) {
-      filtered[key] = filters[key];
-    }
-  }
-  return filtered;
 };
 
 const getProjection = (metadataVisibility, testsVisibility) => {
@@ -117,12 +111,6 @@ const GENDER = {
 const MARKER = {
   POSITIVE: "POSITIVE",
   NEGATIVE: "NEGATIVE",
-};
-
-const CONSISTENCY = {
-  LIQUID: "LIQUID",
-  HALF_LIQUID: "HALF_LIQUID",
-  RIGID: "RIGID",
 };
 
 const hasConsistencyChanged = ({ LIQUID, HALF_LIQUID, RIGID }) => {

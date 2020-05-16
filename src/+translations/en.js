@@ -7,10 +7,13 @@ export const english = {
       n3_close: "Close",
       n3_delete_logs: "Delete logs",
       n3_examinations: "Examinations",
+      n3_export_to_excel: "Export to Excel",
       n3_filters: "Filters",
 
       n3_load_directory: "Select directory",
-      n3_load_directory_title: "Load examinations from selected directory",
+      n3_load_directory_title:
+        "Select target directory for examinations export",
+      n3_load_examinations_title: "Load examinations from selected directory",
 
       n3_load_file: "Select directory",
       n3_load_file_title: "Load examinations from selected directory",
