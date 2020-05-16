@@ -23,6 +23,23 @@ export const getExaminations = async (
   return { examinations, count };
 };
 
+export const getData = async (
+  metadataVisibility,
+  metadataFilters,
+  testsVisibility,
+  testFilters,
+  pagination
+) => {
+  const findQuery = getQuery(metadataFilters, testFilters);
+  const projection = getProjection(metadataVisibility, testsVisibility);
+  return await getExaminationsAsync(projection, findQuery, pagination);
+};
+
+export const getCount = async (metadataFilters, testFilters) => {
+  const findQuery = getQuery(metadataFilters, testFilters);
+  return await getExaminationsCountAsync(findQuery);
+};
+
 const getExaminationsAsync = (projection, findQuery, pagination) => {
   const { page, rowsPerPage } = pagination;
 
