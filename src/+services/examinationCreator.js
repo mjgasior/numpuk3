@@ -30,7 +30,7 @@ export const saveExaminations = async (
 
     logger.info("Fetching count from database.");
     const count = await getCount(metadataFilters, testFilters);
-    console.log(count);
+    logger.info(`There is ${count} examinations to save.`);
 
     await runDataExport(
       document,
