@@ -1,60 +1,55 @@
-import { exceljs } from "../+apis/dependenciesApi";
 import { getExaminations } from "./examinationReader";
-
-const createWorkbook = () => {
-  const workbook = new exceljs.Workbook();
-
-  workbook.creator = "numpuk3";
-  workbook.lastModifiedBy = "numpuk3";
-  workbook.created = new Date();
-  workbook.modified = new Date();
-
-  workbook.views = [
-    {
-      x: 0,
-      y: 0,
-      width: 10000,
-      height: 20000,
-      firstSheet: 0,
-      activeTab: 1,
-      visibility: "visible",
-    },
-  ];
-
-  return workbook;
-};
+import {
+  createDocument,
+  setColumnsInDocument,
+  addRowInDocument,
+  saveDocument,
+} from "./creator/documentWriter";
+import { logger } from "./logger";
 
 export const saveExaminations = async (
+  dictionary,
   directory,
-  testFilters,
-  metadataFilters
+  metadataVisibility,
+  metadataFilters,
+  testsVisibility,
+  testFilters
 ) => {
-  console.log(directory);
-  const workbook = createWorkbook();
-  const worksheet = workbook.addWorksheet("Wyniki");
+  try {
+    logger.info(`Creating new document in ${directory}`);
+    const document = createDocument();
 
-  const data = await getExaminations({}, metadataFilters, {}, testFilters, {
-    page: 0,
-    rowsPerPage: 100,
-  });
+    logger.info("Document stream created.");
+    setColumnsInDocument(
+      document,
+      dictionary,
+      metadataVisibility,
+      testsVisibility
+    );
 
-  worksheet.columns = [
-    { header: "Id", key: "id", width: 10 },
-    { header: "Name", key: "name", width: 32 },
-    { header: "D.O.B.", key: "DOB", width: 10, outlineLevel: 1 },
-  ];
+    logger.info("Fetching data from database.");
+    const data = await getExaminations(
+      metadataVisibility,
+      metadataFilters,
+      testsVisibility,
+      testFilters,
+      {
+        page: 0,
+        rowsPerPage: 100,
+      }
+    );
 
-  worksheet.addRow({ id: 1, name: "John Doe", dob: new Date(1970, 1, 1) });
-  worksheet.addRow({ id: 2, name: "Jane Doe", dob: new Date(1965, 1, 7) });
+    logger.info("Saving data.");
+    data.examinations.forEach((element) => {
+      const { results, ...rest } = element;
+      addRowInDocument(document, { ...rest, ...results });
+    });
 
-  /*
-  data.examinations.forEach((element) => {
-    const { results, ...rest } = element;
-    sheet.addRow(rest);
-  });
-*/
-  console.log(data);
-
-  await workbook.xlsx.writeFile(directory + "/wyniki.xlsx");
-  return 0;
+    logger.info("Saving data to file.");
+    saveDocument(document, directory);
+    return 0;
+  } catch (error) {
+    logger.error(error);
+    throw error;
+  }
 };

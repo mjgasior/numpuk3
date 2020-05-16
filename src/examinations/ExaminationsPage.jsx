@@ -72,8 +72,10 @@ export const ExaminationsPage = () => {
       <ExportDialog
         isOpen={isExportDialogOpen}
         onClose={closeExportDialog}
-        testFilters={testFilters}
+        metadataVisibility={metadataVisibility}
         metadataFilters={metadataFilters}
+        testsVisibility={testsVisibility}
+        testFilters={testFilters}
       />
       <VisibilityDialog
         metadataVisibility={metadataVisibility}

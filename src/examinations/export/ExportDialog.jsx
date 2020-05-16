@@ -11,9 +11,12 @@ import { saveExaminations } from "../../+services/examinationCreator";
 export const ExportDialog = ({
   isOpen,
   onClose,
-  testFilters,
+  metadataVisibility,
   metadataFilters,
+  testsVisibility,
+  testFilters,
 }) => {
+  const metadataDictionary = useTranslation("n3_metadata");
   const { t } = useTranslation();
   const [directory, setDirectory] = useState("");
 
@@ -23,7 +26,14 @@ export const ExportDialog = ({
 
       if (selectedDirectory) {
         setDirectory(selectedDirectory);
-        await saveExaminations(selectedDirectory, testFilters, metadataFilters);
+        await saveExaminations(
+          metadataDictionary.t,
+          selectedDirectory,
+          metadataVisibility,
+          metadataFilters,
+          testsVisibility,
+          testFilters
+        );
       } else {
         onClose();
       }
