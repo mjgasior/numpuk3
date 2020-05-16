@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import { useTranslation } from "react-i18next";
 import { showExportDirectoryDialog } from "./directoryDialog";
 import { saveExaminations } from "../../+services/examinationCreator";
@@ -19,6 +20,7 @@ export const ExportDialog = ({
   const metadataDictionary = useTranslation("n3_metadata");
   const { t } = useTranslation();
   const [directory, setDirectory] = useState("");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handlePickDirectory = async () => {
@@ -32,7 +34,8 @@ export const ExportDialog = ({
           metadataVisibility,
           metadataFilters,
           testsVisibility,
-          testFilters
+          testFilters,
+          setProgress
         );
       } else {
         onClose();
@@ -45,6 +48,7 @@ export const ExportDialog = ({
 
     if (!isOpen && directory !== "") {
       setDirectory("");
+      setProgress(0);
     }
   }, [
     isOpen,
@@ -59,6 +63,7 @@ export const ExportDialog = ({
   ]);
 
   const hasDirectorySet = directory !== "";
+  const isFinished = progress > 99;
   return (
     <>
       {hasDirectorySet && (
@@ -72,10 +77,13 @@ export const ExportDialog = ({
           <DialogTitle>{t("n3_export_to_excel")}</DialogTitle>
           <DialogContent dividers={true}>
             <p>{directory}</p>
+            <LinearProgress variant="determinate" value={progress} />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={onClose}>{t("n3_cancel")}</Button>
-          </DialogActions>
+          {isFinished && (
+            <DialogActions>
+              <Button onClick={onClose}>OK</Button>
+            </DialogActions>
+          )}
         </Dialog>
       )}
     </>

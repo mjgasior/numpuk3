@@ -13,7 +13,8 @@ export const saveExaminations = async (
   metadataVisibility,
   metadataFilters,
   testsVisibility,
-  testFilters
+  testFilters,
+  callback
 ) => {
   try {
     logger.info(`Creating new document in ${directory}`);
@@ -37,7 +38,8 @@ export const saveExaminations = async (
       metadataVisibility,
       metadataFilters,
       testsVisibility,
-      testFilters
+      testFilters,
+      callback
     );
 
     logger.info("Saving data to file.");
@@ -55,7 +57,8 @@ const runDataExport = async (
   metadataVisibility,
   metadataFilters,
   testsVisibility,
-  testFilters
+  testFilters,
+  callback
 ) => {
   const PAGE_SIZE = 10;
   const pages = Math.ceil(count / PAGE_SIZE);
@@ -78,5 +81,7 @@ const runDataExport = async (
       const { results, ...rest } = element;
       addRowInDocument(document, { ...rest, ...results });
     });
+
+    callback(((page + 1) * 100) / pages);
   }
 };
