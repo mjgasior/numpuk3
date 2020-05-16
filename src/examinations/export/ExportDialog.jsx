@@ -46,7 +46,17 @@ export const ExportDialog = ({
     if (!isOpen && directory !== "") {
       setDirectory("");
     }
-  }, [isOpen, directory]);
+  }, [
+    isOpen,
+    directory,
+    t,
+    metadataDictionary.t,
+    metadataVisibility,
+    metadataFilters,
+    testsVisibility,
+    testFilters,
+    onClose,
+  ]);
 
   const hasDirectorySet = directory !== "";
   return (

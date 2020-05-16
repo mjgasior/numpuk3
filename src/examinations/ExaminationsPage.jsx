@@ -9,7 +9,6 @@ import { useExaminations } from "./+hooks/useExaminations";
 import styled from "styled-components";
 import { Pagination } from "./table/Pagination";
 import { usePagination } from "./+hooks/usePagination";
-import { useTranslation } from "react-i18next";
 import { ExportDialog } from "./export/ExportDialog";
 
 const ExaminationsViewContainer = styled.div`
@@ -29,7 +28,6 @@ const PaginationContainer = styled.div`
 `;
 
 export const ExaminationsPage = () => {
-  const { t } = useTranslation();
   const {
     metadataVisibility,
     setMetadataVisibility,
